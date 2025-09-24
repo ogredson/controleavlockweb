@@ -1082,7 +1082,7 @@
                                 Chaves de Liberação
                             </h2>
                             <div style="display: flex; gap: 10px;">
-                                <button class="btn btn-warning" onclick="gerarChaves()">
+                                <button class="btn btn-warning" onclick="mostrarModalGeracaoChaves()">
                                     <i class="fas fa-cogs"></i>
                                     Gerar Chaves
                                 </button>
@@ -1386,6 +1386,56 @@
             <div class="modal-footer">
                 <button class="btn btn-secondary" onclick="hideModal('chaveModal')">Cancelar</button>
                 <button class="btn btn-primary" onclick="saveChave()">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Seleção de Ano para Geração de Chaves -->
+    <div class="modal" id="anoGeracaoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">
+                    <i class="fas fa-calendar-alt"></i>
+                    Selecionar Ano para Geração de Chaves
+                </h3>
+                <button class="modal-close" onclick="hideModal('anoGeracaoModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="form-label">Ano Base *</label>
+                    <select class="form-select" id="anoBaseSelect" required>
+                        <option value="">Selecione o ano...</option>
+                    </select>
+                    <small class="form-help">Selecione o ano para o qual deseja gerar as chaves de liberação</small>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Opções de Geração</label>
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                            <input type="radio" name="opcaoGeracao" value="ano_completo" checked>
+                            <span>Gerar para o ano completo (Janeiro a Dezembro)</span>
+                        </label>
+                        <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                            <input type="radio" name="opcaoGeracao" value="mes_atual">
+                            <span>Gerar apenas do mês atual em diante</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="alert alert-info" style="margin-top: 1rem;">
+                    <i class="fas fa-info-circle"></i>
+                    <strong>Informação:</strong> Serão geradas chaves apenas para contratos com status "Ativo" que ainda não possuem chaves para o período selecionado.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="hideModal('anoGeracaoModal')">Cancelar</button>
+                <button class="btn btn-primary" onclick="confirmarGeracaoChaves()">
+                    <i class="fas fa-cogs"></i>
+                    Gerar Chaves
+                </button>
             </div>
         </div>
     </div>
@@ -2661,18 +2711,51 @@
         }
 
         // Função para gerar chaves baseada nos contratos_itens
-        async function gerarChaves() {
-            try {
-                // Confirmar ação com o usuário
-                if (!confirm('Deseja gerar chaves para todos os contratos ativos? Esta ação criará registros na tabela Contratos_Chaves para o ano corrente.')) {
-                    return;
+        // Função para mostrar modal de seleção de ano
+        function mostrarModalGeracaoChaves() {
+            // Preencher select com anos (ano atual - 2 até ano atual + 5)
+            const anoAtual = new Date().getFullYear();
+            const selectAno = document.getElementById('anoBaseSelect');
+            selectAno.innerHTML = '<option value="">Selecione o ano...</option>';
+            
+            for (let ano = anoAtual - 2; ano <= anoAtual + 5; ano++) {
+                const option = document.createElement('option');
+                option.value = ano;
+                option.textContent = ano;
+                if (ano === anoAtual) {
+                    option.selected = true;
                 }
+                selectAno.appendChild(option);
+            }
+            
+            showModal('anoGeracaoModal');
+        }
+
+        // Função para confirmar e executar geração de chaves
+        async function confirmarGeracaoChaves() {
+            const anoSelecionado = document.getElementById('anoBaseSelect').value;
+            const opcaoGeracao = document.querySelector('input[name="opcaoGeracao"]:checked').value;
+            
+            if (!anoSelecionado) {
+                showToast('Por favor, selecione um ano', 'warning');
+                return;
+            }
+            
+            hideModal('anoGeracaoModal');
+            
+            const anoInt = parseInt(anoSelecionado);
+            const mesInicial = opcaoGeracao === 'ano_completo' ? 1 : new Date().getMonth() + 1;
+            
+            await gerarChaves(anoInt, mesInicial);
+        }
+
+        async function gerarChaves(anoBase = null, mesInicial = null) {
+            try {
+                // Se não foram passados parâmetros, usar valores padrão (comportamento antigo)
+                const anoCorrente = anoBase || new Date().getFullYear();
+                const mesCorrente = mesInicial || (new Date().getMonth() + 1);
 
                 showToast('Gerando chaves...', 'info');
-
-                // Obter ano corrente
-                const anoCorrente = new Date().getFullYear();
-                const mesCorrente = new Date().getMonth() + 1; // JavaScript months are 0-based
 
                 // Buscar todos os contratos_itens ativos
                 const { data: contratosItens, error: contratosError } = await supabase
@@ -2692,7 +2775,7 @@
                 let chavesGeradas = 0;
                 let erros = 0;
 
-                // Para cada contrato_item, gerar chaves para os meses restantes do ano
+                // Para cada contrato_item, gerar chaves para os meses do ano selecionado
                 for (const contrato of contratosItens) {
                     for (let mes = mesCorrente; mes <= 12; mes++) {
                         try {
@@ -2753,11 +2836,11 @@
 
                 // Mostrar resultado
                 if (chavesGeradas > 0) {
-                    showToast(`${chavesGeradas} chaves geradas com sucesso!${erros > 0 ? ` (${erros} erros)` : ''}`, 'success');
+                    showToast(`${chavesGeradas} chaves geradas com sucesso para o ano ${anoCorrente}!${erros > 0 ? ` (${erros} erros)` : ''}`, 'success');
                 } else if (erros > 0) {
                     showToast(`Erro ao gerar chaves. ${erros} erros encontrados.`, 'error');
                 } else {
-                    showToast('Todas as chaves já existem para o período atual', 'info');
+                    showToast(`Todas as chaves já existem para o período selecionado do ano ${anoCorrente}`, 'info');
                 }
 
             } catch (error) {
