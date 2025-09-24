@@ -18,6 +18,7 @@ CREATE TABLE IF NOT EXISTS clientes
     telefone varchar(20),
     celular varchar(20),
     website varchar(100),
+	senha text null,
     CONSTRAINT clientes_tipo_pessoa_check CHECK (tipo_pessoa = ANY (ARRAY['F', 'J']))
 );
 
