@@ -1,0 +1,3055 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema AvLock - Controle de Clientes e Contratos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        :root {
+            /* Light theme colors */
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #3b82f6;
+            --secondary: #64748b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --info: #06b6d4;
+            
+            /* Neutral colors */
+            --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --gray-300: #cbd5e1;
+            --gray-400: #94a3b8;
+            --gray-500: #64748b;
+            --gray-600: #475569;
+            --gray-700: #334155;
+            --gray-800: #1e293b;
+            --gray-900: #0f172a;
+            
+            /* Semantic colors */
+            --background: var(--white);
+            --surface: var(--gray-50);
+            --text-primary: var(--gray-900);
+            --text-secondary: var(--gray-600);
+            --border: var(--gray-200);
+            --shadow: rgba(0, 0, 0, 0.1);
+            
+            /* Layout */
+            --sidebar-width: 280px;
+            --header-height: 64px;
+            --border-radius: 8px;
+            --border-radius-lg: 12px;
+            --spacing-xs: 0.25rem;
+            --spacing-sm: 0.5rem;
+            --spacing-md: 1rem;
+            --spacing-lg: 1.5rem;
+            --spacing-xl: 2rem;
+        }
+
+        [data-theme="dark"] {
+            --background: var(--gray-900);
+            --surface: var(--gray-800);
+            --text-primary: var(--gray-100);
+            --text-secondary: var(--gray-400);
+            --border: var(--gray-700);
+            --shadow: rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--background);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Layout */
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            z-index: 1000;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+            overflow-y: auto;
+        }
+
+        .sidebar.active {
+            transform: translateX(0);
+        }
+
+        @media (min-width: 769px) {
+            .sidebar {
+                position: relative;
+                transform: translateX(0);
+            }
+        }
+
+        .sidebar-header {
+            padding: var(--spacing-lg);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .sidebar-logo {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+
+        .sidebar-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .sidebar-nav {
+            padding: var(--spacing-md) 0;
+        }
+
+        .nav-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .nav-group-title {
+            padding: var(--spacing-sm) var(--spacing-lg);
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            padding: var(--spacing-md) var(--spacing-lg);
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.2s ease;
+            cursor: pointer;
+            border: none;
+            background: none;
+            width: 100%;
+            text-align: left;
+        }
+
+        .nav-item:hover {
+            background: var(--gray-100);
+            color: var(--text-primary);
+        }
+
+        [data-theme="dark"] .nav-item:hover {
+            background: var(--gray-700);
+        }
+
+        .nav-item.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .nav-item i {
+            width: 20px;
+            margin-right: var(--spacing-md);
+        }
+
+        .nav-badge {
+            margin-left: auto;
+            background: var(--primary);
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.125rem 0.5rem;
+            border-radius: 12px;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (min-width: 769px) {
+            .main-content {
+                margin-left: var(--sidebar-width);
+            }
+        }
+
+        /* Header */
+        .header {
+            height: var(--header-height);
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            padding: 0 var(--spacing-lg);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .sidebar-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            border-radius: var(--border-radius);
+            margin-right: var(--spacing-md);
+        }
+
+        .sidebar-toggle:hover {
+            background: var(--gray-100);
+        }
+
+        [data-theme="dark"] .sidebar-toggle:hover {
+            background: var(--gray-700);
+        }
+
+        @media (min-width: 769px) {
+            .sidebar-toggle {
+                display: none;
+            }
+        }
+
+        .breadcrumbs {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .breadcrumb-separator {
+            color: var(--gray-400);
+        }
+
+        .header-actions {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .search-bar {
+            position: relative;
+            width: 300px;
+            max-width: 100%;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: var(--spacing-sm) var(--spacing-md);
+            padding-left: 2.5rem;
+            border: 1px solid var(--border);
+            border-radius: var(--border-radius);
+            background: var(--background);
+            color: var(--text-primary);
+            font-size: 0.875rem;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: var(--spacing-md);
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+        }
+
+        .header-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: none;
+            color: var(--text-primary);
+            cursor: pointer;
+            border-radius: var(--border-radius);
+            transition: background-color 0.2s ease;
+        }
+
+        .header-btn:hover {
+            background: var(--gray-100);
+        }
+
+        [data-theme="dark"] .header-btn:hover {
+            background: var(--gray-700);
+        }
+
+        /* Content Area */
+        .content {
+            flex: 1;
+            padding: var(--spacing-xs);
+            overflow-y: auto;
+        }
+
+        .page-header {
+            margin-bottom: var(--spacing-md);
+        }
+
+        .page-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .page-subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--border-radius-lg);
+            box-shadow: 0 1px 3px var(--shadow);
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: var(--spacing-lg);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .card-content {
+            padding: var(--spacing-lg);
+        }
+
+        /* Dashboard Grid */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .kpi-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--border-radius-lg);
+            padding: var(--spacing-lg);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+
+        .kpi-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .kpi-icon.primary { background: var(--primary); }
+        .kpi-icon.success { background: var(--success); }
+        .kpi-icon.warning { background: var(--warning); }
+        .kpi-icon.info { background: var(--info); }
+
+        .kpi-content h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .kpi-content p {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        /* Tables */
+        .table-container {
+            overflow-x: auto;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .table th,
+        .table td {
+            padding: var(--spacing-md);
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .table th {
+            background: var(--gray-50);
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.875rem;
+        }
+
+        [data-theme="dark"] .table th {
+            background: var(--gray-800);
+        }
+
+        .table td {
+            color: var(--text-primary);
+        }
+
+        .table tr:hover {
+            background: var(--gray-50);
+        }
+
+        [data-theme="dark"] .table tr:hover {
+            background: var(--gray-800);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+            padding: var(--spacing-sm) var(--spacing-md);
+            border: 1px solid transparent;
+            border-radius: var(--border-radius);
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background: var(--gray-100);
+            color: var(--text-primary);
+            border-color: var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: var(--gray-200);
+        }
+
+        [data-theme="dark"] .btn-secondary {
+            background: var(--gray-700);
+            color: var(--text-primary);
+        }
+
+        [data-theme="dark"] .btn-secondary:hover {
+            background: var(--gray-600);
+        }
+
+        .btn-sm {
+            padding: 0.375rem 0.75rem;
+            font-size: 0.75rem;
+        }
+
+        /* Forms */
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: var(--spacing-sm);
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        .form-input,
+        .form-select {
+            width: 100%;
+            padding: var(--spacing-md);
+            border: 1px solid var(--border);
+            border-radius: var(--border-radius);
+            background: var(--background);
+            color: var(--text-primary);
+            font-size: 0.875rem;
+        }
+
+        .form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Modals */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--surface);
+            border-radius: var(--border-radius-lg);
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            padding: var(--spacing-lg);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--border-radius);
+        }
+
+        .modal-close:hover {
+            background: var(--gray-100);
+            color: var(--text-primary);
+        }
+
+        [data-theme="dark"] .modal-close:hover {
+            background: var(--gray-700);
+        }
+
+        .modal-body {
+            padding: var(--spacing-lg);
+        }
+
+        .modal-footer {
+            padding: var(--spacing-lg);
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: flex-end;
+        }
+
+        /* Status badges */
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .status-ativo {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success);
+        }
+
+        .status-inativo {
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--error);
+        }
+
+        .status-pendente {
+            background: rgba(245, 158, 11, 0.1);
+            color: var(--warning);
+        }
+
+        .status-suspenso {
+            background: rgba(100, 116, 139, 0.1);
+            color: var(--secondary);
+        }
+
+        /* Toast notifications */
+        .toast {
+            position: fixed;
+            top: var(--spacing-lg);
+            right: var(--spacing-lg);
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-md);
+            box-shadow: 0 4px 12px var(--shadow);
+            z-index: 3000;
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            min-width: 300px;
+            animation: slideIn 0.3s ease;
+        }
+
+        .toast-success {
+            border-left: 4px solid var(--success);
+        }
+
+        .toast-error {
+            border-left: 4px solid var(--error);
+        }
+
+        .toast-warning {
+            border-left: 4px solid var(--warning);
+        }
+
+        .toast-info {
+            border-left: 4px solid var(--info);
+        }
+
+        .toast-content {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+            flex: 1;
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            padding: 0.25rem;
+            border-radius: var(--border-radius);
+        }
+
+        .toast-close:hover {
+            background: var(--gray-100);
+        }
+
+        [data-theme="dark"] .toast-close:hover {
+            background: var(--gray-700);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Utility classes */
+        .hidden {
+            display: none !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .mb-0 { margin-bottom: 0; }
+        .mb-1 { margin-bottom: var(--spacing-xs); }
+        .mb-2 { margin-bottom: var(--spacing-sm); }
+        .mb-3 { margin-bottom: var(--spacing-md); }
+        .mb-4 { margin-bottom: var(--spacing-lg); }
+        .mb-5 { margin-bottom: var(--spacing-xl); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .content {
+                padding: var(--spacing-md);
+            }
+            
+            .page-title {
+                font-size: 1.5rem;
+            }
+            
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .search-bar {
+                width: 200px;
+            }
+            
+            .header-actions {
+                gap: var(--spacing-sm);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .search-bar {
+                display: none;
+            }
+            
+            .modal-content {
+                width: 95%;
+                margin: var(--spacing-md);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <nav class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-logo">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="sidebar-title">AvLock</div>
+            </div>
+            
+            <div class="sidebar-nav">
+                <div class="nav-group">
+                    <div class="nav-group-title">Principal</div>
+                    <button class="nav-item" onclick="navigateTo('dashboard')">
+                        <i class="fas fa-chart-line"></i>
+                        Dashboard
+                    </button>
+                </div>
+                
+                <div class="nav-group">
+                    <div class="nav-group-title">Operações</div>
+                    <button class="nav-item" onclick="navigateTo('clientes')">
+                        <i class="fas fa-users"></i>
+                        Clientes
+                        <span class="nav-badge" id="clientesBadge">0</span>
+                    </button>
+                    <button class="nav-item" onclick="navigateTo('contratos')">
+                        <i class="fas fa-file-contract"></i>
+                        Contratos
+                        <span class="nav-badge" id="contratosBadge">0</span>
+                    </button>
+                    <button class="nav-item" onclick="navigateTo('chaves')">
+                        <i class="fas fa-key"></i>
+                        Chaves de Liberação
+                        <span class="nav-badge" id="chavesBadge">0</span>
+                    </button>
+                </div>
+                
+                <div class="nav-group">
+                    <div class="nav-group-title">Configurações</div>
+                    <button class="nav-item" onclick="toggleTheme()">
+                        <i class="fas fa-palette"></i>
+                        Tema
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <button class="sidebar-toggle" onclick="toggleSidebar()">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <nav class="breadcrumbs" id="breadcrumbs">
+                    <span>Dashboard</span>
+                </nav>
+                
+                <div class="header-actions">
+                    <button class="header-btn" id="themeToggle" onclick="toggleTheme()">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    
+                    <button class="header-btn">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    
+                    <button class="header-btn">
+                        <i class="fas fa-user-circle"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <main class="content" id="mainContent">
+                <!-- Dashboard Page -->
+                <div id="dashboardPage" class="page">
+                    <div class="dashboard-grid">
+                        <div class="kpi-card">
+                            <div class="kpi-icon primary">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="kpi-content">
+                                <h3 id="totalClientes">0</h3>
+                                <p>Total de Clientes</p>
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-card">
+                            <div class="kpi-icon success">
+                                <i class="fas fa-file-contract"></i>
+                            </div>
+                            <div class="kpi-content">
+                                <h3 id="totalContratos">0</h3>
+                                <p>Contratos Ativos</p>
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-card">
+                            <div class="kpi-icon warning">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="kpi-content">
+                                <h3 id="contratosPendentes">0</h3>
+                                <p>Pendentes</p>
+                            </div>
+                        </div>
+                        
+                        <div class="kpi-card">
+                            <div class="kpi-icon info">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <div class="kpi-content">
+                                <h3 id="sistemasMaisUsados">-</h3>
+                                <p>Sistema Mais Usado</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <i class="fas fa-chart-line"></i>
+                                Atividade Recente
+                            </h2>
+                        </div>
+                        <div class="card-content">
+                            <div id="recentActivity">
+                                <p class="text-center" style="color: var(--text-secondary); padding: 2rem;">
+                                    Carregando atividades recentes...
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Clientes Page -->
+                <div id="clientesPage" class="page hidden">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <i class="fas fa-users"></i>
+                                Lista de Clientes
+                            </h2>
+                            <button class="btn btn-primary" onclick="showModal('clienteModal'); editingId = null;">
+                                <i class="fas fa-plus"></i>
+                                Novo Cliente
+                            </button>
+                        </div>
+                        <div class="card-content">
+                            <div class="form-group">
+                                <input type="text" class="form-input" id="clienteSearch" placeholder="Buscar clientes..." oninput="filterClientes()">
+                            </div>
+                            
+                            <div class="table-container">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID</th>
+                                            <th>Nome</th>
+                                            <th>Tipo</th>
+                                            <th>Documento</th>
+                                            <th>Email</th>
+                                            <th>Telefone</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="clientesTable">
+                                        <tr>
+                                            <td colspan="7" class="text-center" style="padding: 2rem;">
+                                                <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--gray-400);"></i>
+                                                <p style="color: var(--gray-500); margin-top: 1rem;">Carregando clientes...</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <!-- Paginação Clientes -->
+                            <div class="pagination-container" style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; padding: 1rem 0;">
+                                <div class="pagination-info">
+                                    <span id="clientesPaginationInfo">Mostrando 0 de 0 clientes</span>
+                                </div>
+                                <div class="pagination-controls" style="display: flex; gap: 0.5rem; align-items: center;">
+                                    <button id="clientesPrevBtn" class="btn btn-sm" onclick="changeClientesPage(-1)" disabled>
+                                        <i class="fas fa-chevron-left"></i> Anterior
+                                    </button>
+                                    <span id="clientesPageInfo" style="padding: 0 1rem;">Página 1 de 1</span>
+                                    <button id="clientesNextBtn" class="btn btn-sm" onclick="changeClientesPage(1)" disabled>
+                                        Próxima <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contratos Page -->
+                <div id="contratosPage" class="page hidden">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <i class="fas fa-file-contract"></i>
+                                Lista de Contratos
+                            </h2>
+                            <div style="display: flex; gap: 10px;">
+                                <button class="btn btn-success" onclick="exportarContratosCSV()">
+                                    <i class="fas fa-download"></i>
+                                    Exportar contratos
+                                </button>
+                                <button class="btn btn-primary" onclick="showModal('contratoModal'); editingId = null;">
+                                    <i class="fas fa-plus"></i>
+                                    Novo Contrato
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="text" class="form-input" id="contratoSearch" placeholder="Buscar contratos..." oninput="filterContratos()">
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-select" id="statusFilter" onchange="filterContratos()">
+                                        <option value="">Todos os status</option>
+                                        <option value="Ativo">Ativo</option>
+                                        <option value="Inativo">Inativo</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="table-container">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID Contrato</th>
+                                            <th>ID Cliente</th>
+                                            <th>Nome Cliente</th>
+                                            <th>Código AvLock</th>
+                                            <th>Sistema</th>
+                                            <th>Status</th>
+                                            <th>Tipo Liberação</th>
+                                            <th>Dias</th>
+                                            <th>App ID</th>
+                                            <th>Modalidade</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="contratosTable">
+                                        <tr>
+                                            <td colspan="11" class="text-center" style="padding: 2rem;">
+                                                <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--gray-400);"></i>
+                                                <p style="color: var(--gray-500); margin-top: 1rem;">Carregando contratos...</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <!-- Paginação Contratos -->
+                            <div class="pagination-container" style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; padding: 1rem 0;">
+                                <div class="pagination-info">
+                                    <span id="contratosPaginationInfo">Mostrando 0 de 0 contratos</span>
+                                </div>
+                                <div class="pagination-controls" style="display: flex; gap: 0.5rem; align-items: center;">
+                                    <button id="contratosPrevBtn" class="btn btn-sm" onclick="changeContratosPage(-1)" disabled>
+                                        <i class="fas fa-chevron-left"></i> Anterior
+                                    </button>
+                                    <span id="contratosPageInfo" style="padding: 0 1rem;">Página 1 de 1</span>
+                                    <button id="contratosNextBtn" class="btn btn-sm" onclick="changeContratosPage(1)" disabled>
+                                        Próxima <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chaves de Liberação Page -->
+                <div id="chavesPage" class="page hidden">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <i class="fas fa-key"></i>
+                                Chaves de Liberação
+                            </h2>
+                            <div style="display: flex; gap: 10px;">
+                                <button class="btn btn-warning" onclick="gerarChaves()">
+                                    <i class="fas fa-cogs"></i>
+                                    Gerar Chaves
+                                </button>
+                                <button class="btn btn-success" onclick="exportarChavesCSV()">
+                                    <i class="fas fa-download"></i>
+                                    Exportar chaves
+                                </button>
+                                <button class="btn btn-info" onclick="importarChavesCSV()">
+                                    <i class="fas fa-upload"></i>
+                                    Importar Chaves
+                                </button>
+                                <button class="btn btn-primary" onclick="showModal('chaveModal'); editingId = null;">
+                                    <i class="fas fa-plus"></i>
+                                    Nova Chave
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-content">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <input type="text" class="form-input" id="chaveSearch" placeholder="Buscar por ID do contrato..." oninput="filterChaves()">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-input" id="clienteChaveSearch" placeholder="Buscar por cliente ou código AvLock..." oninput="filterChaves()">
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-select" id="anoFilter" onchange="filterChaves()">
+                                        <option value="">Todos os anos</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-select" id="mesFilter" onchange="filterChaves()">
+                                        <option value="">Todos os meses</option>
+                                        <option value="1">Janeiro</option>
+                                        <option value="2">Fevereiro</option>
+                                        <option value="3">Março</option>
+                                        <option value="4">Abril</option>
+                                        <option value="5">Maio</option>
+                                        <option value="6">Junho</option>
+                                        <option value="7">Julho</option>
+                                        <option value="8">Agosto</option>
+                                        <option value="9">Setembro</option>
+                                        <option value="10">Outubro</option>
+                                        <option value="11">Novembro</option>
+                                        <option value="12">Dezembro</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="table-container">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>ID Contrato</th>
+                                            <th>Código AvLock</th>
+                                            <th>Nome Cliente</th>
+                                            <th>Ano Base</th>
+                                            <th>Mês Base</th>
+                                            <th>Chave AvLock</th>
+                                            <th>Data Inicial</th>
+                                            <th>Data Final</th>
+                                            <th>Ações</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="chavesTable">
+                                        <tr>
+                                            <td colspan="9" class="text-center" style="padding: 2rem;">
+                                                <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--gray-400);"></i>
+                                                <p style="color: var(--gray-500); margin-top: 1rem;">Carregando chaves...</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            
+                            <!-- Paginação Chaves -->
+                            <div class="pagination-container" style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; padding: 1rem 0;">
+                                <div class="pagination-info">
+                                    <span id="chavesPaginationInfo">Mostrando 0 de 0 chaves</span>
+                                </div>
+                                <div class="pagination-controls" style="display: flex; gap: 0.5rem; align-items: center;">
+                                    <button id="chavesPrevBtn" class="btn btn-sm" onclick="changeChavesPage(-1)" disabled>
+                                        <i class="fas fa-chevron-left"></i> Anterior
+                                    </button>
+                                    <span id="chavesPageInfo" style="padding: 0 1rem;">Página 1 de 1</span>
+                                    <button id="chavesNextBtn" class="btn btn-sm" onclick="changeChavesPage(1)" disabled>
+                                        Próxima <i class="fas fa-chevron-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Cliente Modal -->
+    <div class="modal" id="clienteModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Cliente</h3>
+                <button class="modal-close" onclick="hideModal('clienteModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="clienteForm">
+                    <div class="form-group">
+                        <label class="form-label">Nome *</label>
+                        <input type="text" class="form-input" name="nome" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Tipo de Pessoa *</label>
+                        <select class="form-select" name="tipo_pessoa" onchange="toggleDocumentFields(this.value)" required>
+                            <option value="">Selecione...</option>
+                            <option value="F">Pessoa Física</option>
+                            <option value="J">Pessoa Jurídica</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group hidden" id="cpfGroup">
+                        <label class="form-label">CPF</label>
+                        <input type="text" class="form-input" name="cpf" placeholder="000.000.000-00">
+                    </div>
+                    
+                    <div class="form-group hidden" id="cnpjGroup">
+                        <label class="form-label">CNPJ</label>
+                        <input type="text" class="form-input" name="cnpj" placeholder="00.000.000/0000-00">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" name="email">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Telefone</label>
+                            <input type="text" class="form-input" name="telefone">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Celular</label>
+                            <input type="text" class="form-input" name="celular">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Endereço</label>
+                        <input type="text" class="form-input" name="endereco">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Cidade</label>
+                            <input type="text" class="form-input" name="cidade">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Estado (UF)</label>
+                            <input type="text" class="form-input" name="uf" maxlength="2" placeholder="Ex: SP">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="hideModal('clienteModal')">Cancelar</button>
+                <button class="btn btn-primary" onclick="saveCliente()">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contrato Modal -->
+    <div class="modal" id="contratoModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Contrato</h3>
+                <button class="modal-close" onclick="hideModal('contratoModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="contratoForm">
+                    <div class="form-group">
+                        <label class="form-label">Cliente *</label>
+                        <select class="form-select" name="id_cliente" required>
+                            <option value="">Selecione um cliente...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Código AvLock *</label>
+                            <input type="text" class="form-input" name="codigo_avlock" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Sistema *</label>
+                            <input type="text" class="form-input" name="sistema" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Status</label>
+                            <select class="form-select" name="status_liberacao">
+                                <option value="Ativo">Ativo</option>
+                                <option value="Inativo">Inativo</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Tipo Liberação</label>
+                            <select class="form-select" name="tipo_liberacao">
+                                <option value="Recorrente">Recorrente</option>
+                                <option value="Permanente">Permanente</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Dias de Liberação</label>
+                            <input type="number" class="form-input" name="dias_liberacao" min="1" max="9999">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">App ID</label>
+                            <input type="number" class="form-input" name="appid">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Modalidade</label>
+                        <input type="number" class="form-input" name="modalidade">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="hideModal('contratoModal')">Cancelar</button>
+                <button class="btn btn-primary" onclick="saveContrato()">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chave Modal -->
+    <div class="modal" id="chaveModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Chave de Liberação</h3>
+                <button class="modal-close" onclick="hideModal('chaveModal')">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="chaveForm">
+                    <div class="form-group">
+                        <label class="form-label">ID Contrato *</label>
+                        <input type="number" class="form-input" name="id_contrato" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Ano Base *</label>
+                            <input type="number" class="form-input" name="ano_base" required min="2020" max="2099">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Mês Base *</label>
+                            <select class="form-select" name="mes_base" required>
+                                <option value="">Selecione o mês...</option>
+                                <option value="1">Janeiro</option>
+                                <option value="2">Fevereiro</option>
+                                <option value="3">Março</option>
+                                <option value="4">Abril</option>
+                                <option value="5">Maio</option>
+                                <option value="6">Junho</option>
+                                <option value="7">Julho</option>
+                                <option value="8">Agosto</option>
+                                <option value="9">Setembro</option>
+                                <option value="10">Outubro</option>
+                                <option value="11">Novembro</option>
+                                <option value="12">Dezembro</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Chave AvLock *</label>
+                        <input type="text" class="form-input" name="chave_avlock" required maxlength="128">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Data Inicial</label>
+                            <input type="datetime-local" class="form-input" name="data_inicial">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Data Final</label>
+                            <input type="datetime-local" class="form-input" name="data_final">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="hideModal('chaveModal')">Cancelar</button>
+                <button class="btn btn-primary" onclick="saveChave()">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Supabase configuration
+        const supabaseUrl = 'https://ohexwiamhgsnahrjynko.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9oZXh3aWFtaGdzbmFocmp5bmtvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg1NDM4MTcsImV4cCI6MjA3NDExOTgxN30.MYpemlbM2iYbnKWAGDWs8cbLJTKi0wK-o8P9jUDP59E';
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        // Global variables
+        let clientes = [];
+        let contratos = [];
+        let currentPage = 'dashboard';
+        let editingId = null;
+
+        // Load data from Supabase
+        async function loadData() {
+            try {
+                // Load clientes
+                const { data: clientesData, error: clientesError } = await supabase
+                    .from('clientes')
+                    .select('*')
+                    .order('nome');
+
+                if (clientesError) throw clientesError;
+                clientes = clientesData || [];
+
+                // Load contratos with cliente data
+                const { data: contratosData, error: contratosError } = await supabase
+                    .from('contratos_itens')
+                    .select(`
+                        *,
+                        clientes (
+                            id_cliente,
+                            nome,
+                            tipo_pessoa
+                        )
+                    `)
+                    .order('codigo_avlock');
+
+                if (contratosError) throw contratosError;
+                contratos = contratosData || [];
+
+                // Update UI
+                updateClienteSelect();
+                renderClientes();
+                renderContratos();
+                updateDashboard();
+
+            } catch (error) {
+                console.error('Erro ao carregar dados:', error);
+                showToast('Erro ao carregar dados: ' + error.message, 'error');
+            }
+        }
+
+        // Update cliente select in contrato modal
+        function updateClienteSelect() {
+            const select = document.querySelector('#contratoForm select[name="id_cliente"]');
+            if (!select) return;
+
+            select.innerHTML = '<option value="">Selecione um cliente...</option>';
+            clientes.forEach(cliente => {
+                const option = document.createElement('option');
+                option.value = cliente.id_cliente;
+                option.textContent = `${cliente.nome} (${cliente.tipo_pessoa === 'F' ? 'CPF' : 'CNPJ'})`;
+                select.appendChild(option);
+            });
+        }
+
+        // Render functions
+        function renderClientes() {
+            const tbody = document.getElementById('clientesTable');
+            if (!tbody) return;
+
+            if (clientes.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="text-center" style="padding: 2rem;">
+                            <i class="fas fa-users" style="font-size: 3rem; color: var(--gray-400); margin-bottom: 1rem;"></i>
+                            <p style="color: var(--gray-500);">Nenhum cliente cadastrado</p>
+                        </td>
+                    </tr>
+                `;
+                updateClientesPagination();
+                return;
+            }
+
+            // Calculate pagination
+            const startIndex = (clientesCurrentPage - 1) * clientesItemsPerPage;
+            const endIndex = startIndex + clientesItemsPerPage;
+            const paginatedClientes = clientes.slice(startIndex, endIndex);
+
+            tbody.innerHTML = paginatedClientes.map(cliente => `
+                <tr>
+                    <td>${cliente.id_cliente}</td>
+                    <td>${cliente.nome}</td>
+                    <td>${cliente.tipo_pessoa === 'F' ? 'Física' : 'Jurídica'}</td>
+                    <td>${cliente.tipo_pessoa === 'F' ? (cliente.cpf || '-') : (cliente.cnpj || '-')}</td>
+                    <td>${cliente.email || '-'}</td>
+                    <td>${cliente.telefone || cliente.celular || '-'}</td>
+                    <td>
+                        <button class="btn btn-sm btn-secondary" onclick="editCliente(${cliente.id_cliente})">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-sm" style="background: var(--error); color: white; margin-left: 0.5rem;" onclick="deleteCliente(${cliente.id_cliente})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+            
+            // Update pagination controls
+            updateClientesPagination();
+        }
+
+        // Função auxiliar para determinar a modalidade
+        function getModalidadeText(modalidade) {
+            if (modalidade === 253) return 'Premium';
+            if (modalidade === 254) return 'Gold';
+            return 'Standard';
+        }
+
+        function renderContratos() {
+            const tbody = document.getElementById('contratosTable');
+            if (!tbody) return;
+
+            if (contratos.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="11" class="text-center" style="padding: 2rem;">
+                            <i class="fas fa-file-contract" style="font-size: 3rem; color: var(--gray-400); margin-bottom: 1rem;"></i>
+                            <p style="color: var(--gray-500);">Nenhum contrato cadastrado</p>
+                        </td>
+                    </tr>
+                `;
+                updateContratosPagination();
+                return;
+            }
+
+            // Calculate pagination
+            const startIndex = (contratosCurrentPage - 1) * contratosItemsPerPage;
+            const endIndex = startIndex + contratosItemsPerPage;
+            const paginatedContratos = contratos.slice(startIndex, endIndex);
+
+            tbody.innerHTML = paginatedContratos.map(contrato => `
+                <tr>
+                    <td>${contrato.id_contrato}</td>
+                    <td>${contrato.id_cliente}</td>
+                    <td>${contrato.clientes?.nome || 'Cliente não encontrado'}</td>
+                    <td>${contrato.codigo_avlock}</td>
+                    <td>${contrato.sistema}</td>
+                    <td>
+                        <span class="status-badge status-${contrato.status_liberacao?.toLowerCase() || 'pendente'}">
+                            ${getStatusText(contrato.status_liberacao)}
+                        </span>
+                    </td>
+                    <td>${contrato.tipo_liberacao || '-'}</td>
+                    <td>${contrato.dias_liberacao || '-'}</td>
+                    <td>${contrato.appid || '-'}</td>
+                    <td>${getModalidadeText(contrato.modalidade)}</td>
+                    <td>
+                        <button class="btn btn-sm btn-secondary" onclick="editContrato(${contrato.id_cliente}, '${contrato.codigo_avlock}', '${contrato.sistema}')">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-sm" style="background: var(--error); color: white; margin-left: 0.5rem;" onclick="deleteContrato(${contrato.id_cliente}, '${contrato.codigo_avlock}', '${contrato.sistema}')">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+            
+            // Update pagination controls
+            updateContratosPagination();
+        }
+
+        // Dashboard functions
+        function updateDashboard() {
+            // Update KPI cards
+            document.getElementById('totalClientes').textContent = clientes.length;
+            document.getElementById('totalContratos').textContent = contratos.filter(c => c.status_liberacao === 'Ativo').length;
+            document.getElementById('contratosPendentes').textContent = contratos.filter(c => c.status_liberacao === 'Inativo').length;
+
+            // Update badges
+            document.getElementById('clientesBadge').textContent = clientes.length;
+            document.getElementById('contratosBadge').textContent = contratos.length;
+
+            // Sistema mais usado
+            const sistemas = contratos.reduce((acc, contrato) => {
+                acc[contrato.sistema] = (acc[contrato.sistema] || 0) + 1;
+                return acc;
+            }, {});
+
+            const sistemaMaisUsado = Object.keys(sistemas).reduce((a, b) => 
+                sistemas[a] > sistemas[b] ? a : b, '-'
+            );
+            document.getElementById('sistemasMaisUsados').textContent = sistemaMaisUsado;
+
+            // Update recent activity
+            updateRecentActivity();
+        }
+
+        function updateRecentActivity() {
+            const recentActivity = document.getElementById('recentActivity');
+            if (!recentActivity) return;
+
+            const recentContratos = contratos
+                .slice(-5)
+                .reverse()
+                .map(contrato => `
+                    <div style="padding: 1rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 1rem;">
+                        <div style="width: 40px; height: 40px; background: var(--primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white;">
+                            <i class="fas fa-file-contract"></i>
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-weight: 500;">${contrato.clientes?.nome || 'Cliente não encontrado'}</div>
+                            <div style="color: var(--text-secondary); font-size: 0.875rem;">
+                                Contrato ${contrato.codigo_avlock} - ${contrato.sistema}
+                            </div>
+                        </div>
+                        <div style="color: var(--text-secondary); font-size: 0.875rem;">
+                            <span class="status-badge status-${contrato.status_liberacao?.toLowerCase() || 'pendente'}">
+                                ${getStatusText(contrato.status_liberacao)}
+                            </span>
+                        </div>
+                    </div>
+                `).join('');
+
+            if (recentContratos) {
+                recentActivity.innerHTML = recentContratos;
+            } else {
+                recentActivity.innerHTML = `
+                    <p class="text-center" style="color: var(--text-secondary); padding: 2rem;">
+                        Nenhuma atividade recente
+                    </p>
+                `;
+            }
+        }
+
+        // Navigation functions
+        function navigateTo(page) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
+            
+            // Show selected page
+            document.getElementById(page + 'Page').classList.remove('hidden');
+            
+            // Update active nav item
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            document.querySelector(`[onclick="navigateTo('${page}')"]`).classList.add('active');
+            
+            // Load data for specific pages
+            if (page === 'chaves') {
+                loadChaves();
+            }
+            
+            // Update breadcrumbs
+            updateBreadcrumbs(page);
+            
+            currentPage = page;
+        }
+
+        function updateBreadcrumbs(page) {
+            const breadcrumbs = document.getElementById('breadcrumbs');
+            const pageNames = {
+                'dashboard': 'Dashboard',
+                'clientes': 'Clientes',
+                'contratos': 'Contratos',
+                'chaves': 'Chaves de Liberação'
+            };
+            
+            breadcrumbs.innerHTML = `<span>${pageNames[page] || page}</span>`;
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        function toggleTheme() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            // Update theme toggle button
+            const themeToggle = document.getElementById('themeToggle');
+            themeToggle.innerHTML = newTheme === 'dark' ? 
+                '<i class="fas fa-sun"></i>' : 
+                '<i class="fas fa-moon"></i>';
+        }
+
+        // Modal functions
+        function showModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.add('active');
+            
+            // Reset form if it's a new record
+            if (!editingId) {
+                const form = modal.querySelector('form');
+                if (form) form.reset();
+                
+                // Reset document fields visibility
+                if (modalId === 'clienteModal') {
+                    document.getElementById('cnpjGroup').classList.add('hidden');
+                    document.getElementById('cpfGroup').classList.add('hidden');
+                }
+                
+                // Set default values for chave modal
+                if (modalId === 'chaveModal') {
+                    const currentYear = new Date().getFullYear();
+                    const currentMonth = new Date().getMonth() + 1;
+                    form.ano_base.value = currentYear;
+                    form.mes_base.value = currentMonth;
+                }
+            }
+        }
+
+        function hideModal(modalId) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('active');
+            editingId = null;
+        }
+
+        // Cliente functions
+        async function saveCliente() {
+            const form = document.getElementById('clienteForm');
+            const formData = new FormData(form);
+            const clienteData = Object.fromEntries(formData.entries());
+            
+            // Validação básica
+            if (!clienteData.nome || !clienteData.tipo_pessoa) {
+                showToast('Campos obrigatórios não preenchidos', 'error');
+                return;
+            }
+            
+            // Validação de documento
+            if (clienteData.tipo_pessoa === 'F' && !clienteData.cpf) {
+                showToast('CPF é obrigatório para pessoa física', 'error');
+                return;
+            }
+            
+            if (clienteData.tipo_pessoa === 'J' && !clienteData.cnpj) {
+                showToast('CNPJ é obrigatório para pessoa jurídica', 'error');
+                return;
+            }
+            
+            try {
+                if (editingId) {
+                    // Atualizar cliente existente
+                    const { error } = await supabase
+                        .from('clientes')
+                        .update(clienteData)
+                        .eq('id_cliente', editingId);
+                    
+                    if (error) throw error;
+                    showToast('Cliente atualizado com sucesso!', 'success');
+                } else {
+                    // Criar novo cliente
+                    const { error } = await supabase
+                        .from('clientes')
+                        .insert([clienteData]);
+                    
+                    if (error) throw error;
+                    showToast('Cliente criado com sucesso!', 'success');
+                }
+                
+                hideModal('clienteModal');
+                await loadData();
+                updateDashboard();
+                
+            } catch (error) {
+                console.error('Erro ao salvar cliente:', error);
+                showToast('Erro ao salvar cliente: ' + error.message, 'error');
+            }
+        }
+
+        async function editCliente(id) {
+            const cliente = clientes.find(c => c.id_cliente === id);
+            if (!cliente) return;
+            
+            editingId = id;
+            
+            // Preencher formulário
+            const form = document.getElementById('clienteForm');
+            Object.keys(cliente).forEach(key => {
+                const input = form.querySelector(`[name="${key}"]`);
+                if (input) {
+                    input.value = cliente[key] || '';
+                }
+            });
+            
+            // Atualizar campos de documento
+            toggleDocumentFields(cliente.tipo_pessoa);
+            
+            showModal('clienteModal');
+        }
+
+        async function deleteCliente(id) {
+            if (!confirm('Tem certeza que deseja excluir este cliente?')) return;
+            
+            try {
+                const { error } = await supabase
+                    .from('clientes')
+                    .delete()
+                    .eq('id_cliente', id);
+                
+                if (error) throw error;
+                
+                showToast('Cliente excluído com sucesso!', 'success');
+                await loadData();
+                updateDashboard();
+                
+            } catch (error) {
+                console.error('Erro ao excluir cliente:', error);
+                showToast('Erro ao excluir cliente: ' + error.message, 'error');
+            }
+        }
+
+        function toggleDocumentFields(tipoPessoa) {
+            const cnpjGroup = document.getElementById('cnpjGroup');
+            const cpfGroup = document.getElementById('cpfGroup');
+            
+            if (tipoPessoa === 'F') {
+                cnpjGroup.classList.add('hidden');
+                cpfGroup.classList.remove('hidden');
+            } else {
+                cnpjGroup.classList.remove('hidden');
+                cpfGroup.classList.add('hidden');
+            }
+        }
+
+        // Contrato functions
+        async function saveContrato() {
+            const form = document.getElementById('contratoForm');
+            const formData = new FormData(form);
+            const contratoData = Object.fromEntries(formData.entries());
+            
+            // Validação básica
+            if (!contratoData.id_cliente || !contratoData.codigo_avlock || !contratoData.sistema) {
+                showToast('Campos obrigatórios não preenchidos', 'error');
+                return;
+            }
+            
+            // Converter tipos
+            contratoData.id_cliente = parseInt(contratoData.id_cliente);
+            if (contratoData.appid) contratoData.appid = parseInt(contratoData.appid);
+            if (contratoData.dias_liberacao) contratoData.dias_liberacao = parseInt(contratoData.dias_liberacao);
+            if (contratoData.modalidade) contratoData.modalidade = parseInt(contratoData.modalidade);
+            
+            try {
+                if (editingId) {
+                    // Atualizar contrato existente
+                    const [id_cliente, codigo_avlock, sistema] = editingId.split('|');
+                    const { error } = await supabase
+                        .from('contratos_itens')
+                        .update(contratoData)
+                        .eq('id_cliente', parseInt(id_cliente))
+                        .eq('codigo_avlock', codigo_avlock)
+                        .eq('sistema', sistema);
+                    
+                    if (error) throw error;
+                    showToast('Contrato atualizado com sucesso!', 'success');
+                } else {
+                    // Criar novo contrato
+                    const { error } = await supabase
+                        .from('contratos_itens')
+                        .insert([contratoData]);
+                    
+                    if (error) throw error;
+                    showToast('Contrato criado com sucesso!', 'success');
+                }
+                
+                hideModal('contratoModal');
+                await loadData();
+                updateDashboard();
+                
+            } catch (error) {
+                console.error('Erro ao salvar contrato:', error);
+                showToast('Erro ao salvar contrato: ' + error.message, 'error');
+            }
+        }
+
+        async function editContrato(id_cliente, codigo_avlock, sistema) {
+            const contrato = contratos.find(c => 
+                c.id_cliente == id_cliente && 
+                c.codigo_avlock === codigo_avlock && 
+                c.sistema === sistema
+            );
+            if (!contrato) return;
+            
+            editingId = `${id_cliente}|${codigo_avlock}|${sistema}`;
+            
+            // Preencher formulário
+            const form = document.getElementById('contratoForm');
+            Object.keys(contrato).forEach(key => {
+                const input = form.querySelector(`[name="${key}"]`);
+                if (input && key !== 'clientes') {
+                    input.value = contrato[key] || '';
+                }
+            });
+            
+            showModal('contratoModal');
+        }
+
+        async function deleteContrato(id_cliente, codigo_avlock, sistema) {
+            if (!confirm('Tem certeza que deseja excluir este contrato?')) return;
+            
+            try {
+                const { error } = await supabase
+                    .from('contratos_itens')
+                    .delete()
+                    .eq('id_cliente', parseInt(id_cliente))
+                    .eq('codigo_avlock', codigo_avlock)
+                    .eq('sistema', sistema);
+                
+                if (error) throw error;
+                
+                showToast('Contrato excluído com sucesso!', 'success');
+                await loadData();
+                updateDashboard();
+                
+            } catch (error) {
+                console.error('Erro ao excluir contrato:', error);
+                showToast('Erro ao excluir contrato: ' + error.message, 'error');
+            }
+        }
+
+        // Search and filter functions
+        function filterClientes() {
+            const searchTerm = document.getElementById('clienteSearch')?.value.toLowerCase() || '';
+            
+            // Reset to first page when filtering
+            clientesCurrentPage = 1;
+            
+            const filteredClientes = clientes.filter(cliente =>
+                cliente.nome.toLowerCase().includes(searchTerm) ||
+                (cliente.email && cliente.email.toLowerCase().includes(searchTerm)) ||
+                (cliente.cnpj && cliente.cnpj.includes(searchTerm)) ||
+                (cliente.cpf && cliente.cpf.includes(searchTerm))
+            );
+            
+            renderFilteredClientes(filteredClientes);
+        }
+
+        function filterContratos() {
+            const searchTerm = document.getElementById('contratoSearch')?.value.toLowerCase() || '';
+            const statusFilter = document.getElementById('statusFilter')?.value || '';
+            
+            // Reset to first page when filtering
+            contratosCurrentPage = 1;
+            
+            let filteredContratos = contratos.filter(contrato => {
+                const matchesSearch = contrato.codigo_avlock.toLowerCase().includes(searchTerm) ||
+                                    contrato.sistema.toLowerCase().includes(searchTerm) ||
+                                    (contrato.clientes?.nome && contrato.clientes.nome.toLowerCase().includes(searchTerm));
+                
+                const matchesStatus = !statusFilter || contrato.status_liberacao === statusFilter;
+                
+                return matchesSearch && matchesStatus;
+            });
+            
+            renderFilteredContratos(filteredContratos);
+        }
+
+        function renderFilteredClientes(filteredClientes) {
+            const tbody = document.getElementById('clientesTable');
+            if (!tbody) return;
+            
+            if (filteredClientes.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="7" class="text-center" style="padding: 2rem;">
+                            <i class="fas fa-search" style="font-size: 3rem; color: var(--gray-400); margin-bottom: 1rem;"></i>
+                            <p style="color: var(--gray-500);">Nenhum cliente encontrado</p>
+                        </td>
+                    </tr>
+                `;
+                // Update pagination for empty results
+                document.getElementById('clientesPaginationInfo').textContent = 'Mostrando 0 de 0 clientes';
+                document.getElementById('clientesPageInfo').textContent = 'Página 0 de 0';
+                document.getElementById('clientesPrevBtn').disabled = true;
+                document.getElementById('clientesNextBtn').disabled = true;
+                return;
+            }
+            
+            // Calculate pagination for filtered results
+            const startIndex = (clientesCurrentPage - 1) * clientesItemsPerPage;
+            const endIndex = startIndex + clientesItemsPerPage;
+            const paginatedClientes = filteredClientes.slice(startIndex, endIndex);
+            
+            tbody.innerHTML = paginatedClientes.map(cliente => `
+                <tr>
+                    <td>${cliente.id_cliente}</td>
+                    <td>${cliente.nome}</td>
+                    <td>${cliente.tipo_pessoa === 'F' ? 'Física' : 'Jurídica'}</td>
+                    <td>${cliente.tipo_pessoa === 'F' ? (cliente.cpf || '-') : (cliente.cnpj || '-')}</td>
+                    <td>${cliente.email || '-'}</td>
+                    <td>${cliente.telefone || cliente.celular || '-'}</td>
+                    <td>
+                        <button class="btn btn-sm btn-secondary" onclick="editCliente(${cliente.id_cliente})">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-sm" style="background: var(--error); color: white; margin-left: 0.5rem;" onclick="deleteCliente(${cliente.id_cliente})">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+            
+            // Update pagination for filtered results
+            const totalItems = filteredClientes.length;
+            const totalPages = Math.ceil(totalItems / clientesItemsPerPage);
+            const startItem = (clientesCurrentPage - 1) * clientesItemsPerPage + 1;
+            const endItem = Math.min(clientesCurrentPage * clientesItemsPerPage, totalItems);
+
+            document.getElementById('clientesPaginationInfo').textContent = 
+                `Mostrando ${startItem} a ${endItem} de ${totalItems} clientes`;
+            document.getElementById('clientesPageInfo').textContent = 
+                `Página ${clientesCurrentPage} de ${totalPages}`;
+
+            document.getElementById('clientesPrevBtn').disabled = clientesCurrentPage === 1;
+            document.getElementById('clientesNextBtn').disabled = clientesCurrentPage === totalPages || totalPages === 0;
+        }
+
+        function renderFilteredContratos(filteredContratos) {
+            const tbody = document.getElementById('contratosTable');
+            if (!tbody) return;
+            
+            if (filteredContratos.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="11" class="text-center" style="padding: 2rem;">
+                            <i class="fas fa-search" style="font-size: 3rem; color: var(--gray-400); margin-bottom: 1rem;"></i>
+                            <p style="color: var(--gray-500);">Nenhum contrato encontrado</p>
+                        </td>
+                    </tr>
+                `;
+                // Update pagination for empty results
+                document.getElementById('contratosPaginationInfo').textContent = 'Mostrando 0 de 0 contratos';
+                document.getElementById('contratosPageInfo').textContent = 'Página 0 de 0';
+                document.getElementById('contratosPrevBtn').disabled = true;
+                document.getElementById('contratosNextBtn').disabled = true;
+                return;
+            }
+            
+            // Calculate pagination for filtered results
+            const startIndex = (contratosCurrentPage - 1) * contratosItemsPerPage;
+            const endIndex = startIndex + contratosItemsPerPage;
+            const paginatedContratos = filteredContratos.slice(startIndex, endIndex);
+            
+            tbody.innerHTML = paginatedContratos.map(contrato => `
+                <tr>
+                    <td>${contrato.id_contrato || '-'}</td>
+                    <td>${contrato.id_cliente || '-'}</td>
+                    <td>${contrato.clientes?.nome || 'Cliente não encontrado'}</td>
+                    <td>${contrato.codigo_avlock}</td>
+                    <td>${contrato.sistema}</td>
+                    <td>
+                        <span class="status-badge status-${contrato.status_liberacao?.toLowerCase() || 'pendente'}">
+                            ${getStatusText(contrato.status_liberacao)}
+                        </span>
+                    </td>
+                    <td>${contrato.tipo_liberacao || '-'}</td>
+                    <td>${contrato.dias_liberacao || '-'}</td>
+                    <td>${contrato.appid || '-'}</td>
+                    <td>${getModalidadeText(contrato.modalidade)}</td>
+                    <td>
+                        <button class="btn btn-sm btn-secondary" onclick="editContrato(${contrato.id_cliente}, '${contrato.codigo_avlock}', '${contrato.sistema}')">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-sm" style="background: var(--error); color: white; margin-left: 0.5rem;" onclick="deleteContrato(${contrato.id_cliente}, '${contrato.codigo_avlock}', '${contrato.sistema}')">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+            
+            // Update pagination for filtered results
+            const totalItems = filteredContratos.length;
+            const totalPages = Math.ceil(totalItems / contratosItemsPerPage);
+            const startItem = (contratosCurrentPage - 1) * contratosItemsPerPage + 1;
+            const endItem = Math.min(contratosCurrentPage * contratosItemsPerPage, totalItems);
+
+            document.getElementById('contratosPaginationInfo').textContent = 
+                `Mostrando ${startItem} a ${endItem} de ${totalItems} contratos`;
+            document.getElementById('contratosPageInfo').textContent = 
+                `Página ${contratosCurrentPage} de ${totalPages}`;
+
+            document.getElementById('contratosPrevBtn').disabled = contratosCurrentPage === 1;
+            document.getElementById('contratosNextBtn').disabled = contratosCurrentPage === totalPages || totalPages === 0;
+        }
+
+        // Utility functions
+        function getStatusText(status) {
+            const statusMap = {
+                'Ativo': 'Ativo',
+                'Inativo': 'Inativo'
+            };
+            return statusMap[status] || 'Desconhecido';
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) return '-';
+            return new Date(dateString).toLocaleDateString('pt-BR');
+        }
+
+        function formatCurrency(value) {
+            if (!value) return '-';
+            return new Intl.NumberFormat('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            }).format(value);
+        }
+
+        function showToast(message, type = 'info') {
+            // Remove existing toasts
+            const existingToasts = document.querySelectorAll('.toast');
+            existingToasts.forEach(toast => toast.remove());
+            
+            const toast = document.createElement('div');
+            toast.className = `toast toast-${type}`;
+            toast.innerHTML = `
+                <div class="toast-content">
+                    <i class="fas fa-${getToastIcon(type)}"></i>
+                    <span>${message}</span>
+                </div>
+                <button class="toast-close" onclick="this.parentElement.remove()">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            document.body.appendChild(toast);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (toast.parentElement) {
+                    toast.remove();
+                }
+            }, 5000);
+        }
+
+        function getToastIcon(type) {
+            const icons = {
+                'success': 'check-circle',
+                'error': 'exclamation-circle',
+                'warning': 'exclamation-triangle',
+                'info': 'info-circle'
+            };
+            return icons[type] || 'info-circle';
+        }
+
+        // Debounce function for search
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Initialize app when DOM is loaded
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Set initial theme
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            
+            // Update theme toggle button
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                themeToggle.innerHTML = savedTheme === 'dark' ? 
+                    '<i class="fas fa-sun"></i>' : 
+                    '<i class="fas fa-moon"></i>';
+            }
+            
+            // Load initial data
+            await loadData();
+            await loadChaves();
+            
+            // Navigate to dashboard
+            navigateTo('dashboard');
+            
+            // Setup event listeners
+            // Setup sidebar toggle
+            const sidebarToggle = document.querySelector('.sidebar-toggle');
+            if (sidebarToggle) {
+                sidebarToggle.addEventListener('click', toggleSidebar);
+            }
+            
+            showToast('Sistema AvLock carregado com sucesso!', 'success');
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(e) {
+            const sidebar = document.getElementById('sidebar');
+            const sidebarToggle = document.querySelector('.sidebar-toggle');
+            
+            if (window.innerWidth <= 768 && 
+                sidebar.classList.contains('active') &&
+                !sidebar.contains(e.target) && 
+                !sidebarToggle.contains(e.target)) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        // Pagination variables
+        let clientesCurrentPage = 1;
+        let clientesItemsPerPage = 10;
+        let contratosCurrentPage = 1;
+        let contratosItemsPerPage = 10;
+
+        // Pagination functions for Clientes
+        function changeClientesPage(direction) {
+            const totalPages = Math.ceil(clientes.length / clientesItemsPerPage);
+            const newPage = clientesCurrentPage + direction;
+            
+            if (newPage >= 1 && newPage <= totalPages) {
+                clientesCurrentPage = newPage;
+                renderClientes();
+            }
+        }
+
+        function updateClientesPagination() {
+            const totalItems = clientes.length;
+            const totalPages = Math.ceil(totalItems / clientesItemsPerPage);
+            const startItem = (clientesCurrentPage - 1) * clientesItemsPerPage + 1;
+            const endItem = Math.min(clientesCurrentPage * clientesItemsPerPage, totalItems);
+
+            // Update pagination info
+            document.getElementById('clientesPaginationInfo').textContent = 
+                `Mostrando ${startItem} a ${endItem} de ${totalItems} clientes`;
+            document.getElementById('clientesPageInfo').textContent = 
+                `Página ${clientesCurrentPage} de ${totalPages}`;
+
+            // Update button states
+            document.getElementById('clientesPrevBtn').disabled = clientesCurrentPage === 1;
+            document.getElementById('clientesNextBtn').disabled = clientesCurrentPage === totalPages || totalPages === 0;
+        }
+
+        // Pagination functions for Contratos
+        function changeContratosPage(direction) {
+            const totalPages = Math.ceil(contratos.length / contratosItemsPerPage);
+            const newPage = contratosCurrentPage + direction;
+            
+            if (newPage >= 1 && newPage <= totalPages) {
+                contratosCurrentPage = newPage;
+                renderContratos();
+            }
+        }
+
+        function updateContratosPagination() {
+            const totalItems = contratos.length;
+            const totalPages = Math.ceil(totalItems / contratosItemsPerPage);
+            const startItem = (contratosCurrentPage - 1) * contratosItemsPerPage + 1;
+            const endItem = Math.min(contratosCurrentPage * contratosItemsPerPage, totalItems);
+
+            // Update pagination info
+            document.getElementById('contratosPaginationInfo').textContent = 
+                `Mostrando ${startItem} a ${endItem} de ${totalItems} contratos`;
+            document.getElementById('contratosPageInfo').textContent = 
+                `Página ${contratosCurrentPage} de ${totalPages}`;
+
+            // Update button states
+            document.getElementById('contratosPrevBtn').disabled = contratosCurrentPage === 1;
+            document.getElementById('contratosNextBtn').disabled = contratosCurrentPage === totalPages || totalPages === 0;
+        }
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            const sidebar = document.getElementById('sidebar');
+            if (window.innerWidth > 768) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal')) {
+                e.target.classList.remove('active');
+                editingId = null;
+            }
+        });
+
+        // Register service worker for PWA
+        
+        // Chaves functions
+        let chaves = [];
+        let currentChavesPage = 1;
+        const chavesPerPage = 10;
+
+        async function loadChaves() {
+            try {
+                const { data: chavesData, error: chavesError } = await supabase
+                    .from('contratos_chaves')
+                    .select(`
+                        *,
+                        contratos_itens(
+                            codigo_avlock,
+                            clientes(
+                                nome
+                            )
+                        )
+                    `)
+                    .order('id_contrato');
+
+                if (chavesError) throw chavesError;
+                chaves = chavesData || [];
+
+                renderChaves();
+                updateChavesBadge();
+                populateAnoFilter();
+
+            } catch (error) {
+                console.error('Erro ao carregar chaves:', error);
+                showToast('Erro ao carregar chaves: ' + error.message, 'error');
+            }
+        }
+
+        function renderChaves() {
+            const tbody = document.getElementById('chavesTable');
+            if (!tbody) return;
+
+            if (chaves.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="9" class="text-center" style="padding: 2rem;">
+                            <i class="fas fa-key" style="font-size: 2rem; color: var(--gray-400);"></i>
+                            <p style="color: var(--gray-500); margin-top: 1rem;">Nenhuma chave encontrada</p>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            const startIndex = (currentChavesPage - 1) * chavesPerPage;
+            const endIndex = startIndex + chavesPerPage;
+            const pageChaves = chaves.slice(startIndex, endIndex);
+
+            tbody.innerHTML = pageChaves.map(chave => `
+                <tr>
+                    <td>${chave.id_contrato}</td>
+                    <td>${chave.contratos_itens?.codigo_avlock || '-'}</td>
+                    <td>${chave.contratos_itens?.clientes?.nome || '-'}</td>
+                    <td>${chave.ano_base}</td>
+                    <td>${getMonthName(chave.mes_base)}</td>
+                    <td>${chave.chave_avlock}</td>
+                    <td>${chave.data_inicial ? formatDateTime(chave.data_inicial) : '-'}</td>
+                    <td>${chave.data_final ? formatDateTime(chave.data_final) : '-'}</td>
+                    <td>
+                        <button class="btn btn-sm btn-secondary" onclick="editChave(${chave.id_chave})" title="Editar">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteChave(${chave.id_chave})" title="Excluir">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+
+            updateChavesPagination();
+        }
+
+        function updateChavesBadge() {
+            const badge = document.getElementById('chavesBadge');
+            if (badge) {
+                badge.textContent = chaves.length;
+            }
+        }
+
+        function populateAnoFilter() {
+            const anoFilter = document.getElementById('anoFilter');
+            if (!anoFilter) return;
+
+            const anos = [...new Set(chaves.map(c => c.ano_base))].sort((a, b) => b - a);
+            
+            anoFilter.innerHTML = '<option value="">Todos os anos</option>';
+            anos.forEach(ano => {
+                anoFilter.innerHTML += `<option value="${ano}">${ano}</option>`;
+            });
+        }
+
+        function getMonthName(month) {
+            const months = [
+                '', 'Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho',
+                'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'
+            ];
+            return months[month] || month;
+        }
+
+        function formatDateTime(dateString) {
+            if (!dateString) return '-';
+            const date = new Date(dateString);
+            return date.toLocaleString('pt-BR');
+        }
+
+        function filterChaves() {
+            const searchTerm = document.getElementById('chaveSearch')?.value.toLowerCase() || '';
+            const clienteSearchTerm = document.getElementById('clienteChaveSearch')?.value.toLowerCase() || '';
+            const anoFilter = document.getElementById('anoFilter')?.value || '';
+            const mesFilter = document.getElementById('mesFilter')?.value || '';
+
+            let filteredChaves = chaves.filter(chave => {
+                const matchesSearch = 
+                    chave.id_contrato.toString().includes(searchTerm);
+                
+                const matchesCliente = !clienteSearchTerm || 
+                    (chave.contratos_itens?.clientes?.nome && 
+                     chave.contratos_itens.clientes.nome.toLowerCase().includes(clienteSearchTerm)) ||
+                    (chave.contratos_itens?.codigo_avlock && 
+                     chave.contratos_itens.codigo_avlock.toLowerCase().includes(clienteSearchTerm));
+                
+                const matchesAno = !anoFilter || chave.ano_base.toString() === anoFilter;
+                const matchesMes = !mesFilter || chave.mes_base.toString() === mesFilter;
+
+                return matchesSearch && matchesCliente && matchesAno && matchesMes;
+            });
+
+            // Reset pagination when filtering
+            currentChavesPage = 1;
+            renderFilteredChaves(filteredChaves);
+        }
+
+        function renderFilteredChaves(filteredChaves) {
+            const tbody = document.getElementById('chavesTable');
+            if (!tbody) return;
+
+            if (filteredChaves.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="9" class="text-center" style="padding: 2rem;">
+                            <i class="fas fa-search" style="font-size: 2rem; color: var(--gray-400);"></i>
+                            <p style="color: var(--gray-500); margin-top: 1rem;">Nenhuma chave encontrada com os filtros aplicados</p>
+                        </td>
+                    </tr>
+                `;
+                document.getElementById('chavesPaginationInfo').textContent = 'Mostrando 0 de 0 chaves';
+                document.getElementById('chavesPageInfo').textContent = 'Página 0 de 0';
+                document.getElementById('chavesPrevBtn').disabled = true;
+                document.getElementById('chavesNextBtn').disabled = true;
+                return;
+            }
+
+            const startIndex = (currentChavesPage - 1) * chavesPerPage;
+            const endIndex = startIndex + chavesPerPage;
+            const pageChaves = filteredChaves.slice(startIndex, endIndex);
+
+            tbody.innerHTML = pageChaves.map(chave => `
+                <tr>
+                    <td>${chave.id_contrato}</td>
+                    <td>${chave.contratos_itens?.codigo_avlock || '-'}</td>
+                    <td>${chave.contratos_itens?.clientes?.nome || '-'}</td>
+                    <td>${chave.ano_base}</td>
+                    <td>${getMonthName(chave.mes_base)}</td>
+                    <td>${chave.chave_avlock}</td>
+                    <td>${chave.data_inicial ? formatDateTime(chave.data_inicial) : '-'}</td>
+                    <td>${chave.data_final ? formatDateTime(chave.data_final) : '-'}</td>
+                    <td>
+                        <button class="btn btn-sm btn-secondary" onclick="editChave(${chave.id_chave})" title="Editar">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-sm btn-danger" onclick="deleteChave(${chave.id_chave})" title="Excluir">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+
+            // Update pagination for filtered results
+            const totalFiltered = filteredChaves.length;
+            const totalPages = Math.ceil(totalFiltered / chavesPerPage);
+            const startItem = startIndex + 1;
+            const endItem = Math.min(endIndex, totalFiltered);
+            
+            document.getElementById('chavesPaginationInfo').textContent = 
+                `Mostrando ${startItem} a ${endItem} de ${totalFiltered} chaves`;
+            document.getElementById('chavesPageInfo').textContent = `Página ${currentChavesPage} de ${totalPages}`;
+            
+            document.getElementById('chavesPrevBtn').disabled = currentChavesPage === 1;
+            document.getElementById('chavesNextBtn').disabled = currentChavesPage === totalPages || totalPages === 0;
+        }
+
+        function updateChavesPagination() {
+            const totalPages = Math.ceil(chaves.length / chavesPerPage);
+            const startItem = (currentChavesPage - 1) * chavesPerPage + 1;
+            const endItem = Math.min(currentChavesPage * chavesPerPage, chaves.length);
+
+            document.getElementById('chavesPageInfo').textContent = `Página ${currentChavesPage} de ${totalPages}`;
+            document.getElementById('chavesPaginationInfo').textContent = `Mostrando ${startItem} a ${endItem} de ${chaves.length} chaves`;
+
+            document.getElementById('chavesPrevBtn').disabled = currentChavesPage === 1;
+            document.getElementById('chavesNextBtn').disabled = currentChavesPage === totalPages;
+        }
+
+        function changeChavesPage(direction) {
+            const totalPages = Math.ceil(chaves.length / chavesPerPage);
+            
+            if (direction === 1 && currentChavesPage < totalPages) {
+                currentChavesPage++;
+            } else if (direction === -1 && currentChavesPage > 1) {
+                currentChavesPage--;
+            }
+
+            renderChaves();
+        }
+
+        async function saveChave() {
+            const form = document.getElementById('chaveForm');
+            const formData = new FormData(form);
+            
+            const chaveData = {
+                id_contrato: parseInt(formData.get('id_contrato')),
+                ano_base: parseInt(formData.get('ano_base')),
+                mes_base: parseInt(formData.get('mes_base')),
+                chave_avlock: formData.get('chave_avlock'),
+                data_inicial: formData.get('data_inicial') || null,
+                data_final: formData.get('data_final') || null
+            };
+
+            try {
+                let result;
+                if (editingId) {
+                    result = await supabase
+                        .from('contratos_chaves')
+                        .update(chaveData)
+                        .eq('id_chave', editingId);
+                } else {
+                    result = await supabase
+                        .from('contratos_chaves')
+                        .insert([chaveData]);
+                }
+
+                if (result.error) throw result.error;
+
+                showToast(editingId ? 'Chave atualizada com sucesso!' : 'Chave criada com sucesso!', 'success');
+                hideModal('chaveModal');
+                form.reset();
+                await loadChaves();
+
+            } catch (error) {
+                console.error('Erro ao salvar chave:', error);
+                showToast('Erro ao salvar chave: ' + error.message, 'error');
+            }
+        }
+
+        async function editChave(id) {
+            const chave = chaves.find(c => c.id_chave === id);
+            if (!chave) return;
+
+            editingId = id;
+            
+            const form = document.getElementById('chaveForm');
+            form.id_contrato.value = chave.id_contrato;
+            form.ano_base.value = chave.ano_base;
+            form.mes_base.value = chave.mes_base;
+            form.chave_avlock.value = chave.chave_avlock;
+            
+            if (chave.data_inicial) {
+                form.data_inicial.value = new Date(chave.data_inicial).toISOString().slice(0, 16);
+            }
+            if (chave.data_final) {
+                form.data_final.value = new Date(chave.data_final).toISOString().slice(0, 16);
+            }
+
+            showModal('chaveModal');
+        }
+
+        async function deleteChave(id) {
+            if (!confirm('Tem certeza que deseja excluir esta chave?')) return;
+
+            try {
+                const { error } = await supabase
+                    .from('contratos_chaves')
+                    .delete()
+                    .eq('id_chave', id);
+
+                if (error) throw error;
+
+                showToast('Chave excluída com sucesso!', 'success');
+                await loadChaves();
+
+            } catch (error) {
+                console.error('Erro ao excluir chave:', error);
+                showToast('Erro ao excluir chave: ' + error.message, 'error');
+            }
+        }
+
+        // Função para exportar contratos para CSV
+        function exportarContratosCSV() {
+            const nomeArquivo = prompt('Digite o nome do arquivo (sem extensão):', 'contratos_export');
+            
+            if (!nomeArquivo) {
+                return; // Usuário cancelou
+            }
+
+            // Obter dados dos contratos (usar dados filtrados se houver filtro ativo)
+            let dadosParaExportar = contratos;
+            
+            // Verificar se há filtros ativos
+            const searchTerm = document.getElementById('contratoSearch')?.value || '';
+            const statusFilter = document.getElementById('statusFilter')?.value || '';
+            
+            if (searchTerm || statusFilter) {
+                dadosParaExportar = contratos.filter(contrato => {
+                    const matchesSearch = !searchTerm || 
+                        contrato.clientes?.nome?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                        contrato.codigo_avlock?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                        contrato.sistema?.toLowerCase().includes(searchTerm.toLowerCase());
+                    
+                    const matchesStatus = !statusFilter || contrato.status_liberacao === statusFilter;
+                    
+                    return matchesSearch && matchesStatus;
+                });
+            }
+
+            if (dadosParaExportar.length === 0) {
+                showToast('Nenhum contrato encontrado para exportar', 'warning');
+                return;
+            }
+
+            // Criar cabeçalho CSV
+            const cabecalho = [
+                'ID Contrato',
+                'ID Cliente', 
+                'Nome Cliente',
+                'Código AvLock',
+                'Sistema',
+                'Status',
+                'Tipo Liberação',
+                'Dias',
+                'App ID'
+            ];
+
+            // Converter dados para CSV
+            const linhasCSV = dadosParaExportar.map(contrato => [
+                contrato.id_contrato || '',
+                contrato.id_cliente || '',
+                contrato.clientes?.nome || '',
+                contrato.codigo_avlock || '',
+                contrato.sistema || '',
+                getStatusText(contrato.status_liberacao) || '',
+                contrato.tipo_liberacao || '',
+                contrato.dias_liberacao || '',
+                contrato.appid || ''
+            ]);
+
+            // Combinar cabeçalho e dados
+            const csvContent = [cabecalho, ...linhasCSV]
+                .map(linha => linha.map(campo => `"${campo}"`).join(','))
+                .join('\n');
+
+            // Criar e baixar arquivo
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            
+            if (link.download !== undefined) {
+                const url = URL.createObjectURL(blob);
+                link.setAttribute('href', url);
+                link.setAttribute('download', `${nomeArquivo}.csv`);
+                link.style.visibility = 'hidden';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                showToast(`Arquivo ${nomeArquivo}.csv exportado com sucesso!`, 'success');
+            } else {
+                showToast('Seu navegador não suporta download de arquivos', 'error');
+            }
+        }
+
+        // Função para gerar chaves baseada nos contratos_itens
+        async function gerarChaves() {
+            try {
+                // Confirmar ação com o usuário
+                if (!confirm('Deseja gerar chaves para todos os contratos ativos? Esta ação criará registros na tabela Contratos_Chaves para o ano corrente.')) {
+                    return;
+                }
+
+                showToast('Gerando chaves...', 'info');
+
+                // Obter ano corrente
+                const anoCorrente = new Date().getFullYear();
+                const mesCorrente = new Date().getMonth() + 1; // JavaScript months are 0-based
+
+                // Buscar todos os contratos_itens ativos
+                const { data: contratosItens, error: contratosError } = await supabase
+                    .from('contratos_itens')
+                    .select('*')
+                    .eq('status_liberacao', 'Ativo');
+
+                if (contratosError) {
+                    throw new Error('Erro ao buscar contratos: ' + contratosError.message);
+                }
+
+                if (!contratosItens || contratosItens.length === 0) {
+                    showToast('Nenhum contrato ativo encontrado para gerar chaves', 'warning');
+                    return;
+                }
+
+                let chavesGeradas = 0;
+                let erros = 0;
+
+                // Para cada contrato_item, gerar chaves para os meses restantes do ano
+                for (const contrato of contratosItens) {
+                    for (let mes = mesCorrente; mes <= 12; mes++) {
+                        try {
+                            // Verificar se já existe uma chave para este contrato, ano e mês
+                            const { data: chaveExistente, error: checkError } = await supabase
+                                .from('contratos_chaves')
+                                .select('id_chave')
+                                .eq('id_contrato', contrato.id_contrato)
+                                .eq('ano_base', anoCorrente)
+                                .eq('mes_base', mes)
+                                .single();
+
+                            if (checkError && checkError.code !== 'PGRST116') { // PGRST116 = no rows found
+                                console.error('Erro ao verificar chave existente:', checkError);
+                                continue;
+                            }
+
+                            // Se já existe, pular
+                            if (chaveExistente) {
+                                continue;
+                            }
+
+                            // Calcular data inicial (primeiro dia do mês)
+                            const dataInicial = new Date(anoCorrente, mes - 1, 1); // mes - 1 porque JavaScript months são 0-based
+                            
+                            // Calcular data final baseada na data inicial + dias_liberacao
+                            const dataFinal = new Date(dataInicial);
+                            dataFinal.setDate(dataInicial.getDate() + contrato.dias_liberacao);
+
+                            // Inserir nova chave
+                            const { error: insertError } = await supabase
+                                .from('contratos_chaves')
+                                .insert({
+                                    id_contrato: contrato.id_contrato,
+                                    ano_base: anoCorrente,
+                                    mes_base: mes,
+                                    chave_avlock: '', // Chave vazia inicialmente
+                                    data_inicial: dataInicial.toISOString(),
+                                    data_final: dataFinal.toISOString()
+                                });
+
+                            if (insertError) {
+                                console.error('Erro ao inserir chave:', insertError);
+                                erros++;
+                            } else {
+                                chavesGeradas++;
+                            }
+
+                        } catch (error) {
+                            console.error('Erro ao processar chave:', error);
+                            erros++;
+                        }
+                    }
+                }
+
+                // Recarregar dados das chaves
+                await loadChaves();
+
+                // Mostrar resultado
+                if (chavesGeradas > 0) {
+                    showToast(`${chavesGeradas} chaves geradas com sucesso!${erros > 0 ? ` (${erros} erros)` : ''}`, 'success');
+                } else if (erros > 0) {
+                    showToast(`Erro ao gerar chaves. ${erros} erros encontrados.`, 'error');
+                } else {
+                    showToast('Todas as chaves já existem para o período atual', 'info');
+                }
+
+            } catch (error) {
+                console.error('Erro ao gerar chaves:', error);
+                showToast('Erro ao gerar chaves: ' + error.message, 'error');
+            }
+        }
+
+        // Função para exportar chaves para CSV
+        async function exportarChavesCSV() {
+            try {
+                // Solicitar nome do arquivo ao usuário
+                const nomeArquivo = prompt('Digite o nome do arquivo (sem extensão):');
+                if (!nomeArquivo) {
+                    return; // Usuário cancelou
+                }
+
+                showToast('Preparando exportação...', 'info');
+
+                // Obter dados filtrados das chaves (respeitando filtros ativos)
+                const searchTerm = document.getElementById('chaveSearch')?.value.toLowerCase() || '';
+                const clienteSearchTerm = document.getElementById('clienteChaveSearch')?.value.toLowerCase() || '';
+                const anoFilter = document.getElementById('anoFilter')?.value || '';
+                const mesFilter = document.getElementById('mesFilter')?.value || '';
+
+                let dadosParaExportar = chaves.filter(chave => {
+                    const matchesSearch = 
+                        chave.id_contrato.toString().includes(searchTerm);
+                    
+                    const matchesCliente = !clienteSearchTerm || 
+                        (chave.contratos_itens?.clientes?.nome && 
+                         chave.contratos_itens.clientes.nome.toLowerCase().includes(clienteSearchTerm)) ||
+                        (chave.contratos_itens?.codigo_avlock && 
+                         chave.contratos_itens.codigo_avlock.toLowerCase().includes(clienteSearchTerm));
+                    
+                    const matchesAno = !anoFilter || chave.ano_base.toString() === anoFilter;
+                    const matchesMes = !mesFilter || chave.mes_base.toString() === mesFilter;
+
+                    return matchesSearch && matchesCliente && matchesAno && matchesMes;
+                });
+
+                if (dadosParaExportar.length === 0) {
+                    showToast('Nenhuma chave encontrada para exportar', 'warning');
+                    return;
+                }
+
+                // Buscar dados adicionais dos contratos_itens para cada chave
+                const chavesComDadosCompletos = [];
+                
+                for (const chave of dadosParaExportar) {
+                    try {
+                        // Buscar dados completos do contrato_item
+                        const { data: contratoData, error: contratoError } = await supabase
+                            .from('contratos_itens')
+                            .select('codigo_avlock, dias_liberacao, tipo_liberacao, status_liberacao, appid, modalidade')
+                            .eq('id_contrato', chave.id_contrato)
+                            .single();
+
+                        if (contratoError) {
+                            console.error('Erro ao buscar dados do contrato:', contratoError);
+                            // Usar dados parciais se houver erro
+                            chavesComDadosCompletos.push({
+                                ...chave,
+                                codigo_avlock: chave.contratos_itens?.codigo_avlock || '',
+                                dias_liberacao: '',
+                                tipo_liberacao: '',
+                                status_liberacao: '',
+                                appid: '',
+                                modalidade: ''
+                            });
+                        } else {
+                            chavesComDadosCompletos.push({
+                                ...chave,
+                                codigo_avlock: contratoData.codigo_avlock || '',
+                                dias_liberacao: contratoData.dias_liberacao || '',
+                                tipo_liberacao: contratoData.tipo_liberacao || '',
+                                status_liberacao: contratoData.status_liberacao || '',
+                                appid: contratoData.appid || '',
+                                modalidade: contratoData.modalidade || ''
+                            });
+                        }
+                    } catch (error) {
+                        console.error('Erro ao processar chave:', error);
+                        // Adicionar com dados parciais em caso de erro
+                        chavesComDadosCompletos.push({
+                            ...chave,
+                            codigo_avlock: chave.contratos_itens?.codigo_avlock || '',
+                            dias_liberacao: '',
+                            tipo_liberacao: '',
+                            status_liberacao: '',
+                            appid: '',
+                            modalidade: ''
+                        });
+                    }
+                }
+
+                // Definir cabeçalho do CSV com os campos solicitados
+                const cabecalho = [
+                    'ID Chave',
+                    'Chave AvLock',
+                    'Código AvLock',
+                    'Dias Liberação',
+                    'Tipo Liberação',
+                    'Status Liberação',
+                    'App ID',
+                    'Modalidade',
+                    'Data Inicial'
+                ];
+
+                // Converter dados para CSV
+                const linhasCSV = chavesComDadosCompletos.map(chave => [
+                    chave.id_chave || '',
+                    chave.chave_avlock || '',
+                    chave.codigo_avlock || '',
+                    chave.dias_liberacao || '',
+                    chave.tipo_liberacao || '',
+                    chave.status_liberacao || '',
+                    chave.appid || '',
+                    chave.modalidade || '',
+                    chave.data_inicial ? new Date(chave.data_inicial).toLocaleDateString('pt-BR') : ''
+                ]);
+
+                // Combinar cabeçalho e dados
+                const csvContent = [cabecalho, ...linhasCSV]
+                    .map(linha => linha.map(campo => `"${campo}"`).join(','))
+                    .join('\n');
+
+                // Criar e baixar arquivo
+                const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+                const link = document.createElement('a');
+                
+                if (link.download !== undefined) {
+                    const url = URL.createObjectURL(blob);
+                    link.setAttribute('href', url);
+                    link.setAttribute('download', `${nomeArquivo}.csv`);
+                    link.style.visibility = 'hidden';
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                    
+                    showToast(`Arquivo ${nomeArquivo}.csv exportado com sucesso! (${chavesComDadosCompletos.length} registros)`, 'success');
+                } else {
+                    showToast('Seu navegador não suporta download de arquivos', 'error');
+                }
+
+            } catch (error) {
+                console.error('Erro ao exportar chaves:', error);
+                showToast('Erro ao exportar chaves: ' + error.message, 'error');
+            }
+        }
+
+        // Função para importar chaves de arquivo CSV
+        async function importarChavesCSV() {
+            try {
+                // Criar input file para seleção do arquivo
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = '.csv';
+                input.style.display = 'none';
+                
+                // Adicionar evento para processar o arquivo selecionado
+                input.addEventListener('change', async function(event) {
+                    const file = event.target.files[0];
+                    if (!file) {
+                        return;
+                    }
+
+                    // Verificar se é um arquivo CSV
+                    if (!file.name.toLowerCase().endsWith('.csv')) {
+                        showToast('Por favor, selecione um arquivo CSV válido', 'error');
+                        return;
+                    }
+
+                    showToast('Processando arquivo CSV...', 'info');
+
+                    try {
+                        // Ler o conteúdo do arquivo
+                        const text = await file.text();
+                        const lines = text.split('\n').filter(line => line.trim() !== '');
+                        
+                        if (lines.length === 0) {
+                            showToast('Arquivo CSV está vazio', 'warning');
+                            return;
+                        }
+
+                        // Processar cada linha do CSV
+                        const updates = [];
+                        let processedCount = 0;
+                        let errorCount = 0;
+
+                        for (let i = 0; i < lines.length; i++) {
+                            const line = lines[i].trim();
+                            if (!line) continue;
+
+                            // Dividir a linha por vírgula e remover aspas
+                            const columns = line.split(',').map(col => col.replace(/"/g, '').trim());
+                            
+                            if (columns.length < 2) {
+                                console.warn(`Linha ${i + 1} ignorada: formato inválido`);
+                                errorCount++;
+                                continue;
+                            }
+
+                            const idChave = columns[0];
+                            const chaveAvlock = columns[1];
+
+                            // Validar se id_chave é um número válido
+                            if (!idChave || isNaN(parseInt(idChave))) {
+                                console.warn(`Linha ${i + 1} ignorada: ID da chave inválido`);
+                                errorCount++;
+                                continue;
+                            }
+
+                            updates.push({
+                                id_chave: parseInt(idChave),
+                                chave_avlock: chaveAvlock
+                            });
+                        }
+
+                        if (updates.length === 0) {
+                            showToast('Nenhum registro válido encontrado no arquivo CSV', 'warning');
+                            return;
+                        }
+
+                        // Confirmar com o usuário antes de prosseguir
+                        const confirmMessage = `Foram encontrados ${updates.length} registros válidos para atualização.\n${errorCount > 0 ? `${errorCount} linhas foram ignoradas por formato inválido.\n` : ''}Deseja continuar com a importação?`;
+                        
+                        if (!confirm(confirmMessage)) {
+                            return;
+                        }
+
+                        // Processar atualizações no banco de dados
+                        let successCount = 0;
+                        let failCount = 0;
+
+                        for (const update of updates) {
+                            try {
+                                const { error } = await supabase
+                                    .from('contratos_chaves')
+                                    .update({ chave_avlock: update.chave_avlock })
+                                    .eq('id_chave', update.id_chave);
+
+                                if (error) {
+                                    console.error(`Erro ao atualizar chave ${update.id_chave}:`, error);
+                                    failCount++;
+                                } else {
+                                    successCount++;
+                                }
+                            } catch (error) {
+                                console.error(`Erro ao processar chave ${update.id_chave}:`, error);
+                                failCount++;
+                            }
+                        }
+
+                        // Exibir resultado da importação
+                        if (successCount > 0) {
+                            showToast(`Importação concluída! ${successCount} chaves atualizadas com sucesso.${failCount > 0 ? ` ${failCount} falharam.` : ''}`, 'success');
+                            
+                            // Recarregar os dados das chaves
+                            await loadChaves();
+                        } else {
+                            showToast('Nenhuma chave foi atualizada. Verifique os IDs no arquivo CSV.', 'warning');
+                        }
+
+                    } catch (error) {
+                        console.error('Erro ao processar arquivo CSV:', error);
+                        showToast('Erro ao processar arquivo CSV: ' + error.message, 'error');
+                    }
+                });
+
+                // Adicionar input ao DOM e simular clique
+                document.body.appendChild(input);
+                input.click();
+                document.body.removeChild(input);
+
+            } catch (error) {
+                console.error('Erro ao importar chaves:', error);
+                showToast('Erro ao importar chaves: ' + error.message, 'error');
+            }
+        }
+
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(function(err) {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>
