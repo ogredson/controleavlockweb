@@ -1280,7 +1280,15 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label">Sistema *</label>
-                            <input type="text" class="form-input" name="sistema" required>
+                            <select class="form-select" name="sistema" required>
+                                <option value="">Selecione o sistema...</option>
+                                <option value="SHOPCASH 6.0">SHOPCASH 6.0</option>
+                                <option value="SHOPCASH 7.0">SHOPCASH 7.0</option>
+                                <option value="SHOPCASH 8.0">SHOPCASH 8.0</option>
+                                <option value="SHOPCASH 9.0">SHOPCASH 9.0</option>
+                                <option value="SHOPCASH 10.0">SHOPCASH 10.0</option>
+                                <option value="SHOPCASH 11.0">SHOPCASH 11.0</option>
+                            </select>
                         </div>
                     </div>
                     
@@ -1308,13 +1316,28 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label">App ID</label>
-                            <input type="number" class="form-input" name="appid">
+                            <select class="form-select" name="appid">
+                                <option value="">Selecione o App ID...</option>
+                                <option value="6398">6398</option>
+                                <option value="6399">6399</option>
+                                <option value="6300">6300</option>
+                                <option value="6400">6400</option>
+                                <option value="6500">6500</option>
+                                <option value="9000">9000</option>
+                                <option value="10000">10000</option>
+                                <option value="11000">11000</option>
+                            </select>
                         </div>
                     </div>
                     
                     <div class="form-group">
                         <label class="form-label">Modalidade</label>
-                        <input type="number" class="form-input" name="modalidade">
+                        <select class="form-select" name="modalidade">
+                            <option value="">Selecione a modalidade...</option>
+                            <option value="0">0 - STANDARD</option>
+                            <option value="253">253 - PREMIUM</option>
+                            <option value="254">254 - GOLD</option>
+                        </select>
                     </div>
                 </form>
             </div>
@@ -1554,9 +1577,10 @@
 
         // Função auxiliar para determinar a modalidade
         function getModalidadeText(modalidade) {
-            if (modalidade === 253) return 'Premium';
-            if (modalidade === 254) return 'Gold';
-            return 'Standard';
+            if (modalidade === 0) return '0 - STANDARD';
+            if (modalidade === 253) return '253 - PREMIUM';
+            if (modalidade === 254) return '254 - GOLD';
+            return modalidade ? `${modalidade}` : 'N/A';
         }
 
         function renderContratos() {
