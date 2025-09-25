@@ -1106,7 +1106,7 @@
                                     <input type="text" class="form-input" id="chaveSearch" placeholder="Buscar por ID do contrato..." oninput="filterChaves()">
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="form-input" id="clienteChaveSearch" placeholder="Buscar por cliente ou código AvLock..." oninput="filterChaves()">
+                                    <input type="text" class="form-input" id="clienteChaveSearch" placeholder="Buscar por nome do cliente..." oninput="filterChaves()">
                                 </div>
                                 <div class="form-group">
                                     <select class="form-select" id="anoFilter" onchange="filterChaves()">
@@ -2496,9 +2496,7 @@
                 
                 const matchesCliente = !clienteSearchTerm || 
                     (chave.contratos_itens?.clientes?.nome && 
-                     chave.contratos_itens.clientes.nome.toLowerCase().includes(clienteSearchTerm)) ||
-                    (chave.contratos_itens?.codigo_avlock && 
-                     chave.contratos_itens.codigo_avlock.toLowerCase().includes(clienteSearchTerm));
+                     chave.contratos_itens.clientes.nome.toLowerCase().includes(clienteSearchTerm));
                 
                 const matchesAno = !anoFilter || chave.ano_base.toString() === anoFilter;
                 const matchesMes = !mesFilter || chave.mes_base.toString() === mesFilter;
