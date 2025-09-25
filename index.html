@@ -1103,7 +1103,7 @@
                         <div class="card-content">
                             <div class="form-row">
                                 <div class="form-group">
-                                    <input type="text" class="form-input" id="chaveSearch" placeholder="Buscar por ID do contrato..." oninput="filterChaves()">
+                                    <input type="text" class="form-input" id="chaveSearch" placeholder="Buscar por ID do contrato ou código AvLock..." oninput="filterChaves()">
                                 </div>
                                 <div class="form-group">
                                     <input type="text" class="form-input" id="clienteChaveSearch" placeholder="Buscar por nome do cliente..." oninput="filterChaves()">
@@ -1361,17 +1361,17 @@
                 <form id="chaveForm">
                     <div class="form-group">
                         <label class="form-label">ID Contrato *</label>
-                        <input type="number" class="form-input" name="id_contrato" required>
+                        <input type="number" class="form-input" name="id_contrato" required onchange="loadContractData()">
                     </div>
                     
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label">Ano Base *</label>
-                            <input type="number" class="form-input" name="ano_base" required min="2020" max="2099">
+                            <input type="number" class="form-input" name="ano_base" required min="2020" max="2099" onchange="updateDateSuggestions()">
                         </div>
                         <div class="form-group">
                             <label class="form-label">Mês Base *</label>
-                            <select class="form-select" name="mes_base" required>
+                            <select class="form-select" name="mes_base" required onchange="updateDateSuggestions()">
                                 <option value="">Selecione o mês...</option>
                                 <option value="1">Janeiro</option>
                                 <option value="2">Fevereiro</option>
@@ -1799,6 +1799,8 @@
                     const currentMonth = new Date().getMonth() + 1;
                     form.ano_base.value = currentYear;
                     form.mes_base.value = currentMonth;
+                    // Automatically populate date fields with current month period
+                    updateDateSuggestions();
                 }
             }
         }
@@ -2492,7 +2494,9 @@
 
             let filteredChaves = chaves.filter(chave => {
                 const matchesSearch = 
-                    chave.id_contrato.toString().includes(searchTerm);
+                    chave.id_contrato.toString().includes(searchTerm) ||
+                    (chave.contratos_itens?.codigo_avlock && 
+                     chave.contratos_itens.codigo_avlock.toLowerCase().includes(searchTerm));
                 
                 const matchesCliente = !clienteSearchTerm || 
                     (chave.contratos_itens?.clientes?.nome && 
@@ -2590,6 +2594,81 @@
             }
 
             renderChaves();
+        }
+
+        function updateDateSuggestions() {
+            const anoBase = document.querySelector('input[name="ano_base"]').value;
+            const mesBase = document.querySelector('select[name="mes_base"]').value;
+            
+            if (anoBase && mesBase) {
+                const year = parseInt(anoBase);
+                const month = parseInt(mesBase);
+                
+                // Primeiro dia do mês
+                const firstDay = new Date(year, month - 1, 1);
+                
+                // Formatar para datetime-local (YYYY-MM-DDTHH:MM)
+                const formatDateTime = (date) => {
+                    const year = date.getFullYear();
+                    const month = String(date.getMonth() + 1).padStart(2, '0');
+                    const day = String(date.getDate()).padStart(2, '0');
+                    return `${year}-${month}-${day}T00:00`;
+                };
+                
+                const formatDateTimeEnd = (date) => {
+                    const year = date.getFullYear();
+                    const month = String(date.getMonth() + 1).padStart(2, '0');
+                    const day = String(date.getDate()).padStart(2, '0');
+                    return `${year}-${month}-${day}T23:59`;
+                };
+                
+                // Atualizar campo de data inicial
+                document.querySelector('input[name="data_inicial"]').value = formatDateTime(firstDay);
+                
+                // Calcular data final baseada em dias_liberacao se disponível
+                let finalDate;
+                if (currentContractData && currentContractData.dias_liberacao) {
+                    // Data final = data inicial + dias_liberacao
+                    finalDate = new Date(firstDay);
+                    finalDate.setDate(finalDate.getDate() + currentContractData.dias_liberacao - 1); // -1 porque o primeiro dia já conta
+                } else {
+                    // Fallback para último dia do mês se não houver dados do contrato
+                    finalDate = new Date(year, month, 0);
+                }
+                
+                document.querySelector('input[name="data_final"]').value = formatDateTimeEnd(finalDate);
+            }
+        }
+
+        // Global variable to store contract data
+        let currentContractData = null;
+
+        async function loadContractData() {
+            const idContrato = document.querySelector('input[name="id_contrato"]').value;
+            
+            if (idContrato) {
+                try {
+                    const { data, error } = await supabase
+                        .from('contratos_itens')
+                        .select('dias_liberacao')
+                        .eq('id_contrato', parseInt(idContrato))
+                        .single();
+                    
+                    if (error) {
+                        console.log('Contrato não encontrado ou erro:', error);
+                        currentContractData = null;
+                    } else {
+                        currentContractData = data;
+                        // Update date suggestions when contract data is loaded
+                        updateDateSuggestions();
+                    }
+                } catch (error) {
+                    console.error('Erro ao carregar dados do contrato:', error);
+                    currentContractData = null;
+                }
+            } else {
+                currentContractData = null;
+            }
         }
 
         async function saveChave() {
