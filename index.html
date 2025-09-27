@@ -791,6 +791,51 @@
                 margin: var(--spacing-md);
             }
         }
+
+        /* Estilos para Estatísticas - Barras de Avaliação */
+        .avaliacao-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            padding: var(--spacing-sm);
+            border-radius: var(--border-radius);
+            background: var(--surface);
+        }
+
+        .avaliacao-label {
+            min-width: 120px;
+            font-weight: 500;
+            color: var(--text-primary);
+            font-size: 0.875rem;
+        }
+
+        .avaliacao-bar {
+            flex: 1;
+            height: 20px;
+            background: var(--gray-200);
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        [data-theme="dark"] .avaliacao-bar {
+            background: var(--gray-700);
+        }
+
+        .avaliacao-progress {
+            height: 100%;
+            transition: width 0.3s ease;
+            border-radius: 10px;
+        }
+
+        .avaliacao-count {
+            min-width: 40px;
+            text-align: right;
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.875rem;
+        }
     </style>
 </head>
 <body>
@@ -829,6 +874,10 @@
                         <i class="fas fa-key"></i>
                         Chaves de Liberação
                         <span class="nav-badge" id="chavesBadge">0</span>
+                    </button>
+                    <button class="nav-item" onclick="navigateTo('estatisticas')">
+                        <i class="fas fa-chart-pie"></i>
+                        Estatísticas
                     </button>
                 </div>
                 
@@ -1171,6 +1220,304 @@
                                     <button id="chavesNextBtn" class="btn btn-sm" onclick="changeChavesPage(1)" disabled>
                                         Próxima <i class="fas fa-chevron-right"></i>
                                     </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Estatísticas Page -->
+                <div id="estatisticasPage" class="page hidden">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">
+                                <i class="fas fa-chart-pie"></i>
+                                Estatísticas de Atendimento
+                            </h2>
+                        </div>
+                        <div class="card-content">
+                            <!-- Filtros -->
+                            <div class="form-row" style="margin-bottom: 2rem;">
+                                <div class="form-group">
+                                    <label class="form-label">Ano</label>
+                                    <select class="form-select" id="estatisticasAnoFilter" onchange="updateEstatisticas()">
+                                        <option value="">Todos os anos</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Mês</label>
+                                    <select class="form-select" id="estatisticasMesFilter" onchange="updateEstatisticas()">
+                                        <option value="">Todos os meses</option>
+                                        <option value="1">Janeiro</option>
+                                        <option value="2">Fevereiro</option>
+                                        <option value="3">Março</option>
+                                        <option value="4">Abril</option>
+                                        <option value="5">Maio</option>
+                                        <option value="6">Junho</option>
+                                        <option value="7">Julho</option>
+                                        <option value="8">Agosto</option>
+                                        <option value="9">Setembro</option>
+                                        <option value="10">Outubro</option>
+                                        <option value="11">Novembro</option>
+                                        <option value="12">Dezembro</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label class="form-label">Cliente</label>
+                                    <select class="form-select" id="estatisticasClienteFilter" onchange="updateEstatisticas()">
+                                        <option value="">Todos os clientes</option>
+                                    </select>
+                                </div>
+                                <div class="form-group" style="display: flex; align-items: end;">
+                                    <button class="btn btn-primary" onclick="updateEstatisticas()">
+                                        <i class="fas fa-sync-alt"></i>
+                                        Atualizar
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- KPIs Principais -->
+                            <div class="dashboard-grid" style="margin-bottom: 2rem;">
+                                <div class="kpi-card">
+                                    <div class="kpi-icon primary">
+                                        <i class="fas fa-headset"></i>
+                                    </div>
+                                    <div class="kpi-content">
+                                        <h3 id="totalAtendimentos">0</h3>
+                                        <p>Total de Atendimentos</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="kpi-card">
+                                    <div class="kpi-icon success">
+                                        <i class="fas fa-calendar-day"></i>
+                                    </div>
+                                    <div class="kpi-content">
+                                        <h3 id="mediaAtendimentosDia">0</h3>
+                                        <p>Média Atendimentos/Dia</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="kpi-card">
+                                    <div class="kpi-icon warning">
+                                        <i class="fas fa-clock"></i>
+                                    </div>
+                                    <div class="kpi-content">
+                                        <h3 id="tempoMedioAtendimento">0h 0m</h3>
+                                        <p>Tempo Médio de Atendimento</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="kpi-card">
+                                    <div class="kpi-icon info">
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <div class="kpi-content">
+                                        <h3 id="notaMediaClientes">0.0</h3>
+                                        <p>Nota Média dos Clientes</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Gráficos e Tabelas -->
+                            <div class="form-row">
+                                <!-- Top 10 Clientes -->
+                                <div class="form-group" style="flex: 1;">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3 class="card-title">
+                                                <i class="fas fa-trophy"></i>
+                                                Top 10 Clientes (Mais Atendimentos)
+                                            </h3>
+                                        </div>
+                                        <div class="card-content">
+                                            <div class="table-container">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Posição</th>
+                                                            <th>Cliente</th>
+                                                            <th>Atendimentos</th>
+                                                            <th>Nota Média</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="topClientesTable">
+                                                        <tr>
+                                                            <td colspan="4" class="text-center" style="padding: 2rem;">
+                                                                <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--gray-400);"></i>
+                                                                <p style="color: var(--gray-500); margin-top: 1rem;">Carregando dados...</p>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Distribuição por Tipo de Atendimento -->
+                                <div class="form-group" style="flex: 1;">
+                                    <div class="card">
+                                        <div class="card-header">
+                                            <h3 class="card-title">
+                                                <i class="fas fa-chart-bar"></i>
+                                                Tipos de Atendimento
+                                            </h3>
+                                        </div>
+                                        <div class="card-content">
+                                            <div class="table-container">
+                                                <table class="table">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Tipo</th>
+                                                            <th>Quantidade</th>
+                                                            <th>Percentual</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody id="tiposAtendimentoTable">
+                                                        <tr>
+                                                            <td colspan="3" class="text-center" style="padding: 2rem;">
+                                                                <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--gray-400);"></i>
+                                                                <p style="color: var(--gray-500); margin-top: 1rem;">Carregando dados...</p>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Distribuição de Notas dos Clientes -->
+                            <div class="card" style="margin-top: 2rem;">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="fas fa-star-half-alt"></i>
+                                        Distribuição de Avaliações dos Clientes
+                                    </h3>
+                                </div>
+                                <div class="card-content">
+                                    <div class="form-row">
+                                        <div class="form-group" style="flex: 1;">
+                                            <div class="avaliacao-item">
+                                                <span class="avaliacao-label">⭐ Excelente (5)</span>
+                                                <div class="avaliacao-bar">
+                                                    <div class="avaliacao-progress" id="nota5Progress" style="width: 0%; background-color: #10b981;"></div>
+                                                </div>
+                                                <span class="avaliacao-count" id="nota5Count">0</span>
+                                            </div>
+                                            <div class="avaliacao-item">
+                                                <span class="avaliacao-label">⭐ Ótimo (4)</span>
+                                                <div class="avaliacao-bar">
+                                                    <div class="avaliacao-progress" id="nota4Progress" style="width: 0%; background-color: #3b82f6;"></div>
+                                                </div>
+                                                <span class="avaliacao-count" id="nota4Count">0</span>
+                                            </div>
+                                            <div class="avaliacao-item">
+                                                <span class="avaliacao-label">⭐ Bom (3)</span>
+                                                <div class="avaliacao-bar">
+                                                    <div class="avaliacao-progress" id="nota3Progress" style="width: 0%; background-color: #f59e0b;"></div>
+                                                </div>
+                                                <span class="avaliacao-count" id="nota3Count">0</span>
+                                            </div>
+                                            <div class="avaliacao-item">
+                                                <span class="avaliacao-label">⭐ Ruim (2)</span>
+                                                <div class="avaliacao-bar">
+                                                    <div class="avaliacao-progress" id="nota2Progress" style="width: 0%; background-color: #f97316;"></div>
+                                                </div>
+                                                <span class="avaliacao-count" id="nota2Count">0</span>
+                                            </div>
+                                            <div class="avaliacao-item">
+                                                <span class="avaliacao-label">⭐ Péssimo (1)</span>
+                                                <div class="avaliacao-bar">
+                                                    <div class="avaliacao-progress" id="nota1Progress" style="width: 0%; background-color: #ef4444;"></div>
+                                                </div>
+                                                <span class="avaliacao-count" id="nota1Count">0</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Gráfico de Atendimentos por Dia da Semana -->
+                            <div class="card" style="margin-top: 2rem;">
+                                <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="fas fa-calendar-week"></i>
+                                        Atendimentos por Dia da Semana
+                                    </h3>
+                                </div>
+                                <div class="card-content">
+                                    <div class="form-row">
+                                        <div class="form-group" style="flex: 1;">
+                                            <div class="avaliacao-item">
+                                                <span class="avaliacao-label">Segunda-feira</span>
+                                                <div class="avaliacao-bar">
+                                                    <div class="avaliacao-progress" id="segundaProgress" style="width: 0%; background-color: #3b82f6;"></div>
+                                                </div>
+                                                <span class="avaliacao-count" id="segundaCount">0</span>
+                                            </div>
+                                            <div class="avaliacao-item">
+                                                <span class="avaliacao-label">Terça-feira</span>
+                                                <div class="avaliacao-bar">
+                                                    <div class="avaliacao-progress" id="tercaProgress" style="width: 0%; background-color: #10b981;"></div>
+                                                </div>
+                                                <span class="avaliacao-count" id="tercaCount">0</span>
+                                            </div>
+                                            <div class="avaliacao-item">
+                                                <span class="avaliacao-label">Quarta-feira</span>
+                                                <div class="avaliacao-bar">
+                                                    <div class="avaliacao-progress" id="quartaProgress" style="width: 0%; background-color: #f59e0b;"></div>
+                                                </div>
+                                                <span class="avaliacao-count" id="quartaCount">0</span>
+                                            </div>
+                                            <div class="avaliacao-item">
+                                                <span class="avaliacao-label">Quinta-feira</span>
+                                                <div class="avaliacao-bar">
+                                                    <div class="avaliacao-progress" id="quintaProgress" style="width: 0%; background-color: #8b5cf6;"></div>
+                                                </div>
+                                                <span class="avaliacao-count" id="quintaCount">0</span>
+                                            </div>
+                                            <div class="avaliacao-item">
+                                                <span class="avaliacao-label">Sexta-feira</span>
+                                                <div class="avaliacao-bar">
+                                                    <div class="avaliacao-progress" id="sextaProgress" style="width: 0%; background-color: #f97316;"></div>
+                                                </div>
+                                                <span class="avaliacao-count" id="sextaCount">0</span>
+                                            </div>
+                                            <div class="avaliacao-item">
+                                                <span class="avaliacao-label">Sábado</span>
+                                                <div class="avaliacao-bar">
+                                                    <div class="avaliacao-progress" id="sabadoProgress" style="width: 0%; background-color: #ef4444;"></div>
+                                                </div>
+                                                <span class="avaliacao-count" id="sabadoCount">0</span>
+                                            </div>
+                                            <div class="avaliacao-item">
+                                                <span class="avaliacao-label">Domingo</span>
+                                                <div class="avaliacao-bar">
+                                                    <div class="avaliacao-progress" id="domingoProgress" style="width: 0%; background-color: #6b7280;"></div>
+                                                </div>
+                                                <span class="avaliacao-count" id="domingoCount">0</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Atendimentos por Atendentes -->
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title">Atendimentos por Atendentes</h5>
+                                </div>
+                                <div class="card-content">
+                                    <div class="form-row">
+                                        <div class="form-group" style="flex: 1;" id="atendentesContainer">
+                                            <!-- Os atendentes serão inseridos dinamicamente aqui -->
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1743,6 +2090,8 @@
             // Load data for specific pages
             if (page === 'chaves') {
                 loadChaves();
+            } else if (page === 'estatisticas') {
+                loadEstatisticas();
             }
             
             // Update breadcrumbs
@@ -1757,7 +2106,8 @@
                 'dashboard': 'Dashboard',
                 'clientes': 'Clientes',
                 'contratos': 'Contratos',
-                'chaves': 'Chaves de Liberação'
+                'chaves': 'Chaves de Liberação',
+                'estatisticas': 'Estatísticas'
             };
             
             breadcrumbs.innerHTML = `<span>${pageNames[page] || page}</span>`;
@@ -2234,6 +2584,11 @@
             }, 5000);
         }
 
+        // Alias para showNotification usar a mesma função showToast
+        function showNotification(message, type = 'info') {
+            showToast(message, type);
+        }
+
         function getToastIcon(type) {
             const icons = {
                 'success': 'check-circle',
@@ -2283,6 +2638,23 @@
             const sidebarToggle = document.querySelector('.sidebar-toggle');
             if (sidebarToggle) {
                 sidebarToggle.addEventListener('click', toggleSidebar);
+            }
+            
+            // Event listeners para filtros de estatísticas
+            const estatisticasAnoFilter = document.getElementById('estatisticasAnoFilter');
+            const estatisticasMesFilter = document.getElementById('estatisticasMesFilter');
+            const estatisticasClienteFilter = document.getElementById('estatisticasClienteFilter');
+            
+            if (estatisticasAnoFilter) {
+                estatisticasAnoFilter.addEventListener('change', updateEstatisticas);
+            }
+            
+            if (estatisticasMesFilter) {
+                estatisticasMesFilter.addEventListener('change', updateEstatisticas);
+            }
+            
+            if (estatisticasClienteFilter) {
+                estatisticasClienteFilter.addEventListener('change', updateEstatisticas);
             }
             
             showToast('Sistema AvLock carregado com sucesso!', 'success');
@@ -3278,6 +3650,435 @@
             } catch (error) {
                 console.error('Erro ao importar chaves:', error);
                 showToast('Erro ao importar chaves: ' + error.message, 'error');
+            }
+        }
+
+        // Funções para Estatísticas
+        async function loadEstatisticas() {
+            try {
+                // Carregar filtros
+                await loadEstatisticasFilters();
+                
+                // Carregar estatísticas
+                await updateEstatisticas();
+            } catch (error) {
+                console.error('Erro ao carregar estatísticas:', error);
+                showNotification('Erro ao carregar estatísticas', 'error');
+            }
+        }
+
+        async function loadEstatisticasFilters() {
+            try {
+                // Carregar anos disponíveis
+                const { data: anos, error: anosError } = await supabase
+                    .from('clientes_atendimentos')
+                    .select('solicitado_em')
+                    .not('solicitado_em', 'is', null);
+
+                if (anosError) throw anosError;
+
+                const anosUnicos = [...new Set(anos.map(item => 
+                    new Date(item.solicitado_em).getFullYear()
+                ))].sort((a, b) => b - a);
+
+                const anoSelect = document.getElementById('estatisticasAnoFilter');
+                anoSelect.innerHTML = '<option value="">Todos os anos</option>';
+                anosUnicos.forEach(ano => {
+                    anoSelect.innerHTML += `<option value="${ano}">${ano}</option>`;
+                });
+
+                // Carregar clientes
+                const { data: clientes, error: clientesError } = await supabase
+                    .from('clientes')
+                    .select('id_cliente, nome')
+                    .order('nome');
+
+                if (clientesError) throw clientesError;
+
+                const clienteSelect = document.getElementById('estatisticasClienteFilter');
+                clienteSelect.innerHTML = '<option value="">Todos os clientes</option>';
+                clientes.forEach(cliente => {
+                    clienteSelect.innerHTML += `<option value="${cliente.id_cliente}">${cliente.nome}</option>`;
+                });
+
+            } catch (error) {
+                console.error('Erro ao carregar filtros:', error);
+            }
+        }
+
+        async function updateEstatisticas() {
+            try {
+                const anoFilter = document.getElementById('estatisticasAnoFilter').value;
+                const mesFilter = document.getElementById('estatisticasMesFilter').value;
+                const clienteFilter = document.getElementById('estatisticasClienteFilter').value;
+
+                // Construir query com filtros
+                let query = supabase
+                    .from('clientes_atendimentos')
+                    .select(`
+                        *,
+                        clientes (nome)
+                    `);
+
+                // Aplicar filtros de data baseados no campo solicitado_em
+                if (mesFilter && anoFilter) {
+                    // Filtro específico por mês e ano
+                    const ano = parseInt(anoFilter);
+                    const mes = parseInt(mesFilter);
+                    
+                    // Calcular o último dia do mês
+                    const ultimoDiaDoMes = new Date(ano, mes, 0).getDate();
+                    
+                    const startDate = `${ano}-${mes.toString().padStart(2, '0')}-01`;
+                    const endDate = `${ano}-${mes.toString().padStart(2, '0')}-${ultimoDiaDoMes}`;
+                    
+                    query = query.gte('solicitado_em', startDate).lte('solicitado_em', endDate);
+                } else if (mesFilter && !anoFilter) {
+                    // Filtro apenas por mês (todos os anos) - usar múltiplos filtros de intervalo
+                    const mes = parseInt(mesFilter);
+                    
+                    // Criar filtros para todos os anos possíveis (2020-2030 como exemplo)
+                    const anosParaFiltrar = [];
+                    for (let ano = 2020; ano <= 2030; ano++) {
+                        const ultimoDiaDoMes = new Date(ano, mes, 0).getDate();
+                        const startDate = `${ano}-${mes.toString().padStart(2, '0')}-01`;
+                        const endDate = `${ano}-${mes.toString().padStart(2, '0')}-${ultimoDiaDoMes}`;
+                        anosParaFiltrar.push({ start: startDate, end: endDate });
+                    }
+                    
+                    // Aplicar filtro OR para todos os intervalos de anos
+                    if (anosParaFiltrar.length > 0) {
+                        let orConditions = anosParaFiltrar.map(periodo => 
+                            `and(solicitado_em.gte.${periodo.start},solicitado_em.lte.${periodo.end})`
+                        ).join(',');
+                        query = query.or(orConditions);
+                    }
+                } else if (anoFilter && !mesFilter) {
+                    // Filtro apenas por ano
+                    const startDate = `${anoFilter}-01-01`;
+                    const endDate = `${anoFilter}-12-31`;
+                    query = query.gte('solicitado_em', startDate).lte('solicitado_em', endDate);
+                }
+
+                if (clienteFilter) {
+                    query = query.eq('id_cliente', clienteFilter);
+                }
+
+                const { data: atendimentos, error } = await query;
+
+                if (error) throw error;
+
+                // Calcular estatísticas
+                await calcularEstatisticas(atendimentos, anoFilter, mesFilter);
+
+            } catch (error) {
+                console.error('Erro ao atualizar estatísticas:', error);
+                showNotification('Erro ao carregar estatísticas', 'error');
+            }
+        }
+
+        async function calcularEstatisticas(atendimentos, anoFilter, mesFilter) {
+            // Total de atendimentos
+            document.getElementById('totalAtendimentos').textContent = atendimentos.length;
+
+            // Média de atendimentos por dia (considerando apenas dias úteis - segunda a sábado)
+            if (atendimentos.length > 0) {
+                // Filtrar atendimentos com data válida baseado no campo solicitado_em
+                const atendimentosComData = atendimentos.filter(a => a.solicitado_em);
+                
+                if (atendimentosComData.length > 0) {
+                    // Calcular período para contar dias úteis
+                    let dataInicio, dataFim;
+                    
+                    if (mesFilter && anoFilter) {
+                        // Período específico do mês
+                        const ano = parseInt(anoFilter);
+                        const mes = parseInt(mesFilter);
+                        dataInicio = new Date(ano, mes - 1, 1); // mes - 1 porque Date usa 0-11
+                        dataFim = new Date(ano, mes, 0); // último dia do mês
+                    } else if (anoFilter) {
+                        // Período do ano inteiro
+                        const ano = parseInt(anoFilter);
+                        dataInicio = new Date(ano, 0, 1);
+                        dataFim = new Date(ano, 11, 31);
+                    } else {
+                        // Usar o período dos dados disponíveis
+                        const datas = atendimentosComData.map(a => new Date(a.solicitado_em));
+                        dataInicio = new Date(Math.min(...datas));
+                        dataFim = new Date(Math.max(...datas));
+                    }
+                    
+                    // Contar dias úteis (segunda a sábado) no período
+                    let diasUteis = 0;
+                    const dataAtual = new Date(dataInicio);
+                    
+                    while (dataAtual <= dataFim) {
+                        const diaSemana = dataAtual.getDay(); // 0=domingo, 1=segunda, ..., 6=sábado
+                        if (diaSemana >= 1 && diaSemana <= 6) { // segunda a sábado
+                            diasUteis++;
+                        }
+                        dataAtual.setDate(dataAtual.getDate() + 1);
+                    }
+                    
+                    const mediaDia = diasUteis > 0 ? (atendimentos.length / diasUteis).toFixed(1) : 0;
+                    document.getElementById('mediaAtendimentosDia').textContent = mediaDia;
+                } else {
+                    document.getElementById('mediaAtendimentosDia').textContent = '0';
+                }
+            } else {
+                document.getElementById('mediaAtendimentosDia').textContent = '0';
+            }
+
+            // Tempo médio de atendimento (usando solicitado_em como base, mas mantendo iniciado_em e finalizado_em para cálculo)
+            const atendimentosComTempo = atendimentos.filter(a => 
+                a.solicitado_em && a.iniciado_em && a.finalizado_em
+            );
+
+            if (atendimentosComTempo.length > 0) {
+                const tempoTotal = atendimentosComTempo.reduce((total, atendimento) => {
+                    const inicio = new Date(atendimento.iniciado_em);
+                    const fim = new Date(atendimento.finalizado_em);
+                    return total + (fim - inicio);
+                }, 0);
+
+                const tempoMedio = tempoTotal / atendimentosComTempo.length;
+                const horas = Math.floor(tempoMedio / (1000 * 60 * 60));
+                const minutos = Math.floor((tempoMedio % (1000 * 60 * 60)) / (1000 * 60));
+                document.getElementById('tempoMedioAtendimento').textContent = `${horas}h ${minutos}m`;
+            } else {
+                document.getElementById('tempoMedioAtendimento').textContent = '0h 0m';
+            }
+
+            // Nota média dos clientes (baseado em atendimentos com solicitado_em válido)
+            const atendimentosComNota = atendimentos.filter(a => 
+                a.solicitado_em && a.nota_do_cliente && !isNaN(parseFloat(a.nota_do_cliente))
+            );
+
+            if (atendimentosComNota.length > 0) {
+                const somaNotas = atendimentosComNota.reduce((total, atendimento) => 
+                    total + parseFloat(atendimento.nota_do_cliente), 0
+                );
+                const notaMedia = (somaNotas / atendimentosComNota.length).toFixed(1);
+                document.getElementById('notaMediaClientes').textContent = notaMedia;
+            } else {
+                document.getElementById('notaMediaClientes').textContent = '0.0';
+            }
+
+            // Top 10 clientes
+            await calcularTopClientes(atendimentos);
+
+            // Tipos de atendimento
+            await calcularTiposAtendimento(atendimentos);
+
+            // Distribuição de notas
+            await calcularDistribuicaoNotas(atendimentos);
+
+            // Atendimentos por dia da semana
+            await calcularAtendimentosPorDiaSemana(atendimentos);
+
+            // Atendimentos por atendentes
+            await calcularAtendimentosPorAtendentes(atendimentos);
+        }
+
+        async function calcularTopClientes(atendimentos) {
+            const clientesMap = {};
+
+            atendimentos.forEach(atendimento => {
+                const clienteId = atendimento.id_cliente;
+                const clienteNome = atendimento.clientes?.nome || 'Cliente não encontrado';
+                
+                if (!clientesMap[clienteId]) {
+                    clientesMap[clienteId] = {
+                        nome: clienteNome,
+                        atendimentos: 0,
+                        notas: []
+                    };
+                }
+                
+                clientesMap[clienteId].atendimentos++;
+                
+                if (atendimento.nota_do_cliente && !isNaN(parseFloat(atendimento.nota_do_cliente))) {
+                    clientesMap[clienteId].notas.push(parseFloat(atendimento.nota_do_cliente));
+                }
+            });
+
+            const topClientes = Object.values(clientesMap)
+                .map(cliente => ({
+                    ...cliente,
+                    notaMedia: cliente.notas.length > 0 
+                        ? (cliente.notas.reduce((a, b) => a + b, 0) / cliente.notas.length).toFixed(1)
+                        : 'N/A'
+                }))
+                .sort((a, b) => b.atendimentos - a.atendimentos)
+                .slice(0, 10);
+
+            const tbody = document.getElementById('topClientesTable');
+            if (topClientes.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="4" class="text-center" style="padding: 2rem;">
+                            <i class="fas fa-info-circle" style="font-size: 2rem; color: var(--gray-400);"></i>
+                            <p style="color: var(--gray-500); margin-top: 1rem;">Nenhum dado encontrado</p>
+                        </td>
+                    </tr>
+                `;
+            } else {
+                tbody.innerHTML = topClientes.map((cliente, index) => `
+                    <tr>
+                        <td>${index + 1}º</td>
+                        <td>${cliente.nome}</td>
+                        <td>${cliente.atendimentos}</td>
+                        <td>${cliente.notaMedia}</td>
+                    </tr>
+                `).join('');
+            }
+        }
+
+        async function calcularTiposAtendimento(atendimentos) {
+            const tiposMap = {};
+
+            atendimentos.forEach(atendimento => {
+                const tipo = atendimento.tipo_de_atendimento || 'Não informado';
+                tiposMap[tipo] = (tiposMap[tipo] || 0) + 1;
+            });
+
+            const tipos = Object.entries(tiposMap)
+                .map(([tipo, quantidade]) => ({
+                    tipo,
+                    quantidade,
+                    percentual: atendimentos.length > 0 
+                        ? ((quantidade / atendimentos.length) * 100).toFixed(1)
+                        : 0
+                }))
+                .sort((a, b) => b.quantidade - a.quantidade);
+
+            const tbody = document.getElementById('tiposAtendimentoTable');
+            if (tipos.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="3" class="text-center" style="padding: 2rem;">
+                            <i class="fas fa-info-circle" style="font-size: 2rem; color: var(--gray-400);"></i>
+                            <p style="color: var(--gray-500); margin-top: 1rem;">Nenhum dado encontrado</p>
+                        </td>
+                    </tr>
+                `;
+            } else {
+                tbody.innerHTML = tipos.map(tipo => `
+                    <tr>
+                        <td>${tipo.tipo}</td>
+                        <td>${tipo.quantidade}</td>
+                        <td>${tipo.percentual}%</td>
+                    </tr>
+                `).join('');
+            }
+        }
+
+        async function calcularDistribuicaoNotas(atendimentos) {
+            const notasCount = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
+
+            atendimentos.forEach(atendimento => {
+                const nota = parseInt(atendimento.nota_do_cliente);
+                if (nota >= 1 && nota <= 5) {
+                    notasCount[nota]++;
+                }
+            });
+
+            const totalNotas = Object.values(notasCount).reduce((a, b) => a + b, 0);
+
+            for (let nota = 1; nota <= 5; nota++) {
+                const count = notasCount[nota];
+                const percentual = totalNotas > 0 ? (count / totalNotas) * 100 : 0;
+                
+                document.getElementById(`nota${nota}Count`).textContent = count;
+                document.getElementById(`nota${nota}Progress`).style.width = `${percentual}%`;
+            }
+        }
+
+        async function calcularAtendimentosPorDiaSemana(atendimentos) {
+            // Inicializar contadores para cada dia da semana
+            const diasSemana = {
+                0: { nome: 'domingo', count: 0 },
+                1: { nome: 'segunda', count: 0 },
+                2: { nome: 'terca', count: 0 },
+                3: { nome: 'quarta', count: 0 },
+                4: { nome: 'quinta', count: 0 },
+                5: { nome: 'sexta', count: 0 },
+                6: { nome: 'sabado', count: 0 }
+            };
+
+            // Contar atendimentos por dia da semana baseado no campo solicitado_em
+            atendimentos.forEach(atendimento => {
+                if (atendimento.solicitado_em) {
+                    const data = new Date(atendimento.solicitado_em);
+                    const diaSemana = data.getDay(); // 0=domingo, 1=segunda, ..., 6=sábado
+                    diasSemana[diaSemana].count++;
+                }
+            });
+
+            // Encontrar o maior valor para calcular percentuais
+            const maxCount = Math.max(...Object.values(diasSemana).map(dia => dia.count));
+
+            // Atualizar os elementos HTML
+            Object.values(diasSemana).forEach(dia => {
+                const count = dia.count;
+                const percentual = maxCount > 0 ? (count / maxCount) * 100 : 0;
+                
+                document.getElementById(`${dia.nome}Count`).textContent = count;
+                document.getElementById(`${dia.nome}Progress`).style.width = `${percentual}%`;
+            });
+        }
+
+        async function calcularAtendimentosPorAtendentes(atendimentos) {
+            const atendentesStats = {};
+            let totalAtendimentos = 0;
+
+            // Contar atendimentos por atendente
+            atendimentos.forEach(atendimento => {
+                if (atendimento.participantes && atendimento.participantes.trim()) {
+                    // Dividir participantes por vírgula e processar cada um
+                    const participantes = atendimento.participantes.split(',').map(p => p.trim());
+                    
+                    participantes.forEach(participante => {
+                        if (participante) {
+                            if (!atendentesStats[participante]) {
+                                atendentesStats[participante] = 0;
+                            }
+                            atendentesStats[participante]++;
+                            totalAtendimentos++;
+                        }
+                    });
+                }
+            });
+
+            // Ordenar atendentes por número de atendimentos (decrescente)
+            const atendentesOrdenados = Object.entries(atendentesStats)
+                .sort(([,a], [,b]) => b - a)
+                .slice(0, 10); // Top 10 atendentes
+
+            // Limpar container
+            const container = document.getElementById('atendentesContainer');
+            container.innerHTML = '';
+
+            // Adicionar cada atendente
+            atendentesOrdenados.forEach(([nome, quantidade]) => {
+                const porcentagem = totalAtendimentos > 0 ? ((quantidade / totalAtendimentos) * 100).toFixed(1) : 0;
+                const maxWidth = atendentesOrdenados.length > 0 ? (quantidade / atendentesOrdenados[0][1]) * 100 : 0;
+
+                const atendenteDiv = document.createElement('div');
+                atendenteDiv.className = 'avaliacao-item';
+                atendenteDiv.innerHTML = `
+                    <span class="avaliacao-label" title="${nome}">${nome.length > 20 ? nome.substring(0, 20) + '...' : nome}</span>
+                    <div class="avaliacao-bar">
+                        <div class="avaliacao-progress" style="width: ${maxWidth}%; background-color: #3b82f6;"></div>
+                    </div>
+                    <span class="avaliacao-count">${quantidade} (${porcentagem}%)</span>
+                `;
+                container.appendChild(atendenteDiv);
+            });
+
+            // Se não houver dados
+            if (atendentesOrdenados.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #6b7280; padding: 20px;">Nenhum atendente encontrado</p>';
             }
         }
 
