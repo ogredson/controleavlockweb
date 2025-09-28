@@ -792,6 +792,140 @@
             }
         }
 
+        /* Login Screen Styles */
+        .login-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .login-card {
+            background: var(--white);
+            border-radius: var(--border-radius-lg);
+            padding: var(--spacing-xl);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            width: 100%;
+            max-width: 400px;
+            margin: var(--spacing-md);
+        }
+
+        [data-theme="dark"] .login-card {
+            background: var(--gray-800);
+            border: 1px solid var(--border);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .login-logo {
+            width: 64px;
+            height: 64px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto var(--spacing-md);
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .login-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-sm);
+        }
+
+        .login-subtitle {
+            color: var(--text-secondary);
+            font-size: 0.875rem;
+        }
+
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+        }
+
+        .login-form-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+        }
+
+        .login-form-label {
+            font-weight: 500;
+            color: var(--text-primary);
+            font-size: 0.875rem;
+        }
+
+        .login-form-input {
+            padding: var(--spacing-md);
+            border: 1px solid var(--border);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            background: var(--background);
+            color: var(--text-primary);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .login-form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .login-btn {
+            padding: var(--spacing-md);
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-sm);
+        }
+
+        .login-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        .login-btn:disabled {
+            background: var(--gray-400);
+            cursor: not-allowed;
+        }
+
+        .login-error {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #dc2626;
+            padding: var(--spacing-md);
+            border-radius: var(--border-radius);
+            font-size: 0.875rem;
+            display: none;
+        }
+
+        [data-theme="dark"] .login-error {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: rgba(239, 68, 68, 0.3);
+            color: #fca5a5;
+        }
+
         /* Estilos para Estatísticas - Barras de Avaliação */
         .avaliacao-item {
             display: flex;
@@ -839,7 +973,51 @@
     </style>
 </head>
 <body>
-    <div class="app-container">
+    <!-- Login Screen -->
+    <div class="login-container" id="loginContainer">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="login-logo">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h1 class="login-title">Sistema AvLock</h1>
+                <p class="login-subtitle">Faça login para acessar o sistema</p>
+            </div>
+            
+            <form class="login-form" id="loginForm">
+                <div class="login-error" id="loginError"></div>
+                
+                <div class="login-form-group">
+                    <label class="login-form-label" for="loginUsername">Usuário</label>
+                    <input 
+                        type="text" 
+                        id="loginUsername" 
+                        class="login-form-input" 
+                        placeholder="Digite seu usuário"
+                        required
+                    >
+                </div>
+                
+                <div class="login-form-group">
+                    <label class="login-form-label" for="loginPassword">Senha</label>
+                    <input 
+                        type="password" 
+                        id="loginPassword" 
+                        class="login-form-input" 
+                        placeholder="Digite sua senha"
+                        required
+                    >
+                </div>
+                
+                <button type="submit" class="login-btn" id="loginBtn">
+                    <i class="fas fa-sign-in-alt"></i>
+                    Entrar
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="app-container" id="appContainer" style="display: none;">
         <!-- Sidebar -->
         <nav class="sidebar" id="sidebar">
             <div class="sidebar-header">
@@ -908,12 +1086,13 @@
                         <i class="fas fa-moon"></i>
                     </button>
                     
-                    <button class="header-btn">
-                        <i class="fas fa-bell"></i>
-                    </button>
+                    <div class="user-info" style="display: flex; align-items: center; gap: var(--spacing-sm); margin-right: var(--spacing-md);">
+                        <span id="currentUserName" style="color: var(--text-secondary); font-size: 0.875rem;"></span>
+                        <i class="fas fa-user-circle" style="color: var(--text-secondary);"></i>
+                    </div>
                     
-                    <button class="header-btn">
-                        <i class="fas fa-user-circle"></i>
+                    <button class="header-btn" onclick="logout()" title="Sair do sistema">
+                        <i class="fas fa-sign-out-alt"></i>
                     </button>
                 </div>
             </header>
@@ -1861,6 +2040,8 @@
 
         // Load data from Supabase
         async function loadData() {
+            if (!requireAuth()) return;
+            
             try {
                 // Load clientes
                 const { data: clientesData, error: clientesError } = await supabase
@@ -2176,6 +2357,8 @@
 
         // Cliente functions
         async function saveCliente() {
+            if (!requireAuth()) return;
+            
             const form = document.getElementById('clienteForm');
             const formData = new FormData(form);
             const clienteData = Object.fromEntries(formData.entries());
@@ -2249,6 +2432,7 @@
         }
 
         async function deleteCliente(id) {
+            if (!requireAuth()) return;
             if (!confirm('Tem certeza que deseja excluir este cliente?')) return;
             
             try {
@@ -2284,6 +2468,8 @@
 
         // Contrato functions
         async function saveContrato() {
+            if (!requireAuth()) return;
+            
             const form = document.getElementById('contratoForm');
             const formData = new FormData(form);
             const contratoData = Object.fromEntries(formData.entries());
@@ -2356,6 +2542,7 @@
         }
 
         async function deleteContrato(id_cliente, codigo_avlock, sistema) {
+            if (!requireAuth()) return;
             if (!confirm('Tem certeza que deseja excluir este contrato?')) return;
             
             try {
@@ -2620,8 +2807,162 @@
             };
         }
 
+        // Authentication guard function
+        function requireAuth() {
+            if (!isAuthenticated) {
+                showToast('Acesso negado. Faça login para continuar.', 'error');
+                showLoginScreen();
+                return false;
+            }
+            return true;
+        }
+
+        // Authentication functions
+        let isAuthenticated = false;
+        let currentUser = null;
+
+        async function login(username, password) {
+            try {
+                // Query the clientes table to find user with id_cliente = 1
+                const { data, error } = await supabase
+                    .from('clientes')
+                    .select('id_cliente, nome, senha')
+                    .eq('id_cliente', 1)
+                    .single();
+
+                if (error) {
+                    console.error('Erro ao buscar usuário:', error);
+                    throw new Error('Erro ao conectar com o banco de dados');
+                }
+
+                if (!data) {
+                    throw new Error('Usuário administrador não encontrado');
+                }
+
+                // Check if the provided password matches
+                if (password !== data.senha) {
+                    throw new Error('Senha incorreta');
+                }
+
+                // Check if username matches (using nome field)
+                if (username !== data.nome) {
+                    throw new Error('Usuário incorreto');
+                }
+
+                // Authentication successful
+                isAuthenticated = true;
+                currentUser = {
+                    id: data.id_cliente,
+                    nome: data.nome
+                };
+
+                // Store authentication in localStorage
+                localStorage.setItem('isAuthenticated', 'true');
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+
+                return { success: true };
+
+            } catch (error) {
+                console.error('Erro no login:', error);
+                return { success: false, error: error.message };
+            }
+        }
+
+        function logout() {
+            isAuthenticated = false;
+            currentUser = null;
+            localStorage.removeItem('isAuthenticated');
+            localStorage.removeItem('currentUser');
+            showLoginScreen();
+        }
+
+        function checkAuthentication() {
+            const storedAuth = localStorage.getItem('isAuthenticated');
+            const storedUser = localStorage.getItem('currentUser');
+            
+            if (storedAuth === 'true' && storedUser) {
+                isAuthenticated = true;
+                currentUser = JSON.parse(storedUser);
+                return true;
+            }
+            
+            return false;
+        }
+
+        function showLoginScreen() {
+            document.getElementById('loginContainer').style.display = 'flex';
+            document.getElementById('appContainer').style.display = 'none';
+        }
+
+        function showMainApp() {
+            document.getElementById('loginContainer').style.display = 'none';
+            document.getElementById('appContainer').style.display = 'flex';
+        }
+
+        function showLoginError(message) {
+            const errorDiv = document.getElementById('loginError');
+            errorDiv.textContent = message;
+            errorDiv.style.display = 'block';
+        }
+
+        function hideLoginError() {
+            const errorDiv = document.getElementById('loginError');
+            errorDiv.style.display = 'none';
+        }
+
         // Initialize app when DOM is loaded
         document.addEventListener('DOMContentLoaded', async function() {
+            // Check authentication first
+            if (checkAuthentication()) {
+                showMainApp();
+                await initializeApp();
+            } else {
+                showLoginScreen();
+            }
+
+            // Setup login form event listener
+            const loginForm = document.getElementById('loginForm');
+            if (loginForm) {
+                loginForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    
+                    const username = document.getElementById('loginUsername').value.trim();
+                    const password = document.getElementById('loginPassword').value;
+                    const loginBtn = document.getElementById('loginBtn');
+                    
+                    if (!username || !password) {
+                        showLoginError('Por favor, preencha todos os campos');
+                        return;
+                    }
+                    
+                    // Show loading state
+                    loginBtn.disabled = true;
+                    loginBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Entrando...';
+                    hideLoginError();
+                    
+                    try {
+                        const result = await login(username, password);
+                        
+                        if (result.success) {
+                            showMainApp();
+                            await initializeApp();
+                            showToast('Login realizado com sucesso!', 'success');
+                        } else {
+                            showLoginError(result.error);
+                        }
+                    } catch (error) {
+                        showLoginError('Erro inesperado. Tente novamente.');
+                        console.error('Erro no login:', error);
+                    } finally {
+                        // Reset button state
+                        loginBtn.disabled = false;
+                        loginBtn.innerHTML = '<i class="fas fa-sign-in-alt"></i> Entrar';
+                    }
+                });
+            }
+        });
+
+        async function initializeApp() {
             // Set initial theme
             const savedTheme = localStorage.getItem('theme') || 'light';
             document.documentElement.setAttribute('data-theme', savedTheme);
@@ -2632,6 +2973,12 @@
                 themeToggle.innerHTML = savedTheme === 'dark' ? 
                     '<i class="fas fa-sun"></i>' : 
                     '<i class="fas fa-moon"></i>';
+            }
+            
+            // Update user info in header
+            const currentUserNameElement = document.getElementById('currentUserName');
+            if (currentUserNameElement && currentUser) {
+                currentUserNameElement.textContent = `Olá, ${currentUser.nome}`;
             }
             
             // Load initial data
@@ -2664,9 +3011,7 @@
             if (estatisticasClienteFilter) {
                 estatisticasClienteFilter.addEventListener('change', updateEstatisticas);
             }
-            
-            showToast('Sistema AvLock carregado com sucesso!', 'success');
-        });
+        }
 
         // Close sidebar when clicking outside on mobile
         document.addEventListener('click', function(e) {
