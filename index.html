@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema AvLock - Controle de Clientes e Contratos</title>
+    <title>ConnectSoft - Controle de Clientes e Contratos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         :root {
-            /* Light theme colors */
-            --primary: #2563eb;
-            --primary-dark: #1d4ed8;
-            --primary-light: #3b82f6;
+            /* Connect Soft theme colors - baseado na logomarca */
+            --primary: #8B1538;
+            --primary-dark: #6B0F2A;
+            --primary-light: #A91B42;
             --secondary: #64748b;
             --success: #10b981;
             --warning: #f59e0b;
@@ -211,14 +211,15 @@
         /* Header */
         .header {
             height: var(--header-height);
-            background: var(--surface);
-            border-bottom: 1px solid var(--border);
+            background: var(--primary);
+            border-bottom: 1px solid var(--primary-dark);
             display: flex;
             align-items: center;
             padding: 0 var(--spacing-lg);
             position: sticky;
             top: 0;
             z-index: 100;
+            color: white;
         }
 
         .sidebar-toggle {
@@ -229,18 +230,18 @@
             height: 40px;
             border: none;
             background: none;
-            color: var(--text-primary);
+            color: white;
             cursor: pointer;
             border-radius: var(--border-radius);
             margin-right: var(--spacing-md);
         }
 
         .sidebar-toggle:hover {
-            background: var(--gray-100);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         [data-theme="dark"] .sidebar-toggle:hover {
-            background: var(--gray-700);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         @media (min-width: 1024px) {
@@ -253,12 +254,12 @@
             display: flex;
             align-items: center;
             gap: var(--spacing-sm);
-            color: var(--text-secondary);
+            color: rgba(255, 255, 255, 0.8);
             font-size: 0.875rem;
         }
 
         .breadcrumb-separator {
-            color: var(--gray-400);
+            color: rgba(255, 255, 255, 0.6);
         }
 
         .header-actions {
@@ -307,18 +308,18 @@
             height: 40px;
             border: none;
             background: none;
-            color: var(--text-primary);
+            color: white;
             cursor: pointer;
             border-radius: var(--border-radius);
             transition: background-color 0.2s ease;
         }
 
         .header-btn:hover {
-            background: var(--gray-100);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         [data-theme="dark"] .header-btn:hover {
-            background: var(--gray-700);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         /* Content Area */
@@ -980,7 +981,7 @@
                 <div class="login-logo">
                     <i class="fas fa-lock"></i>
                 </div>
-                <h1 class="login-title">Sistema AvLock</h1>
+                <h1 class="login-title">ConnectSoft Clientes</h1>
                 <p class="login-subtitle">Faça login para acessar o sistema</p>
             </div>
             
@@ -1024,7 +1025,7 @@
                 <div class="sidebar-logo">
                     <i class="fas fa-lock"></i>
                 </div>
-                <div class="sidebar-title">AvLock</div>
+                <div class="sidebar-title">CS-Controle</div>
             </div>
             
             <div class="sidebar-nav">
@@ -1087,8 +1088,8 @@
                     </button>
                     
                     <div class="user-info" style="display: flex; align-items: center; gap: var(--spacing-sm); margin-right: var(--spacing-md);">
-                        <span id="currentUserName" style="color: var(--text-secondary); font-size: 0.875rem;"></span>
-                        <i class="fas fa-user-circle" style="color: var(--text-secondary);"></i>
+                        <span id="currentUserName" style="color: white; font-size: 0.875rem; font-weight: 500;"></span>
+                        <i class="fas fa-user-circle" style="color: white;"></i>
                     </div>
                     
                     <button class="header-btn" onclick="logout()" title="Sair do sistema">
