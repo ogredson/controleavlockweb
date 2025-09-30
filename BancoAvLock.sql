@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS contratos_itens
         END
     ),
     CONSTRAINT contratos_itens_dias_liberacao_check CHECK (dias_liberacao >= 1 AND dias_liberacao <= 365),
-    CONSTRAINT contratos_itens_status_liberacao_check CHECK (status_liberacao = ANY (ARRAY['Ativo', 'Inativo'])),
+    CONSTRAINT contratos_itens_status_liberacao_check CHECK (status_liberacao = ANY (ARRAY['Ativo', 'Inativo', 'Pendente'])),
     CONSTRAINT contratos_itens_tipo_liberacao_check CHECK (tipo_liberacao = ANY (ARRAY['Recorrente', 'Permanente']))
 );
 

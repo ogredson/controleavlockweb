@@ -1147,6 +1147,37 @@
                     <div class="card">
                         <div class="card-header">
                             <h2 class="card-title">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                Pendentes de Autorização
+                            </h2>
+                        </div>
+                        <div class="card-content">
+                            <div class="table-container">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Cliente</th>
+                                            <th>Código AvLock</th>
+                                            <th>Sistema</th>
+                                            <th>Observação</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="pendentesTable">
+                                        <tr>
+                                            <td colspan="4" class="text-center" style="padding: 2rem;">
+                                                <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--gray-400);"></i>
+                                                <p style="color: var(--gray-500); margin-top: 1rem;">Carregando contratos pendentes...</p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-header">
+                            <h2 class="card-title">
                                 <i class="fas fa-chart-line"></i>
                                 Atividade Recente
                             </h2>
@@ -1838,6 +1869,7 @@
                             <select class="form-select" name="status_liberacao">
                                 <option value="Ativo">Ativo</option>
                                 <option value="Inativo">Inativo</option>
+                                <option value="Pendente">Pendente</option>
                             </select>
                         </div>
                         <div class="form-group">
@@ -2207,7 +2239,7 @@
             // Update KPI cards
             document.getElementById('totalClientes').textContent = clientes.length;
             document.getElementById('totalContratos').textContent = contratos.filter(c => c.status_liberacao === 'Ativo').length;
-            document.getElementById('contratosPendentes').textContent = contratos.filter(c => c.status_liberacao === 'Inativo').length;
+            document.getElementById('contratosPendentes').textContent = contratos.filter(c => c.status_liberacao === 'Pendente').length;
 
             // Update badges
             document.getElementById('clientesBadge').textContent = clientes.length;
@@ -2223,6 +2255,9 @@
                 sistemas[a] > sistemas[b] ? a : b, '-'
             );
             document.getElementById('sistemasMaisUsados').textContent = sistemaMaisUsado;
+
+            // Update pending contracts grid
+            renderPendentesContratos();
 
             // Update recent activity
             updateRecentActivity();
@@ -2263,6 +2298,37 @@
                     </p>
                 `;
             }
+        }
+
+        // Render pending contracts grid
+        function renderPendentesContratos() {
+            const pendentesTable = document.getElementById('pendentesTable');
+            if (!pendentesTable) return;
+
+            const contratosPendentes = contratos.filter(c => c.status_liberacao === 'Pendente');
+
+            if (contratosPendentes.length === 0) {
+                pendentesTable.innerHTML = `
+                    <tr>
+                        <td colspan="4" class="text-center" style="padding: 2rem;">
+                            <i class="fas fa-check-circle" style="font-size: 2rem; color: var(--success);"></i>
+                            <p style="color: var(--text-secondary); margin-top: 1rem;">Nenhum contrato pendente de autorização</p>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            const rows = contratosPendentes.map(contrato => `
+                <tr>
+                    <td>${contrato.clientes?.nome || 'Cliente não encontrado'}</td>
+                    <td>${contrato.codigo_avlock}</td>
+                    <td>${contrato.sistema}</td>
+                    <td>${contrato.observacao || '-'}</td>
+                </tr>
+            `).join('');
+
+            pendentesTable.innerHTML = rows;
         }
 
         // Navigation functions
@@ -2752,7 +2818,8 @@
         function getStatusText(status) {
             const statusMap = {
                 'Ativo': 'Ativo',
-                'Inativo': 'Inativo'
+                'Inativo': 'Inativo',
+                'Pendente': 'Pendente'
             };
             return statusMap[status] || 'Desconhecido';
         }
