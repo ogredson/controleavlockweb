@@ -1820,7 +1820,7 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label">Sistema *</label>
-                            <select class="form-select" name="sistema" required>
+                            <select class="form-select" name="sistema" required onchange="mapSistemaToAppId(this.value)">
                                 <option value="">Selecione o sistema...</option>
                                 <option value="SHOPCASH 6.0">SHOPCASH 6.0</option>
                                 <option value="SHOPCASH 7.0">SHOPCASH 7.0</option>
@@ -2563,6 +2563,23 @@
             } catch (error) {
                 console.error('Erro ao excluir contrato:', error);
                 showToast('Erro ao excluir contrato: ' + error.message, 'error');
+            }
+        }
+
+        // Função para mapear sistema para AppID automaticamente
+        function mapSistemaToAppId(sistema) {
+            const sistemaAppIdMap = {
+                'SHOPCASH 11.0': '11000',
+                'SHOPCASH 10.0': '10000',
+                'SHOPCASH 9.0': '9000',
+                'SHOPCASH 8.0': '6500',
+                'SHOPCASH 7.0': '6400',
+                'SHOPCASH 6.0': '6300'
+            };
+            
+            const appIdSelect = document.querySelector('select[name="appid"]');
+            if (appIdSelect && sistemaAppIdMap[sistema]) {
+                appIdSelect.value = sistemaAppIdMap[sistema];
             }
         }
 
