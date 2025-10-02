@@ -1911,6 +1911,11 @@
                             <option value="254">254 - GOLD</option>
                         </select>
                     </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Observações</label>
+                        <textarea class="form-input" name="observacoes" rows="3" placeholder="Informações adicionais sobre o contrato"></textarea>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
@@ -2324,7 +2329,7 @@
                     <td>${contrato.clientes?.nome || 'Cliente não encontrado'}</td>
                     <td>${contrato.codigo_avlock}</td>
                     <td>${contrato.sistema}</td>
-                    <td>${contrato.observacao || '-'}</td>
+                    <td>${contrato.observacoes || '-'}</td>
                 </tr>
             `).join('');
 
