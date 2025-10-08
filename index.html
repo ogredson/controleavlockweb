@@ -1732,6 +1732,22 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <!-- Avaliação por Atendente -->
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h5 class="card-title">Avaliação por Atendente</h5>
+                                </div>
+                                <div class="card-content">
+                                    <div class="form-row">
+                                        <div class="form-group" style="flex: 1;" id="avaliacaoAtendenteContainer">
+                                            <!-- As médias de avaliação por atendente serão inseridas dinamicamente aqui -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </main>
@@ -4321,6 +4337,9 @@
 
             // Atendimentos por atendentes
             await calcularAtendimentosPorAtendentes(atendimentos);
+
+            // Avaliação média por atendente
+            await calcularAvaliacaoPorAtendente(atendimentos);
         }
 
         async function calcularTopClientes(atendimentos) {
@@ -4522,6 +4541,58 @@
             // Se não houver dados
             if (atendentesOrdenados.length === 0) {
                 container.innerHTML = '<p style="text-align: center; color: #6b7280; padding: 20px;">Nenhum atendente encontrado</p>';
+            }
+        }
+
+        async function calcularAvaliacaoPorAtendente(atendimentos) {
+            const avaliacaoPorAtendente = {};
+
+            atendimentos.forEach(atendimento => {
+                const nota = parseFloat(atendimento.nota_do_cliente);
+                const participantesStr = atendimento.participantes;
+
+                if (!isNaN(nota) && nota >= 1 && nota <= 5 && participantesStr && participantesStr.trim()) {
+                    const participantes = participantesStr.split(',').map(p => p.trim()).filter(Boolean);
+
+                    participantes.forEach(participante => {
+                        if (!avaliacaoPorAtendente[participante]) {
+                            avaliacaoPorAtendente[participante] = { soma: 0, count: 0 };
+                        }
+                        avaliacaoPorAtendente[participante].soma += nota;
+                        avaliacaoPorAtendente[participante].count += 1;
+                    });
+                }
+            });
+
+            const container = document.getElementById('avaliacaoAtendenteContainer');
+            container.innerHTML = '';
+
+            const lista = Object.entries(avaliacaoPorAtendente)
+                .map(([nome, dados]) => ({
+                    nome,
+                    media: dados.count > 0 ? (dados.soma / dados.count) : 0,
+                    count: dados.count
+                }))
+                .sort((a, b) => b.count - a.count)
+                .slice(0, 10);
+
+            lista.forEach(item => {
+                const nomeExibicao = item.nome.length > 20 ? item.nome.substring(0, 20) + '...' : item.nome;
+                const percentual = (item.media / 5) * 100; // barra baseada na média 1-5
+                const avaliacaoDiv = document.createElement('div');
+                avaliacaoDiv.className = 'avaliacao-item';
+                avaliacaoDiv.innerHTML = `
+                    <span class="avaliacao-label" title="${item.nome}">${nomeExibicao}</span>
+                    <div class="avaliacao-bar">
+                        <div class="avaliacao-progress" style="width: ${percentual.toFixed(1)}%; background-color: #10b981;"></div>
+                    </div>
+                    <span class="avaliacao-count">${item.media.toFixed(1)} (${item.count})</span>
+                `;
+                container.appendChild(avaliacaoDiv);
+            });
+
+            if (lista.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #6b7280; padding: 20px;">Nenhuma avaliação encontrada</p>';
             }
         }
 
