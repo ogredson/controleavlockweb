@@ -1087,6 +1087,10 @@
                         <i class="fas fa-moon"></i>
                     </button>
                     
+                    <button class="header-btn" id="alertToggle" title="Silenciar/reativar alertas">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    
                     <div class="user-info" style="display: flex; align-items: center; gap: var(--spacing-sm); margin-right: var(--spacing-md);">
                         <span id="currentUserName" style="color: white; font-size: 0.875rem; font-weight: 500;"></span>
                         <i class="fas fa-user-circle" style="color: white;"></i>
@@ -2091,6 +2095,10 @@
         let contratos = [];
         let currentPage = 'dashboard';
         let editingId = null;
+        // Monitor de pendentes
+        let knownPendingContratoIds = new Set();
+        let monitoringIntervalId = null;
+        let alertsMuted = localStorage.getItem('alertsMuted') === 'true';
 
         // Load data from Supabase
         async function loadData() {
@@ -2407,6 +2415,27 @@
             themeToggle.innerHTML = newTheme === 'dark' ? 
                 '<i class="fas fa-sun"></i>' : 
                 '<i class="fas fa-moon"></i>';
+        }
+
+        function updateAlertToggleButton() {
+            const btn = document.getElementById('alertToggle');
+            if (!btn) return;
+            btn.innerHTML = alertsMuted ? '<i class="fas fa-bell-slash"></i>' : '<i class="fas fa-bell"></i>';
+            btn.title = alertsMuted ? 'Alertas silenciados' : 'Alertas ativos';
+        }
+
+        function toggleAlerts() {
+            alertsMuted = !alertsMuted;
+            localStorage.setItem('alertsMuted', alertsMuted ? 'true' : 'false');
+            updateAlertToggleButton();
+            showToast(alertsMuted ? 'Alertas sonoros silenciados.' : 'Alertas sonoros reativados.', 'info');
+        }
+
+        function escapeHtml(str) {
+            return String(str).replace(/[&<>"']/g, function(s) {
+                const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' };
+                return map[s] || s;
+            });
         }
 
         // Modal functions
@@ -2835,6 +2864,83 @@
             document.getElementById('contratosNextBtn').disabled = contratosCurrentPage === totalPages || totalPages === 0;
         }
 
+        // Monitoramento de pendentes de autorização
+        async function initializePendingMonitor() {
+            try {
+                const atuaisPendentes = (contratos || []).filter(c => c.status_liberacao === 'Pendente');
+                knownPendingContratoIds = new Set(atuaisPendentes.map(c => c.id_contrato));
+                await checkForNewPendentes();
+                if (monitoringIntervalId) clearInterval(monitoringIntervalId);
+                monitoringIntervalId = setInterval(checkForNewPendentes, 1 * 60 * 1000);
+            } catch (error) {
+                console.error('Erro ao iniciar monitoramento de pendentes:', error);
+            }
+        }
+
+        async function checkForNewPendentes() {
+            if (!requireAuth()) return;
+            try {
+                const { data, error } = await supabase
+                    .from('contratos_itens')
+                    .select(`
+                        id_contrato, id_cliente, codigo_avlock, sistema, status_liberacao,
+                        clientes ( nome )
+                    `)
+                    .eq('status_liberacao', 'Pendente');
+
+                if (error) {
+                    console.error('Erro ao consultar pendentes:', error);
+                    return;
+                }
+                const pendentes = data || [];
+                const novos = pendentes.filter(p => !knownPendingContratoIds.has(p.id_contrato));
+                if (novos.length > 0) {
+                    novos.forEach(p => knownPendingContratoIds.add(p.id_contrato));
+                    await loadData();
+                    const detalhes = novos.map(p => {
+                        const nome = escapeHtml((p.clientes && p.clientes.nome) || '-');
+                        const codigo = escapeHtml(p.codigo_avlock || '-');
+                        const sistema = escapeHtml(p.sistema || '-');
+                        return `• ${nome} — ${codigo} (${sistema})`;
+                    }).join('<br>');
+                    showNotification(`<strong>Novo(s) contrato(s) pendente(s): ${novos.length}</strong><br>${detalhes}`,'warning');
+                    try { if (!alertsMuted) playAlertSound(); } catch (e) {}
+                    highlightPendentesKpi();
+                }
+            } catch (err) {
+                console.error('Falha no monitoramento de pendentes:', err);
+            }
+        }
+
+        function playAlertSound() {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            if (!AudioCtx) return;
+            const ctx = new AudioCtx();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.value = 700;
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            gain.gain.setValueAtTime(0.001, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.2, ctx.currentTime + 0.05);
+            osc.start();
+            setTimeout(() => {
+                gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.3);
+                osc.stop(ctx.currentTime + 0.35);
+                ctx.close();
+            }, 300);
+        }
+
+        function highlightPendentesKpi() {
+            const el = document.getElementById('contratosPendentes');
+            if (!el) return;
+            const originalColor = el.style.color;
+            el.style.color = '#ef4444';
+            el.style.transition = 'color 0.3s ease';
+            setTimeout(() => { el.style.color = originalColor || ''; }, 4000);
+        }
+
         // Utility functions
         function getStatusText(status) {
             const statusMap = {
@@ -3093,6 +3199,16 @@
             
             // Navigate to dashboard
             navigateTo('dashboard');
+            
+            // Iniciar monitoramento de pendentes
+            await initializePendingMonitor();
+
+            // Configurar botão de silenciar/reativar alertas
+            updateAlertToggleButton();
+            const alertToggleBtn = document.getElementById('alertToggle');
+            if (alertToggleBtn) {
+                alertToggleBtn.addEventListener('click', toggleAlerts);
+            }
             
             // Setup event listeners
             // Setup sidebar toggle
