@@ -2903,7 +2903,7 @@
                         const sistema = escapeHtml(p.sistema || '-');
                         return `• ${nome} — ${codigo} (${sistema})`;
                     }).join('<br>');
-                    showNotification(`<strong>Novo(s) contrato(s) pendente(s): ${novos.length}</strong><br>${detalhes}`,'warning');
+                    showNotification(`<strong>Novo(s) contrato(s) pendente(s): ${novos.length}</strong><br>${detalhes}`,'warning', 12000, true);
                     try { if (!alertsMuted) playAlertSound(); } catch (e) {}
                     highlightPendentesKpi();
                 }
@@ -2919,17 +2919,28 @@
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
             osc.type = 'sine';
-            osc.frequency.value = 700;
             osc.connect(gain);
             gain.connect(ctx.destination);
-            gain.gain.setValueAtTime(0.001, ctx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.2, ctx.currentTime + 0.05);
-            osc.start();
-            setTimeout(() => {
-                gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + 0.3);
-                osc.stop(ctx.currentTime + 0.35);
-                ctx.close();
-            }, 300);
+            const now = ctx.currentTime;
+            // Prepare envelope
+            gain.gain.setValueAtTime(0.0001, now);
+            
+            // First tone: 700 Hz, ~350ms
+            osc.frequency.setValueAtTime(700, now);
+            gain.gain.exponentialRampToValueAtTime(0.2, now + 0.05);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.35);
+            
+            // Small pause (~150ms), then second tone: 1000 Hz, ~350ms
+            osc.frequency.setValueAtTime(1000, now + 0.50);
+            gain.gain.exponentialRampToValueAtTime(0.2, now + 0.55);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.85);
+            
+            // Start and stop oscillator
+            osc.start(now);
+            osc.stop(now + 1.0);
+            
+            // Close context shortly after
+            setTimeout(() => { ctx.close(); }, 1100);
         }
 
         function highlightPendentesKpi() {
@@ -2938,7 +2949,7 @@
             const originalColor = el.style.color;
             el.style.color = '#ef4444';
             el.style.transition = 'color 0.3s ease';
-            setTimeout(() => { el.style.color = originalColor || ''; }, 4000);
+            setTimeout(() => { el.style.color = originalColor || ''; }, 12000);
         }
 
         // Utility functions
@@ -2964,7 +2975,7 @@
             }).format(value);
         }
 
-        function showToast(message, type = 'info') {
+        function showToast(message, type = 'info', durationMs = 5000, sticky = false) {
             // Remove existing toasts
             const existingToasts = document.querySelectorAll('.toast');
             existingToasts.forEach(toast => toast.remove());
@@ -2983,17 +2994,19 @@
             
             document.body.appendChild(toast);
             
-            // Auto remove after 5 seconds
-            setTimeout(() => {
-                if (toast.parentElement) {
-                    toast.remove();
-                }
-            }, 5000);
+            // Auto remove unless sticky
+            if (!sticky) {
+                setTimeout(() => {
+                    if (toast.parentElement) {
+                        toast.remove();
+                    }
+                }, durationMs);
+            }
         }
 
         // Alias para showNotification usar a mesma função showToast
-        function showNotification(message, type = 'info') {
-            showToast(message, type);
+        function showNotification(message, type = 'info', durationMs = 5000, sticky = false) {
+            showToast(message, type, durationMs, sticky);
         }
 
         function getToastIcon(type) {
