@@ -2916,31 +2916,39 @@
             const AudioCtx = window.AudioContext || window.webkitAudioContext;
             if (!AudioCtx) return;
             const ctx = new AudioCtx();
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-            osc.type = 'sine';
-            osc.connect(gain);
-            gain.connect(ctx.destination);
+            const masterGain = ctx.createGain();
+            masterGain.connect(ctx.destination);
             const now = ctx.currentTime;
-            // Prepare envelope
-            gain.gain.setValueAtTime(0.0001, now);
-            
-            // First tone: 700 Hz, ~350ms
-            osc.frequency.setValueAtTime(700, now);
-            gain.gain.exponentialRampToValueAtTime(0.2, now + 0.05);
-            gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.35);
-            
-            // Small pause (~150ms), then second tone: 1000 Hz, ~350ms
-            osc.frequency.setValueAtTime(1000, now + 0.50);
-            gain.gain.exponentialRampToValueAtTime(0.2, now + 0.55);
-            gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.85);
-            
-            // Start and stop oscillator
-            osc.start(now);
-            osc.stop(now + 1.0);
-            
-            // Close context shortly after
-            setTimeout(() => { ctx.close(); }, 1100);
+
+            function beep(freq, start, duration, volume = 0.7) {
+                const osc1 = ctx.createOscillator();
+                const osc2 = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc1.type = 'square';
+                osc2.type = 'square';
+                osc1.frequency.setValueAtTime(freq, start);
+                osc2.frequency.setValueAtTime(freq * 1.02, start); // leve desafinação
+                osc1.connect(gain);
+                osc2.connect(gain);
+                gain.connect(masterGain);
+                // Envelope mais incisivo
+                gain.gain.setValueAtTime(0.0001, start);
+                gain.gain.exponentialRampToValueAtTime(volume, start + 0.04);
+                gain.gain.exponentialRampToValueAtTime(0.0001, start + Math.max(0.08, duration - 0.06));
+                osc1.start(start);
+                osc2.start(start);
+                osc1.stop(start + duration);
+                osc2.stop(start + duration);
+            }
+
+            // Padrão: dois tons repetidos (mais chamativo)
+            beep(900,  now,        0.32, 0.75);
+            beep(1350, now + 0.40, 0.32, 0.75);
+            beep(900,  now + 0.90, 0.32, 0.75);
+            beep(1350, now + 1.30, 0.32, 0.75);
+
+            // Encerrar contexto após finalizar o padrão
+            setTimeout(() => { ctx.close(); }, 1900);
         }
 
         function highlightPendentesKpi() {
