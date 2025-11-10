@@ -629,6 +629,37 @@
             border-top: 1px solid var(--border);
         }
 
+        /* Input action (e.g., show/hide password) */
+        .input-with-action {
+            position: relative;
+        }
+
+        .input-with-action .form-input {
+            padding-right: 2.5rem; /* space for the toggle button */
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--border-radius);
+        }
+
+        .password-toggle:hover {
+            color: var(--text-primary);
+            background: var(--background);
+        }
+
         .modal-close:hover {
             background: var(--gray-100);
             color: var(--text-primary);
@@ -1805,7 +1836,12 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label">Senha</label>
-                            <input type="password" class="form-input" name="senha" placeholder="Defina a senha do cliente">
+                            <div class="input-with-action">
+                                <input type="password" class="form-input" name="senha" placeholder="Defina a senha do cliente">
+                                <button type="button" class="password-toggle" onclick="toggleSenhaVisibility(this)" title="Mostrar senha" aria-pressed="false">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
                         </div>
                     </div>
 
@@ -2597,6 +2633,23 @@
                 cnpjGroup.classList.remove('hidden');
                 cpfGroup.classList.add('hidden');
             }
+        }
+
+        function toggleSenhaVisibility(button) {
+            const wrapper = button.closest('.input-with-action');
+            const input = wrapper ? wrapper.querySelector('input[name="senha"]') : null;
+            if (!input) return;
+
+            const isText = input.type === 'text';
+            input.type = isText ? 'password' : 'text';
+
+            const icon = button.querySelector('i');
+            if (icon) {
+                icon.classList.toggle('fa-eye', isText);
+                icon.classList.toggle('fa-eye-slash', !isText);
+            }
+            button.setAttribute('aria-pressed', (!isText).toString());
+            button.title = isText ? 'Mostrar senha' : 'Ocultar senha';
         }
 
         // Contrato functions
