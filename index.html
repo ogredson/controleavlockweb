@@ -579,7 +579,7 @@
             background: var(--surface);
             border-radius: var(--border-radius-lg);
             width: 90%;
-            max-width: 500px;
+            max-width: 900px;
             max-height: 90vh;
             overflow-y: auto;
             transform: scale(0.9);
@@ -617,6 +617,16 @@
             align-items: center;
             justify-content: center;
             border-radius: var(--border-radius);
+        }
+
+        /* Modal sections */
+        .modal-subtitle {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: var(--spacing-md) 0 var(--spacing-sm);
+            padding-top: var(--spacing-sm);
+            border-top: 1px solid var(--border);
         }
 
         .modal-close:hover {
@@ -1769,35 +1779,41 @@
             </div>
             <div class="modal-body">
                 <form id="clienteForm">
+                    <div class="modal-subtitle">Identificação</div>
                     <div class="form-group">
                         <label class="form-label">Nome *</label>
                         <input type="text" class="form-input" name="nome" required>
                     </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label">Tipo de Pessoa *</label>
-                        <select class="form-select" name="tipo_pessoa" onchange="toggleDocumentFields(this.value)" required>
-                            <option value="">Selecione...</option>
-                            <option value="F">Pessoa Física</option>
-                            <option value="J">Pessoa Jurídica</option>
-                        </select>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Tipo de Pessoa *</label>
+                            <select class="form-select" name="tipo_pessoa" onchange="toggleDocumentFields(this.value)" required>
+                                <option value="">Selecione...</option>
+                                <option value="F">Pessoa Física</option>
+                                <option value="J">Pessoa Jurídica</option>
+                            </select>
+                        </div>
+                        <div class="form-group hidden" id="cpfGroup">
+                            <label class="form-label">CPF</label>
+                            <input type="text" class="form-input" name="cpf" placeholder="000.000.000-00">
+                        </div>
                     </div>
-                    
-                    <div class="form-group hidden" id="cpfGroup">
-                        <label class="form-label">CPF</label>
-                        <input type="text" class="form-input" name="cpf" placeholder="000.000.000-00">
+                    <div class="form-row">
+                        <div class="form-group hidden" id="cnpjGroup">
+                            <label class="form-label">CNPJ</label>
+                            <input type="text" class="form-input" name="cnpj" placeholder="00.000.000/0000-00">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Senha</label>
+                            <input type="password" class="form-input" name="senha" placeholder="Defina a senha do cliente">
+                        </div>
                     </div>
-                    
-                    <div class="form-group hidden" id="cnpjGroup">
-                        <label class="form-label">CNPJ</label>
-                        <input type="text" class="form-input" name="cnpj" placeholder="00.000.000/0000-00">
-                    </div>
-                    
+
+                    <div class="modal-subtitle">Contato</div>
                     <div class="form-group">
                         <label class="form-label">Email</label>
                         <input type="email" class="form-input" name="email">
                     </div>
-                    
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label">Telefone</label>
@@ -1808,12 +1824,12 @@
                             <input type="text" class="form-input" name="celular">
                         </div>
                     </div>
-                    
+
+                    <div class="modal-subtitle">Endereço</div>
                     <div class="form-group">
                         <label class="form-label">Endereço</label>
                         <input type="text" class="form-input" name="endereco">
                     </div>
-                    
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label">Cidade</label>
@@ -1824,12 +1840,12 @@
                             <input type="text" class="form-input" name="uf" maxlength="2" placeholder="Ex: SP">
                         </div>
                     </div>
-                    
+
+                    <div class="modal-subtitle">Preferências</div>
                     <div class="form-group">
                         <label class="form-label">Mensagem</label>
                         <textarea class="form-input" name="mensagem" rows="3" placeholder="Ex: Feliz Natal, Promoção especial, etc..."></textarea>
                     </div>
-                    
                     <div class="form-group">
                         <label class="form-label">Visualizar Estatísticas</label>
                         <select class="form-select" name="visualizar_estatisticas">
