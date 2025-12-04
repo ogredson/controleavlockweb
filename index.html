@@ -1265,12 +1265,13 @@
                                             <th>Documento</th>
                                             <th>Email</th>
                                             <th>Telefone</th>
+                                            <th>Contatos</th>
                                             <th>Ações</th>
                                         </tr>
                                     </thead>
                                     <tbody id="clientesTable">
                                         <tr>
-                                            <td colspan="7" class="text-center" style="padding: 2rem;">
+                                            <td colspan="8" class="text-center" style="padding: 2rem;">
                                                 <i class="fas fa-spinner fa-spin" style="font-size: 2rem; color: var(--gray-400);"></i>
                                                 <p style="color: var(--gray-500); margin-top: 1rem;">Carregando clientes...</p>
                                             </td>
@@ -1860,6 +1861,10 @@
                             <input type="text" class="form-input" name="celular">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="form-label">Contatos</label>
+                        <input type="text" class="form-input" name="contatos" maxlength="200" placeholder="Nomes e contatos principais">
+                    </div>
 
                     <div class="modal-subtitle">Endereço</div>
                     <div class="form-group">
@@ -2216,7 +2221,7 @@
             if (clientes.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="7" class="text-center" style="padding: 2rem;">
+                        <td colspan="8" class="text-center" style="padding: 2rem;">
                             <i class="fas fa-users" style="font-size: 3rem; color: var(--gray-400); margin-bottom: 1rem;"></i>
                             <p style="color: var(--gray-500);">Nenhum cliente cadastrado</p>
                         </td>
@@ -2239,6 +2244,7 @@
                     <td>${cliente.tipo_pessoa === 'F' ? (cliente.cpf || '-') : (cliente.cnpj || '-')}</td>
                     <td>${cliente.email || '-'}</td>
                     <td>${cliente.telefone || cliente.celular || '-'}</td>
+                    <td>${cliente.contatos || '-'}</td>
                     <td>
                         <button class="btn btn-sm btn-secondary" onclick="editCliente(${cliente.id_cliente})">
                             <i class="fas fa-edit"></i>
@@ -2778,6 +2784,7 @@
             const filteredClientes = clientes.filter(cliente =>
                 cliente.nome.toLowerCase().includes(searchTerm) ||
                 (cliente.email && cliente.email.toLowerCase().includes(searchTerm)) ||
+                (cliente.contatos && cliente.contatos.toLowerCase().includes(searchTerm)) ||
                 (cliente.cnpj && cliente.cnpj.includes(searchTerm)) ||
                 (cliente.cpf && cliente.cpf.includes(searchTerm))
             );
@@ -2812,7 +2819,7 @@
             if (filteredClientes.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="7" class="text-center" style="padding: 2rem;">
+                        <td colspan="8" class="text-center" style="padding: 2rem;">
                             <i class="fas fa-search" style="font-size: 3rem; color: var(--gray-400); margin-bottom: 1rem;"></i>
                             <p style="color: var(--gray-500);">Nenhum cliente encontrado</p>
                         </td>
@@ -2839,6 +2846,7 @@
                     <td>${cliente.tipo_pessoa === 'F' ? (cliente.cpf || '-') : (cliente.cnpj || '-')}</td>
                     <td>${cliente.email || '-'}</td>
                     <td>${cliente.telefone || cliente.celular || '-'}</td>
+                    <td>${cliente.contatos || '-'}</td>
                     <td>
                         <button class="btn btn-sm btn-secondary" onclick="editCliente(${cliente.id_cliente})">
                             <i class="fas fa-edit"></i>

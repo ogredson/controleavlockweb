@@ -1,0 +1,1054 @@
+id_cliente,numero_do_atendimento,iniciado_por,finalizado_por,participantes,solicitado_em,iniciado_em,finalizado_em,observacao,nota_do_cliente,avaliacao_do_cliente,relato_do_operador,tipo_de_atendimento,tipo_de_fechamento
+10,12058,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-14 09:37,2025-11-14 09:44,2025-11-10 18:39,,,,,Outros,Resolvido
+10,12073,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-17 08:07,2025-11-17 08:07,2025-11-17 13:55,,,,,Outros,Resolvido
+10,12049,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-13 14:01,2025-11-13 14:01,2025-11-13 17:28,,,,criado rotina de backup. corrigido erro da forma de pagamento pix no caixa. corrigida a lentidão micro do elmano. corrigido erro de impressão de relatórios no caixa. ,Dificuldades Operacionais e Ajustes,Resolvido
+10,12043,Rian Duarte,Samuel Nojoza,Samuel Nojoza,2025-11-13 08:25,2025-11-13 09:35,2025-11-13 10:06,,,,cliente vai reabrir chamado após o intervalo,Outros,Resolvido
+10,12026,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-12 08:01,2025-11-12 08:01,2025-11-12 18:41,,,,"atualizada a versão da empresa asm para sc11, instalado fbs 25 e 40. configurada nas 10 estações para usar tanto o sc80 da rep como o sc11 da asm. amanhã verificar erros na impressão, configurar PIX e atualizar estação do sr. elmano que ficou pendente",Relacionado a Banco de Dados,Não Resolvido
+10,12072,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-17 07:58,2025-11-17 08:09,2025-11-17 15:43,,5,,atualizada versão do shopcash do 8.a para 11.1 com sucesso,Relacionado a Banco de Dados,Resolvido
+12,12041,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-12 18:28,2025-11-13 08:52,2025-11-13 12:48,"https://connectsoft.com.br/
+Login: 12
+Senha: xq734",,,,Dificuldades Operacionais e Ajustes,Resolvido
+12,12014,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-11-11 13:43,2025-11-11 13:44,2025-11-11 14:14,"https://connectsoft.com.br/
+Login: 12
+Senha: xq734",,,,Avlock,Resolvido
+12,12011,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-11 12:12,2025-11-11 12:17,2025-11-11 12:29,"https://connectsoft.com.br/
+Login: 12
+Senha: xq734",,,,Avlock,Resolvido
+12,12003,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-11-11 08:25,2025-11-11 08:45,2025-11-11 09:45,"https://connectsoft.com.br/
+Login: 12
+Senha: xq734",,,,Avlock,Resolvido
+13,12060,Luziara Lavor,Luiz Ricardo,Luziara Lavor - Luiz Ricardo,2025-11-14 09:49,2025-11-14 09:52,2025-11-14 11:01,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11924,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-04 18:36,2025-11-05 08:27,2025-11-05 08:27,,,,,Outros,Resolvido
+13,11907,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-04 07:48,2025-11-04 08:11,2025-11-04 18:36,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11848,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-30 19:35,2025-10-31 08:21,2025-10-31 08:21,,,,,Outros,Resolvido
+13,11843,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-10-30 15:14,2025-10-30 15:16,2025-10-30 19:34,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11839,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-30 14:40,2025-10-30 14:40,2025-10-30 14:40,,,,,Outros,Resolvido
+13,11834,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-30 12:44,2025-10-30 12:58,2025-10-30 13:20,,,,,Outros,Resolvido
+13,11828,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-30 10:35,2025-10-30 10:55,2025-10-30 11:55,,,,,Outros,Inatividade do Cliente
+13,11773,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-28 15:45,2025-10-28 15:53,2025-10-28 16:03,,,,,Avlock,Resolvido
+13,11752,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-27 15:41,2025-10-27 16:30,2025-10-27 16:37,,,,,Outros,Testes ou Comunicação Interna
+13,11711,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-24 10:03,2025-10-24 10:12,2025-10-24 10:45,,,,,Outros,Resolvido
+13,11703,Orisvando Alves,Rian Duarte,Silas Rodrigues - Rian Duarte,2025-10-23 20:25,2025-10-24 08:05,2025-10-24 09:56,,,,,Outros,Resolvido
+13,11696,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-23 15:04,2025-10-23 16:10,2025-10-23 20:25,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11616,Orisvando Alves,Connect Soft,Connect Soft,2025-10-16 14:31,2025-10-16 14:32,2025-10-16 15:12,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11411,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-03 12:19,2025-10-03 15:49,2025-10-03 17:22,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11372,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-10-02 09:20,2025-10-02 14:00,2025-10-03 11:12,,,,,Dificuldades Operacionais e Ajustes,Inatividade do Cliente
+13,12054,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-14 08:29,2025-11-14 08:43,2025-11-14 10:34,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,12051,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-13 15:49,2025-11-13 16:07,2025-11-13 17:11,,,,,Outros,Resolvido
+13,12005,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-11 08:42,2025-11-11 08:45,2025-11-11 09:34,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11991,Orisvando Alves,Orisvando Alves,Orisvando Alves,2025-11-10 14:23,2025-11-10 15:52,2025-11-10 17:19,,,,,Outros,Não Resolvido
+13,11916,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-04 10:55,2025-11-04 10:57,2025-11-04 16:18,,4,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11872,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-01 10:15,2025-11-01 10:16,2025-11-01 10:30,,5,,configurado certificado para emissão de nfe.,Dificuldades Operacionais e Ajustes,Resolvido
+13,11820,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-30 08:02,2025-10-30 08:36,2025-10-30 19:32,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11793,Orisvando Alves,Connect Soft,Orisvando Alves - Connect Soft,2025-10-29 09:22,2025-10-29 09:26,2025-10-29 12:03,,5,,Problema no lançamento de devolução de vendas. Não estava emitindo NFE de devolução devido a  documento original ser um CFe e o modulo fiscal não fazia a validação do NCM. Ao tentar emitir a Nota de devolução o sistema apontava rejeição. Problema corrigido, Erros no Sistema e Bugs,Resolvido
+13,11776,Luiz Ricardo,Orisvando Alves,Orisvando Alves,2025-10-28 16:27,2025-10-28 16:44,2025-10-29 09:20,,,,,Outros,Resolvido
+13,11747,Rian Duarte,Luiz Ricardo,Luiz Ricardo,2025-10-27 11:33,2025-10-27 11:54,2025-10-27 14:58,,4,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11697,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-23 15:06,2025-10-23 15:15,2025-10-23 16:39,,4,,cliente solicita atualização da versão. versão atual 11.0.36.6. criado pendência para suporte,Dificuldades Operacionais e Ajustes,Resolvido
+13,11623,Orisvando Alves,Orisvando Alves,Silas Rodrigues - Samuel Nojoza,2025-10-17 08:12,2025-10-17 08:19,2025-10-17 09:24,,4,,Arquivo de configuração sc_config.ini continha alguns erros. Técnico Samuel Nojosa fez as correções necessárias.,Problemas de Acesso e Autenticação,Resolvido
+13,11558,Orisvando Alves,Luiz Ricardo,Luiz Ricardo,2025-10-13 13:35,2025-10-13 13:38,2025-10-13 17:05,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11374,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-02 09:30,2025-10-02 10:06,2025-10-02 10:06,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11536,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-10 15:37,2025-10-10 15:45,2025-10-10 16:41,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11400,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-03 08:39,2025-10-03 08:56,2025-10-03 10:24,,,,"ensinado ao cliente o processo para consulta e marcação para balanço. fechando chamado
+",Dificuldades Operacionais e Ajustes,Resolvido
+13,11373,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-02 09:23,2025-10-02 10:05,2025-10-02 10:11,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,12031,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-12 13:23,2025-11-12 14:36,2025-11-12 16:12,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11392,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-02 15:03,2025-10-02 16:03,2025-10-02 16:48,,,,INSTALL COD - 59EAA3,Avlock,Resolvido
+13,11788,Rian Duarte,Luiz Ricardo,Luiz Ricardo,2025-10-29 07:58,2025-10-29 07:59,2025-10-29 11:03,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11693,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-23 11:57,2025-10-23 11:58,2025-10-23 13:27,,,,,Avlock,Resolvido
+13,11445,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-06 13:40,2025-10-06 14:02,2025-10-06 17:24,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11434,Rian Duarte,Rian Duarte,Rian Duarte - Luiz Ricardo,2025-10-06 09:53,2025-10-06 10:19,2025-10-06 13:34,,,,,Instalação ou Reinstalação de Sistema ou afins,Inatividade do Cliente
+13,11408,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-03 11:27,2025-10-03 11:27,2025-10-03 13:58,,,,,Avlock,Resolvido
+13,12057,Orisvando Alves,Luiz Ricardo,Orisvando Alves - Luiz Ricardo,2025-11-14 09:29,2025-11-14 10:13,2025-11-14 11:01,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,12052,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-13 16:50,2025-11-13 17:08,2025-11-13 17:10,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,12044,Orisvando Alves,Orisvando Alves,Orisvando Alves,2025-11-13 08:43,2025-11-13 10:27,2025-11-13 11:01,,,,,Outros,Inatividade do Cliente
+13,12002,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-11 07:58,2025-11-11 08:11,2025-11-11 10:44,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11997,Orisvando Alves,Orisvando Alves,Orisvando Alves,2025-11-10 16:37,2025-11-10 16:41,2025-11-10 17:19,,,,,Outros,Não Resolvido
+13,11996,Orisvando Alves,Orisvando Alves,Orisvando Alves,2025-11-10 16:16,2025-11-10 16:16,2025-11-10 16:35,,,,Opção inventario estava marcada indevidamente,Dificuldades Operacionais e Ajustes,Resolvido
+13,11974,Rian Duarte,Orisvando Alves,Orisvando Alves,2025-11-10 08:16,2025-11-10 09:56,2025-11-10 16:12,,,,Problema no arquivo sped. Problema encaminhado para a programação., Erros no Sistema e Bugs,Não Resolvido
+13,11961,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-07 09:45,2025-11-07 10:15,2025-11-07 10:54,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11954,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-06 16:17,2025-11-06 16:28,2025-11-06 17:24,,,,,Outros,Inatividade do Cliente
+13,11927,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo - Luziara Lavor,2025-11-05 10:19,2025-11-05 10:25,2025-11-06 15:51,,,,,Outros,Inatividade do Cliente
+13,11878,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-03 08:24,2025-11-03 08:30,2025-11-03 09:17,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11855,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-31 09:34,2025-10-31 09:34,2025-10-31 11:57,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11822,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-30 08:17,2025-10-30 08:34,2025-10-30 14:11,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11789,Orisvando Alves,Rian Duarte,Luiz Ricardo - Rian Duarte,2025-10-29 08:09,2025-10-29 08:33,2025-10-29 17:07,,,,,Outros,Resolvido
+13,11630,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-17 12:27,2025-10-17 13:12,2025-10-17 15:21,,,,,Outros,Inatividade do Cliente
+13,11602,Orisvando Alves,Connect Soft,Connect Soft,2025-10-15 14:31,2025-10-15 14:36,2025-10-15 14:54,,,,o problema ocorreu pq haviam solicitações de compra que estavam vinculadas ao pedido de compra que foram geradas por esses  usuarios que foram desligados da empresa e estavam como inativos,Dificuldades Operacionais e Ajustes,Resolvido
+13,11599,Orisvando Alves,Connect Soft,Connect Soft,2025-10-15 13:04,2025-10-15 13:06,2025-10-15 13:16,,,,,Outros,Não Resolvido
+13,11527,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-10 09:48,2025-10-10 09:50,2025-10-10 10:00,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11515,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-09 15:09,2025-10-09 15:25,2025-10-09 16:55,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11484,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-08 12:36,2025-10-08 13:07,2025-10-08 15:01,,,,,Outros,Resolvido
+13,11468,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-10-07 12:43,2025-10-07 13:55,2025-10-08 12:09,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11367,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-02 08:47,2025-10-02 10:05,2025-10-02 10:12,,,,,Avlock,Resolvido
+13,11352,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-01 08:48,2025-10-01 10:05,2025-10-01 17:44,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+15,12053,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-14 07:43,2025-11-14 09:43,2025-11-10 18:20,,5,,,Avlock,Resolvido
+15,12045,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-13 08:56,2025-11-13 08:56,2025-11-13 11:14,,,,informei ao orisvando que o problema na replicação era com bacabal pois o servidor de lá não estava na vpn. todas as outras lojas estava replicando normalmente,Relacionado a Banco de Dados,Resolvido
+15,12046,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-13 09:02,2025-11-13 09:32,2025-11-13 09:41,,,,verificado que o endereço do servidor não está sendo enxergado pela estação do usuário. indicado que entrasse em contato com o suporte técnico da empresa.,Problemas de Acesso e Autenticação,Resolvido
+23,12062,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-14 10:48,2025-11-14 10:54,2025-11-10 23:52,,,,,Dificuldades Operacionais e Ajustes,Inatividade do Cliente
+23,11965,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-07 14:19,2025-11-07 14:19,2025-11-07 15:29,,,,,Outros,Resolvido
+23,11888,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-11-03 09:58,2025-11-03 10:11,2025-11-03 10:38,,,,,Avlock,Resolvido
+23,11825,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-10-30 09:51,2025-10-30 10:01,2025-10-30 19:35,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+23,11780,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-28 17:21,2025-10-28 17:26,2025-10-28 17:26,,,,,Instalação ou Reinstalação de Sistema ou afins,Resolvido
+23,11754,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-27 15:54,2025-10-27 15:57,2025-10-27 17:32,,,,,Avlock,Resolvido
+23,11707,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-24 08:32,2025-10-24 08:33,2025-10-24 09:01,,5,,,Avlock,Resolvido
+23,11654,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-20 15:59,2025-10-20 16:11,2025-10-20 16:27,,,,chave de acesso null, Erros no Sistema e Bugs,Resolvido
+23,11631,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-17 13:10,2025-10-17 13:11,2025-10-17 14:05,,,,chave de acesso null, Erros no Sistema e Bugs,Resolvido
+23,11607,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-15 17:44,2025-10-16 08:04,2025-10-16 09:44,,,,,Outros,Inatividade do Cliente
+23,11522,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-09 17:32,2025-10-09 17:33,2025-10-09 17:33,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+23,11521,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-09 17:15,2025-10-09 17:20,2025-10-09 17:32,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+26,12078,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-17 10:05,2025-11-17 10:28,2025-11-17 10:34,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+26,12066,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-14 16:42,2025-11-14 17:17,2025-11-14 18:00,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+26,12061,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-14 10:19,2025-11-14 10:20,2025-11-14 10:59,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+26,12068,Luiz Ricardo,Rian Duarte,Luiz Ricardo - Rian Duarte,2025-11-15 11:10,2025-11-17 08:15,2025-11-17 11:10,,,,,Outros,Resolvido
+26,12067,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-14 16:53,2025-11-14 17:22,2025-11-14 18:00,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+26,12063,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-14 15:14,2025-11-14 15:21,2025-11-10 23:17,,,,,Outros,Resolvido
+27,12028,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-12 10:50,2025-11-12 10:51,2025-11-12 11:00,,,,,Problemas Financeiros e Fiscais,Resolvido
+27,11387,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-02 13:25,2025-10-02 13:40,2025-10-02 15:34,,,,emitida a nfe de devolução do cliente,Dificuldades Operacionais e Ajustes,Resolvido
+30,12029,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-12 11:50,2025-11-12 15:29,2025-11-12 16:12,"https://connectsoft.com.br/
+
+login: 30
+senha: cn180",,,,Dificuldades Operacionais e Ajustes,Resolvido
+30,11981,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-10 09:18,2025-11-10 09:42,2025-11-10 09:42,"https://connectsoft.com.br/
+
+login: 30
+senha: cn180",,,,Outros,Resolvido
+30,11969,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-07 17:08,2025-11-07 17:14,2025-11-07 17:59,"https://connectsoft.com.br/
+
+login: 30
+senha: cn180",,,,Dificuldades Operacionais e Ajustes,Resolvido
+30,11947,Izaias Pereira,Luiz Ricardo,Izaias Pereira - Luiz Ricardo,2025-11-06 12:24,2025-11-06 13:13,2025-11-07 16:32,"https://connectsoft.com.br/
+
+login: 30
+senha: cn180",2,hoje não obtivemos respostas. ,,Dificuldades Operacionais e Ajustes,Resolvido
+30,11912,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-04 09:04,2025-11-04 09:57,2025-11-04 16:05,"https://connectsoft.com.br/
+
+login: 30
+senha: cn180",,,"craido pendência e enviada para a programação
+trello:   https://trello.com/c/ZDmVZPUF/166-central-erro-de-saldo-na-impress%C3%A3o-do-romaneio-dat-na-transfer%C3%AAncia
+", Erros no Sistema e Bugs,Resolvido
+30,11874,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-01 11:47,2025-11-01 11:48,2025-11-01 12:10,"https://connectsoft.com.br/
+
+login: 30
+senha: cn180",,,,Outros,Resolvido
+30,11829,Rian Duarte,Samuel Nojoza,Samuel Nojoza,2025-10-30 11:20,2025-10-30 15:21,2025-10-31 09:54,"https://connectsoft.com.br/
+
+login: 30
+senha: cn180",,,o análise será feito na parte da tarde de 31/10/25, Erros no Sistema e Bugs,Resolvido
+30,11799,Izaias Pereira,Izaias Pereira,Izaias Pereira,2025-10-29 10:17,2025-10-29 10:19,2025-10-29 12:55,"https://connectsoft.com.br/
+
+login: 30
+senha: cn180",,,,Questões de Programação,Resolvido
+30,11664,Orisvando Alves,Luziara Lavor,Silas Rodrigues - Luziara Lavor,2025-10-21 10:26,2025-10-21 10:27,2025-10-21 10:46,"https://connectsoft.com.br/
+
+login: 30
+senha: cn180",,,,Avlock,Resolvido
+30,11519,Luiz Ricardo,Luziara Lavor,Luziara Lavor,2025-10-09 16:33,2025-10-09 17:20,2025-10-10 14:32,"https://connectsoft.com.br/
+
+login: 30
+senha: cn180",,,cliente aguarda retorno do Samuel,Outros,Não Resolvido
+30,11512,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-10-09 10:41,2025-10-09 10:49,2025-10-09 16:23,"https://connectsoft.com.br/
+
+login: 30
+senha: cn180",,,,Dificuldades Operacionais e Ajustes,Resolvido
+30,11442,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-06 12:35,2025-10-06 12:36,2025-10-06 12:36,"https://connectsoft.com.br/
+
+login: 30
+senha: cn180",,,,Outros,Resolvido
+30,11440,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-06 11:54,2025-10-06 12:35,2025-10-06 12:35,"https://connectsoft.com.br/
+
+login: 30
+senha: cn180",,,,Outros,Resolvido
+30,11393,Luziara Lavor,Samuel Nojoza,Samuel Nojoza - Izaias Pereira,2025-10-02 15:22,2025-10-02 15:33,2025-10-03 15:37,"https://connectsoft.com.br/
+
+login: 30
+senha: cn180",,,corrigida versão. verificado informações do cancelamento,Dificuldades Operacionais e Ajustes,Resolvido
+30,11376,Samuel Nojoza,Izaias Pereira,Samuel Nojoza - Izaias Pereira - Luziara Lavor,2025-10-02 10:13,2025-10-02 10:13,2025-10-02 13:17,"https://connectsoft.com.br/
+
+login: 30
+senha: cn180",,,,Avlock,Resolvido
+30,12059,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-14 09:41,2025-11-14 10:54,2025-11-14 14:41,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+30,12077,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-17 09:44,2025-11-17 09:48,2025-11-13 18:46,,,,,Outros,Resolvido
+30,11988,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-10 12:30,2025-11-10 13:33,2025-11-10 14:01,,,,,Outros,Resolvido
+30,11977,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-10 08:21,2025-11-10 09:38,2025-11-10 12:26,,,,,Outros,Inatividade do Cliente
+30,11964,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-07 13:27,2025-11-07 14:03,2025-11-07 15:29,,,,,Outros,Inatividade do Cliente
+30,11798,Rian Duarte,Samuel Nojoza,Samuel Nojoza,2025-10-29 10:17,2025-10-29 11:23,2025-10-29 17:50,,,,, Erros no Sistema e Bugs,Resolvido
+30,11561,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-13 15:43,2025-10-13 16:13,2025-10-13 16:31,,,,, Erros no Sistema e Bugs,Testes ou Comunicação Interna
+30,11546,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-13 08:27,2025-10-13 08:28,2025-10-13 10:56,,,,, Erros no Sistema e Bugs,Inatividade do Cliente
+30,11433,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-06 09:30,2025-10-06 09:31,2025-10-06 14:12,,,,"caixa não abria, tieve q apagar os arquivos da pasta", Erros no Sistema e Bugs,Resolvido
+30,11355,Izaias Pereira,Luiz Ricardo,Izaias Pereira - Luiz Ricardo,2025-10-01 10:12,2025-10-01 13:46,2025-10-03 14:08,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+34,11893,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-03 11:38,2025-11-03 11:43,2025-11-03 11:58,,,,"o executável, e não atalho, estava na área de trabalho e assim, pedia a freeimage.dll. colocado o atalho e o sistema voltou a funcionar normalmente
+",Dificuldades Operacionais e Ajustes,Resolvido
+34,11870,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-01 08:25,2025-11-01 08:25,2025-11-01 11:35,,,,ajustado a empresa como lucro real,Relacionado a Banco de Dados,Resolvido
+34,11849,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-31 08:16,2025-10-31 08:16,2025-10-31 14:35,,,,acompanhamento implantação,Outros,Resolvido
+34,11819,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-30 07:57,2025-10-30 07:57,2025-10-30 17:48,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+34,11787,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-29 07:22,2025-10-29 07:22,2025-10-29 17:50,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+34,11774,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-28 15:46,2025-10-28 15:46,2025-10-28 20:56,,,,análise de banco em laboratório,Relacionado a Banco de Dados,Resolvido
+34,11734,Izaias Pereira,Luiz Ricardo,Izaias Pereira - Luiz Ricardo,2025-10-27 08:15,2025-10-27 08:15,2025-10-27 10:49,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+34,11713,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-24 10:43,2025-10-24 10:55,2025-10-24 11:27,,,,,Outros,Resolvido
+34,11622,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-17 08:07,2025-10-17 08:07,2025-10-17 16:09,,,,banco em análise,Relacionado a Banco de Dados,Resolvido
+34,11619,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-16 15:40,2025-10-16 15:40,2025-10-16 21:14,,,,,Relacionado a Banco de Dados,Resolvido
+34,11591,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-15 08:07,2025-10-15 08:07,2025-10-15 17:54,,,,enviado os relatórios solicitados pelo cliente,Relacionado a Banco de Dados,Resolvido
+34,11587,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-14 16:48,2025-10-14 16:51,2025-10-14 16:52,,,,cliente reabriu chamado,Outros,Resolvido
+34,11585,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-14 15:29,2025-10-14 15:29,2025-10-14 16:48,,,,inatividade do cliente,Relacionado a Banco de Dados,Inatividade do Cliente
+34,11531,Orisvando Alves,Samuel Nojoza,Samuel Nojoza - Luziara Lavor,2025-10-10 12:15,2025-10-10 13:03,2025-10-13 17:58,,,,no dia 14/10/25 exportar os dados solicitados pelo cliente,Outros,Não Resolvido
+34,11427,Rian Duarte,Luziara Lavor,Rian Duarte - Luziara Lavor,2025-10-06 08:12,2025-10-06 08:18,2025-10-06 10:25,,,,,Avlock,Resolvido
+34,11406,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-03 10:13,2025-10-03 10:15,2025-10-03 13:28,,,,,Outros,Resolvido
+34,11375,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-02 09:57,2025-10-02 10:07,2025-10-02 17:58,,,,criado rotina de backup,Relacionado a Banco de Dados,Resolvido
+35,12065,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-14 15:25,2025-11-14 15:34,2025-11-10 23:52,,,,,Outros,Resolvido
+39,12069,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-15 11:11,2025-11-17 08:41,2025-11-17 09:14,,,,,Outros,Resolvido
+4,12075,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-17 09:14,2025-11-17 09:15,2025-11-17 11:37,,,,,Outros,Inatividade do Cliente
+40,12076,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-17 09:40,2025-11-17 09:42,2025-11-13 18:23,,,,,Outros,Resolvido
+43,12025,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-11-12 07:55,2025-11-12 08:02,2025-11-12 08:10,,,,Orientei o cliente a pegar pelo site e deu certo.,Avlock,Resolvido
+45,11617,Orisvando Alves,Rian Duarte,Rian Duarte,2025-10-16 14:36,2025-10-16 14:36,2025-10-16 14:54,,5,,,Instalação ou Reinstalação de Sistema ou afins,Resolvido
+45,12070,Luiz Ricardo,Rian Duarte,Luiz Ricardo - Rian Duarte,2025-11-17 07:18,2025-11-17 08:13,2025-11-17 11:10,,,,,Outros,Resolvido
+45,11875,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-11-03 07:32,2025-11-03 07:51,2025-11-03 08:33,,,,,Avlock,Resolvido
+45,11748,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-10-27 12:04,2025-10-27 13:01,2025-10-27 14:41,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+45,11744,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-27 10:41,2025-10-27 11:26,2025-10-27 11:52,,,,,Avlock,Resolvido
+45,11687,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-22 17:04,2025-10-22 17:05,2025-10-22 17:31,,,,rodado script que ajusta o reservado na OS,Relacionado a Banco de Dados,Resolvido
+45,11475,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-08 08:15,2025-10-08 08:31,2025-10-08 09:18,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+45,11995,Orisvando Alves,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-11-10 15:31,2025-11-10 15:53,2025-11-11 22:08,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+45,11900,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-03 15:25,2025-11-03 16:31,2025-11-03 17:51,,,,,Outros,Inatividade do Cliente
+45,11437,Luziara Lavor,Luiz Ricardo,Luiz Ricardo,2025-10-06 11:06,2025-10-06 11:06,2025-10-06 16:13,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+45,11903,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-11-03 17:08,2025-11-03 17:09,2025-11-03 20:04,,,,,Avlock,Resolvido
+45,11753,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-27 15:53,2025-10-27 15:56,2025-10-27 16:24,,,,,Avlock,Resolvido
+45,11731,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-27 07:11,2025-10-27 07:44,2025-10-27 08:54,,5,"está cada vez melhor o atendimento, obrigado",,Avlock,Resolvido
+45,11485,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-08 14:10,2025-10-08 14:29,2025-10-08 14:29,,,,,Outros,Resolvido
+45,11481,Luziara Lavor,Rian Duarte,Luziara Lavor - Rian Duarte,2025-10-08 09:54,2025-10-08 09:54,2025-10-08 14:09,,,,,Outros,Resolvido
+5,12055,Rian Duarte,Luiz Ricardo,Rian Duarte - Luziara Lavor - Luiz Ricardo,2025-11-14 08:41,2025-11-14 08:56,2025-11-14 11:01," https://connectsoft.com.br/
+
+Login: 5
+Senha: zh931",,,,Dificuldades Operacionais e Ajustes,Resolvido
+5,12027,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-11-12 08:40,2025-11-12 08:45,2025-11-12 09:08," https://connectsoft.com.br/
+
+Login: 5
+Senha: zh931",,,,Avlock,Resolvido
+55,12015,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-11 13:56,2025-11-11 14:37,2025-11-11 14:40,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+55,11768,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-28 14:31,2025-10-28 14:31,2025-10-28 14:44,,,,,Avlock,Resolvido
+55,11762,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-28 11:18,2025-10-28 11:19,2025-10-28 11:29,,,,,Avlock,Resolvido
+55,11700,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-23 16:22,2025-10-23 16:22,2025-10-23 16:40,,,,após análise a nfe foi lançada com sucesso. ,Dificuldades Operacionais e Ajustes,Resolvido
+55,11682,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-22 14:08,2025-10-22 14:12,2025-10-22 14:34,,,,,Avlock,Resolvido
+55,11513,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-10-09 11:38,2025-10-09 11:55,2025-10-09 16:23,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+55,11489,Luziara Lavor,Rian Duarte,Luziara Lavor - Luiz Ricardo - Rian Duarte,2025-10-08 15:28,2025-10-08 15:37,2025-10-08 16:45,,,,,Outros,Resolvido
+55,11448,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-06 14:36,2025-10-06 14:54,2025-10-06 15:33,,,,,Avlock,Resolvido
+55,11358,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-01 13:28,2025-10-01 13:38,2025-10-01 15:31,,,,reinstalado o shopcash versão 6.0,Dificuldades Operacionais e Ajustes,Resolvido
+55,11402,Izaias Pereira,Rian Duarte,Izaias Pereira - Rian Duarte,2025-10-03 08:44,2025-10-03 09:05,2025-10-03 10:34,,,,,Outros,Inatividade do Cliente
+55,11391,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-02 15:00,2025-10-02 15:59,2025-10-02 17:19,,,,verificado que a impressora não estava instalado na estação. após a instalação reabrir chamado.,Outros,Resolvido
+58,12030,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-12 12:58,2025-11-12 14:14,2025-11-12 17:52,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+63,12040,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-12 18:17,2025-11-13 08:50,2025-11-13 08:50,"https://connectsoft.com.br/
+
+login: 63
+senha: if127
+",5,,,Dificuldades Operacionais e Ajustes,Resolvido
+63,12024,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-12 06:59,2025-11-12 08:11,2025-11-12 17:46,"https://connectsoft.com.br/
+
+login: 63
+senha: if127
+",5,Trabalhar pra da tudo certo!!,,Dificuldades Operacionais e Ajustes,Resolvido
+63,12004,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-11 08:35,2025-11-11 10:19,2025-11-11 22:07,"https://connectsoft.com.br/
+
+login: 63
+senha: if127
+",,,,Dificuldades Operacionais e Ajustes,Resolvido
+66,12036,Luziara Lavor,Luiz Ricardo,Luziara Lavor - Luiz Ricardo,2025-11-12 16:03,2025-11-12 16:03,2025-11-12 18:06,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+66,12050,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-13 15:35,2025-11-13 15:39,2025-11-13 16:10,,,,,Outros,Resolvido
+67,12071,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-17 07:48,2025-11-17 08:14,2025-11-17 08:14,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+67,11766,Izaias Pereira,Samuel Nojoza,Samuel Nojoza,2025-10-28 13:47,2025-10-28 15:20,2025-10-28 16:40,,5,"Atendimento Rápido, prático e eficiente. 
+Cordial no atendimento.",realizado treinamento no modulo caixa baixa de nfce em cartão crédito/débito para a srta. mariana com sucesso.,Dificuldades Operacionais e Ajustes,Resolvido
+67,11486,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-08 14:45,2025-10-08 14:48,2025-10-08 16:52,,,,,Outros,Resolvido
+67,11412,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-03 14:53,2025-10-03 15:37,2025-10-03 16:00,,5,Agilidade sem igual em solucionar problemas. Show. ,ajudado cliente a cadastrar cep no shopcash,Dificuldades Operacionais e Ajustes,Resolvido
+75,12018,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-11 14:55,2025-11-11 14:55,2025-11-11 16:17,,,,reagendar reunião para análise de pendências,Outros,Resolvido
+75,12064,Rian Duarte,Rian Duarte,Rian Duarte - Luziara Lavor,2025-11-14 15:14,2025-11-14 15:21,2025-11-10 23:52,,,,,Outros,Resolvido
+9,12079,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-17 10:41,2025-11-17 10:41,2025-11-17 11:09," https://connectsoft.com.br/
+
+Login: 6
+Senha: pt584",,,,Outros,Resolvido
+9,12017,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-11-11 14:48,2025-11-11 14:48,2025-11-11 22:08," https://connectsoft.com.br/
+
+Login: 6
+Senha: pt584",,,,Dificuldades Operacionais e Ajustes,Resolvido
+9,12056,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-14 08:50,2025-11-14 08:56,2025-11-10 18:27," https://connectsoft.com.br/
+
+Login: 6
+Senha: pt584",,,,Outros,Resolvido
+4,11993,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-10 15:02,2025-11-10 15:03,2025-11-10 16:43,,,,"corrigida pasta schemas e xml_ws
+",Dificuldades Operacionais e Ajustes,Resolvido
+4,11952,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-06 15:20,2025-11-06 15:20,2025-11-06 16:30,,,,cod município inválido na emissão da nfe. após correçaõ a nfe foi emitida com sucesso,Dificuldades Operacionais e Ajustes,Resolvido
+4,11945,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-06 10:40,2025-11-06 10:44,2025-11-06 13:41,,,,ajustes na OS. coleta de dados para relatótios a serem enviado para a programação,Dificuldades Operacionais e Ajustes,Resolvido
+4,11941,Samuel Nojoza,Luziara Lavor,Samuel Nojoza - Luziara Lavor,2025-11-06 08:03,2025-11-06 08:03,2025-11-06 09:29,,,,,Avlock,Resolvido
+4,11930,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-05 10:50,2025-11-05 10:50,2025-11-05 16:53,,,,copiado dados para análise e instalado shopcash em uma nova estação,Relacionado a Banco de Dados,Resolvido
+4,11891,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-03 10:17,2025-11-03 10:17,2025-11-03 18:00,,,,atendimento postergado para 04/11/25,Relacionado a Banco de Dados,Não Resolvido
+4,11886,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-03 09:26,2025-11-03 09:30,2025-11-03 10:01,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+4,11882,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-03 08:57,2025-11-03 09:05,2025-11-03 09:19,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+4,11867,Luiz Ricardo,Samuel Nojoza,Luiz Ricardo - Samuel Nojoza,2025-10-31 16:26,2025-10-31 16:27,2025-11-01 11:20,,,,luiz ricardo vai verificar o chamado na semana que vem 03/11/2025,Outros,Não Resolvido
+4,11857,Rian Duarte,Luiz Ricardo,Luiz Ricardo,2025-10-31 10:10,2025-10-31 10:12,2025-10-31 11:50,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+4,11846,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-30 16:47,2025-10-30 19:34,2025-10-30 19:34,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+4,11817,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-29 16:47,2025-10-29 16:49,2025-10-29 16:57,,,,,Avlock,Resolvido
+4,11710,Orisvando Alves,Orisvando Alves,Silas Rodrigues - Luziara Lavor,2025-10-24 09:31,2025-10-24 09:34,2025-10-24 10:36,,,,,Avlock,Resolvido
+4,11692,Orisvando Alves,Luiz Ricardo,Luiz Ricardo,2025-10-23 10:00,2025-10-23 10:05,2025-10-23 20:24,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+4,11659,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-21 08:08,2025-10-21 08:09,2025-10-21 09:00,,,,,Avlock,Resolvido
+4,11644,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-20 09:11,2025-10-20 09:13,2025-10-20 09:56,,,,,Avlock,Resolvido
+4,11643,Luziara Lavor,Luziara Lavor,Luziara Lavor - Rian Duarte,2025-10-20 08:26,2025-10-20 08:29,2025-10-20 09:10,,,,,Avlock,Resolvido
+4,11611,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-16 09:14,2025-10-16 09:15,2025-10-16 09:21,,,,,Avlock,Resolvido
+4,11582,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-14 14:36,2025-10-14 14:45,2025-10-14 16:03,,,,,Instalação ou Reinstalação de Sistema ou afins,Resolvido
+4,11568,Orisvando Alves,Rian Duarte,Silas Rodrigues - Rian Duarte,2025-10-14 08:13,2025-10-14 08:14,2025-10-14 12:48,,,,,Instalação ou Reinstalação de Sistema ou afins,Resolvido
+4,11559,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-13 14:20,2025-10-13 14:20,2025-10-13 14:20,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+4,11556,Orisvando Alves,Luiz Ricardo,Luiz Ricardo,2025-10-13 11:11,2025-10-13 11:12,2025-10-13 14:20,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+4,11553,Orisvando Alves,Rian Duarte,Silas Rodrigues - Luziara Lavor - Rian Duarte,2025-10-13 09:25,2025-10-13 09:25,2025-10-13 09:42,,,,,Avlock,Resolvido
+4,11544,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-13 07:46,2025-10-13 08:01,2025-10-13 08:55,,,,Cliente inativo há 15 minutos.,Avlock,Inatividade do Cliente
+4,11538,Luziara Lavor,Luiz Ricardo,Luziara Lavor - Luiz Ricardo,2025-10-10 17:22,2025-10-10 18:11,2025-10-10 18:13,,,,,Avlock,Resolvido
+4,11535,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-10 15:29,2025-10-10 15:35,2025-10-10 16:42,,,,,Avlock,Resolvido
+4,11532,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-10 12:50,2025-10-10 13:06,2025-10-10 13:56,,,,,Avlock,Resolvido
+4,11523,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-10 08:47,2025-10-10 08:48,2025-10-10 10:09,,,,,Avlock,Resolvido
+4,11502,Rian Duarte,Luziara Lavor,Rian Duarte - Luziara Lavor,2025-10-09 08:16,2025-10-09 08:19,2025-10-09 15:25,,,,,Avlock,Resolvido
+4,11491,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-10-08 16:06,2025-10-08 16:12,2025-10-08 21:36,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+4,11459,Luziara Lavor,Luiz Ricardo,Luziara Lavor - Luiz Ricardo,2025-10-07 10:14,2025-10-07 10:14,2025-10-07 10:52,,,,,Avlock,Resolvido
+4,11441,Luziara Lavor,Luiz Ricardo,Luziara Lavor - Luiz Ricardo,2025-10-06 11:55,2025-10-06 11:56,2025-10-06 17:26,,,,,Avlock,Resolvido
+4,11435,Luziara Lavor,Luiz Ricardo,Luziara Lavor - Luiz Ricardo,2025-10-06 10:51,2025-10-06 11:05,2025-10-06 11:50,,,,,Avlock,Resolvido
+4,11382,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-02 11:23,2025-10-02 11:23,2025-10-02 14:30,,,,,Outros,Resolvido
+4,11349,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-10-01 07:30,2025-10-01 08:06,2025-10-01 12:05,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+5,11600,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-15 13:34,2025-10-15 13:35,2025-10-15 13:48," https://connectsoft.com.br/
+
+Login: 5
+Senha: zh931",,,,Avlock,Resolvido
+6,11565,Orisvando Alves,Rian Duarte,Rian Duarte,2025-10-14 07:12,2025-10-14 08:01,2025-10-14 08:34,,,,,Treinamento e Dúvidas de Usuários Novos,Resolvido
+60,11545,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-10-13 08:23,2025-10-13 08:25,2025-10-13 09:30,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+60,11428,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-06 08:16,2025-10-06 08:20,2025-10-06 12:12,,,,,Outros,Resolvido
+1,11369,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-02 09:01,2025-10-02 09:21,2025-10-02 10:04,,,,"Modulo shopcash estava na área de trabalho, ao invés de um atalho, impossibilitando a abertura. ",Instalação ou Reinstalação de Sistema ou afins,Resolvido
+15,11975,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-10 08:17,2025-11-10 08:54,2025-11-10 11:51,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+15,11950,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-06 14:48,2025-11-06 15:57,2025-11-06 16:46,,,,não havia produto no estoque para a amissão da nfce,Dificuldades Operacionais e Ajustes,Resolvido
+15,11840,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-30 15:00,2025-10-30 16:06,2025-10-30 17:49,,,,explicado que o processo para retirar o crédito do cliente é por ressarcimento,Dificuldades Operacionais e Ajustes,Resolvido
+15,11796,Rian Duarte,Samuel Nojoza,Samuel Nojoza,2025-10-29 09:54,2025-10-29 10:16,2025-10-29 16:33,,,,cliente postergou o atendimento,Outros,Não Resolvido
+15,11547,Orisvando Alves,Connect Soft,Connect Soft,2025-10-13 08:43,2025-10-13 08:44,2025-10-13 10:55,,,,Constatei que a impressora de DAV Bobina não estava instalada corretamente,Dificuldades Operacionais e Ajustes,Resolvido
+64,11838,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-30 14:29,2025-10-30 14:49,2025-10-30 15:20,,,,,Cobrança e Suporte Contratual,Testes ou Comunicação Interna
+64,11746,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-27 10:53,2025-10-27 10:53,2025-10-27 17:17,,,,,Outros,Inatividade do Cliente
+64,11715,Orisvando Alves,Rian Duarte,Rian Duarte,2025-10-24 13:27,2025-10-24 13:28,2025-10-24 16:23,,2,"demora enorme pra ser atendido, 3 horas de espera pra receber um atendimento.",,Outros,Resolvido
+64,11359,Izaias Pereira,Samuel Nojoza,Samuel Nojoza,2025-10-01 13:34,2025-10-01 13:46,2025-10-01 15:47,,,,instalado ni_projet com sucesso. alterado a numeração da nfe. ,Dificuldades Operacionais e Ajustes,Resolvido
+64,11356,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-01 11:20,2025-10-01 11:47,2025-10-01 11:54,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+1,11951,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-06 15:14,2025-11-06 15:23,2025-11-06 16:42,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+9,11560,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-13 15:03,2025-10-13 15:07,2025-10-13 15:19,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+9,11814,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-29 16:05,2025-10-29 16:06,2025-10-29 16:39,,,,, Erros no Sistema e Bugs,Resolvido
+9,11704,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-24 07:55,2025-10-24 07:56,2025-10-24 08:31,,,,,Avlock,Resolvido
+9,11635,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-17 16:17,2025-10-17 16:19,2025-10-17 17:11,,,,,Outros,Testes ou Comunicação Interna
+9,11586,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-14 15:41,2025-10-14 15:44,2025-10-14 17:05,,,,,Outros,Resolvido
+9,11575,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-14 09:59,2025-10-14 09:59,2025-10-14 13:57,,,,,Outros,Resolvido
+9,11566,Orisvando Alves,Rian Duarte,Rian Duarte,2025-10-14 07:50,2025-10-14 08:05,2025-10-14 08:59,,,,,Dificuldades Operacionais e Ajustes,Testes ou Comunicação Interna
+9,11564,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-13 17:40,2025-10-13 17:56,2025-10-13 18:00,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+9,11474,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-08 07:55,2025-10-08 08:17,2025-10-08 14:04,,,,,Outros,Resolvido
+9,11370,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-02 09:04,2025-10-02 09:17,2025-10-02 10:18,,,,explicado o processo de inserção do POS no sistema,Dificuldades Operacionais e Ajustes,Resolvido
+9,11942,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-11-06 08:07,2025-11-06 08:10,2025-11-06 08:20," https://connectsoft.com.br/
+
+Login: 6
+Senha: pt584",,,,Avlock,Resolvido
+9,11841,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-10-30 15:06,2025-10-30 15:12,2025-10-30 19:35," https://connectsoft.com.br/
+
+Login: 6
+Senha: pt584",,,,Dificuldades Operacionais e Ajustes,Resolvido
+9,11758,Luiz Ricardo,Rian Duarte,Luiz Ricardo - Rian Duarte,2025-10-27 16:58,2025-10-27 17:10,2025-10-28 14:28," https://connectsoft.com.br/
+
+Login: 6
+Senha: pt584",,,,Outros,Inatividade do Cliente
+9,11637,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-17 17:08,2025-10-17 17:08,2025-10-17 17:25," https://connectsoft.com.br/
+
+Login: 6
+Senha: pt584",,,,Outros,Resolvido
+9,11493,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-08 16:21,2025-10-08 16:22,2025-10-08 16:22," https://connectsoft.com.br/
+
+Login: 6
+Senha: pt584",5,Excelente atendimento.,,Dificuldades Operacionais e Ajustes,Resolvido
+9,11487,Luiz Ricardo,Rian Duarte,Luiz Ricardo - Rian Duarte,2025-10-08 15:23,2025-10-08 09:01,2025-10-08 16:21," https://connectsoft.com.br/
+
+Login: 6
+Senha: pt584",,,,Outros,Resolvido
+9,11465,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-07 11:35,2025-10-07 11:35,2025-10-07 13:48," https://connectsoft.com.br/
+
+Login: 6
+Senha: pt584",,,,Outros,Resolvido
+9,11457,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-07 08:56,2025-10-07 09:15,2025-10-07 11:24," https://connectsoft.com.br/
+
+Login: 6
+Senha: pt584",,,,Outros,Inatividade do Cliente
+9,11420,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-04 10:26,2025-10-04 10:38,2025-10-04 11:58," https://connectsoft.com.br/
+
+Login: 6
+Senha: pt584",,,,Outros,Resolvido
+9,11413,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-03 15:14,2025-10-03 15:15,2025-10-03 15:39," https://connectsoft.com.br/
+
+Login: 6
+Senha: pt584",,,,Avlock,Resolvido
+9,11390,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-02 14:57,2025-10-02 15:34,2025-10-02 16:41," https://connectsoft.com.br/
+
+Login: 6
+Senha: pt584",5,O melhor atendente da soft sistemas ,pesquisar e exportar para excel resultado da consulta de produtos,Dificuldades Operacionais e Ajustes,Resolvido
+9,11378,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-02 11:02,2025-10-02 11:05,2025-10-03 15:48,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+9,11362,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-01 14:32,2025-10-01 14:33,2025-10-01 16:51,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+9,11446,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-06 14:00,2025-10-06 14:14,2025-10-06 15:33,,,,,Outros,Resolvido
+9,11443,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-06 12:39,2025-10-06 12:39,2025-10-06 12:48,,,,,Outros,Não Resolvido
+68,11680,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-22 11:41,2025-10-22 11:41,2025-10-22 14:16,,,,Inclusão de novas funcionalidades,Questões de Programação,Não Resolvido
+68,11675,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-22 10:10,2025-10-22 10:10,2025-10-22 10:47,,4,RESOLVEU MEU PROBLEMA.,Foi feita uma pequena alteração no contato da empresa.,Outros,Resolvido
+68,11672,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-22 08:45,2025-10-22 08:46,2025-10-22 09:20,,,,,Avlock,Resolvido
+11,11751,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-27 14:49,2025-10-27 14:50,2025-10-27 16:38,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+11,11730,Orisvando Alves,Luiz Ricardo,Luiz Ricardo,2025-10-27 06:45,2025-10-27 08:01,2025-10-27 14:42,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+11,11685,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-22 15:16,2025-10-22 15:21,2025-10-22 16:32,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+11,11674,Luziara Lavor,Luiz Ricardo,Luiz Ricardo - Luziara Lavor,2025-10-22 09:42,2025-10-22 09:52,2025-10-22 15:00,,4,,,Dificuldades Operacionais e Ajustes,Resolvido
+11,11462,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-07 10:43,2025-10-07 10:43,2025-10-07 10:51,,5,,,Dificuldades Operacionais e Ajustes,Resolvido
+11,12007,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-11 10:29,2025-11-11 11:55,2025-11-11 15:03,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+14,12039,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-12 16:54,2025-11-12 17:31,2025-11-12 17:36,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+14,11876,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-11-03 08:16,2025-11-03 08:19,2025-11-03 09:37,,,,,Avlock,Resolvido
+14,11836,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-30 13:32,2025-10-30 14:10,2025-10-30 14:10,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+14,11729,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-25 11:51,2025-10-25 11:51,2025-10-25 11:53,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+14,11723,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-24 17:11,2025-10-24 17:14,2025-10-24 17:21,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+14,11702,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-23 17:32,2025-10-23 17:35,2025-10-23 17:46,,,,sefaz estava fora do ar. assim não conseguia emitir nfce,Lentidão ou Indisponibilidade,Resolvido
+14,11657,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-20 17:14,2025-10-20 17:18,2025-10-20 18:03,,,,foi alterado o status dos pedidos em questão e solciitado ao cliente que fossem baixados no caixa. foram baixados e emitidas nfces respectivamente. ,Relacionado a Banco de Dados,Resolvido
+14,11621,Orisvando Alves,Rian Duarte,Rian Duarte,2025-10-16 16:45,2025-10-17 08:05,2025-10-17 14:21,,,,pedido não baixa, Erros no Sistema e Bugs,Resolvido
+14,11520,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-09 17:00,2025-10-09 17:11,2025-10-09 17:12,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+14,11495,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-08 17:15,2025-10-08 21:36,2025-10-08 21:39,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+14,11473,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-07 17:06,2025-10-07 17:08,2025-10-07 17:09,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+14,11454,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-06 17:24,2025-10-06 17:24,2025-10-06 17:26,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+14,11453,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-06 17:03,2025-10-06 17:10,2025-10-06 17:12,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+14,11424,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-04 12:16,2025-10-04 12:17,2025-10-04 12:22,,,,pedido não aparece no caixa, Erros no Sistema e Bugs,Resolvido
+14,11423,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-04 11:58,2025-10-04 11:59,2025-10-04 12:08,,,,pedido não aparecia no caixa, Erros no Sistema e Bugs,Resolvido
+14,11416,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-03 16:58,2025-10-03 17:24,2025-10-03 17:26,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+14,11365,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-01 17:03,2025-10-01 17:04,2025-10-01 17:05,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+14,11363,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-01 16:34,2025-10-01 16:55,2025-10-01 17:03,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+14,11418,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-04 09:34,2025-10-04 09:38,2025-10-04 10:05,,5,,3E5CC9,Avlock,Resolvido
+19,11992,Rian Duarte,Orisvando Alves,Orisvando Alves,2025-11-10 14:43,2025-11-10 14:44,2025-11-10 15:50,,,,Cotação estava com problema no retorno. Resolvido, Erros no Sistema e Bugs,Resolvido
+19,11957,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-07 08:33,2025-11-07 08:48,2025-11-07 09:04,,,,,Outros,Resolvido
+19,11938,Izaias Pereira,Izaias Pereira,Izaias Pereira,2025-11-05 16:09,2025-11-05 16:47,2025-11-05 16:47,,,,,Problemas de Acesso e Autenticação,Resolvido
+19,11647,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-20 10:59,2025-10-20 12:03,2025-10-20 12:06,,,,,Outros,Resolvido
+19,11632,Orisvando Alves,Connect Soft,Connect Soft,2025-10-17 13:16,2025-10-17 13:24,2025-10-17 14:52,,,,Revisei configurações de delta x e y,Dificuldades Operacionais e Ajustes,Resolvido
+19,11624,Rian Duarte,Connect Soft,Connect Soft,2025-10-17 08:28,2025-10-17 08:29,2025-10-17 12:05,,,,,Outros,Não Resolvido
+19,11550,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-13 08:50,2025-10-13 09:02,2025-10-13 09:26,,5,"Excelente atendimento 
+",,Dificuldades Operacionais e Ajustes,Resolvido
+19,11540,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-11 09:06,2025-10-11 09:17,2025-10-11 09:28,,,,,Avlock,Resolvido
+19,11517,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-09 16:08,2025-10-09 16:09,2025-10-09 16:51,,2,,,Dificuldades Operacionais e Ajustes,Resolvido
+19,11436,Luiz Ricardo,Connect Soft,Connect Soft,2025-10-06 11:03,2025-10-06 11:47,2025-10-06 16:40,,,,restart no docker via linux, Erros no Sistema e Bugs,Resolvido
+19,11395,Izaias Pereira,Izaias Pereira,Izaias Pereira,2025-10-02 15:30,2025-10-02 15:50,2025-10-02 15:50,,,,,Problemas de Acesso e Autenticação,Resolvido
+48,11483,Rian Duarte,Connect Soft,Connect Soft,2025-10-08 11:15,2025-10-08 13:07,2025-10-08 16:56,,,,,Outros,Inatividade do Cliente
+48,11470,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-07 14:58,2025-10-07 15:22,2025-10-07 17:49,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+9,11842,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-30 15:12,2025-10-30 15:12,2025-10-30 15:29,,,,,Outros,Resolvido
+9,11831,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-30 11:45,2025-10-30 11:45,2025-10-30 11:45,,,,,Outros,Resolvido
+9,11821,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-30 08:09,2025-10-30 08:18,2025-10-30 11:44,,,,,Outros,Não Resolvido
+9,11807,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-29 14:18,2025-10-29 14:18,2025-10-29 16:56,,,,,Outros,Resolvido
+9,11790,Orisvando Alves,Rian Duarte,Rian Duarte,2025-10-29 08:23,2025-10-29 08:53,2025-10-29 12:02,,,,,Instalação ou Reinstalação de Sistema ou afins,Resolvido
+9,11772,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-28 14:56,2025-10-28 17:28,2025-10-28 17:29,,,,,Instalação ou Reinstalação de Sistema ou afins,Não Resolvido
+9,11640,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-18 08:30,2025-10-18 08:32,2025-10-18 08:49,,,,configurada impressora para impressão de orçamentos dos pedidos,Dificuldades Operacionais e Ajustes,Resolvido
+9,11604,Connect Soft,Connect Soft,Connect Soft,2025-10-15 15:35,2025-10-15 15:36,2025-10-15 15:45,,,,,Outros,Não Resolvido
+9,11524,Orisvando Alves,Orisvando Alves,Connect Soft - Silas Rodrigues,2025-10-10 09:13,2025-10-10 09:15,2025-10-10 11:44,,,,"Os módulos PEDIDOS e SHOPCASH foram instalados em uma nova estação, e ajudamos na configuração de duas impressoras.",Instalação ou Reinstalação de Sistema ou afins,Resolvido
+9,11469,Rian Duarte,Luiz Ricardo,Luiz Ricardo,2025-10-07 14:38,2025-10-07 14:59,2025-10-07 17:07,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+9,11431,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-06 08:58,2025-10-06 09:00,2025-10-06 17:31,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+9,11425,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-06 07:28,2025-10-06 08:11,2025-10-06 08:11,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+9,11386,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-02 13:24,2025-10-02 14:00,2025-10-03 09:37,,,,,Outros,Resolvido
+9,11377,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-02 10:20,2025-10-02 10:24,2025-10-02 12:15,,,,,Outros,Inatividade do Cliente
+9,11371,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-02 09:19,2025-10-02 09:22,2025-10-02 10:18,,,,,Outros,Inatividade do Cliente
+37,11792,Orisvando Alves,Luiz Ricardo,Luiz Ricardo,2025-10-29 08:36,2025-10-29 08:42,2025-10-29 11:03,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+12,11854,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-31 09:25,2025-10-31 09:28,2025-10-31 09:53,,,,"explicado a srta natália o processo para dar permissões aos usuários sobre a opção em questão. 
+
+cadastro de usuário \ usuário \ selecionar as permissões que ele tem. sair do programa e entrar de novo para validar",Dificuldades Operacionais e Ajustes,Resolvido
+12,11813,Rian Duarte,Orisvando Alves,Orisvando Alves,2025-10-29 15:20,2025-10-29 16:01,2025-10-29 16:59,,,,Sistema atualizado,Problemas de Acesso e Autenticação,Resolvido
+12,11684,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-22 14:45,2025-10-22 16:27,2025-10-22 16:27,,,,,Outros,Resolvido
+12,11683,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-22 14:15,2025-10-22 14:18,2025-10-22 14:45,,,,,Outros,Resolvido
+12,11742,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-27 09:56,2025-10-27 10:18,2025-10-27 10:34,,4,,,Dificuldades Operacionais e Ajustes,Resolvido
+12,11948,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-06 12:39,2025-11-06 13:42,2025-11-06 14:17,"https://connectsoft.com.br/
+Login: 12
+Senha: xq734",,,ajustado os executáveis e testado ,Dificuldades Operacionais e Ajustes,Resolvido
+12,11918,Luziara Lavor,Luiz Ricardo,Luziara Lavor - Luiz Ricardo,2025-11-04 11:02,2025-11-04 11:03,2025-11-04 14:43,"https://connectsoft.com.br/
+Login: 12
+Senha: xq734",,,,Avlock,Resolvido
+12,11908,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-11-04 07:59,2025-11-04 08:22,2025-11-04 10:29,"https://connectsoft.com.br/
+Login: 12
+Senha: xq734",,,,Avlock,Resolvido
+12,11859,Rian Duarte,Rian Duarte,Rian Duarte - Luiz Ricardo,2025-10-31 10:41,2025-10-31 10:50,2025-10-31 11:52,"https://connectsoft.com.br/
+Login: 12
+Senha: xq734",,,,Outros,Resolvido
+12,11816,Orisvando Alves,Orisvando Alves,Orisvando Alves,2025-10-29 16:47,2025-10-29 17:02,2025-10-29 17:21,"https://connectsoft.com.br/
+Login: 12
+Senha: xq734",5,,,Dificuldades Operacionais e Ajustes,Resolvido
+12,11422,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-04 11:52,2025-10-04 11:58,2025-10-04 12:21,"https://connectsoft.com.br/
+Login: 12
+Senha: xq734",,,,Outros,Inatividade do Cliente
+12,11357,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-01 11:23,2025-10-01 11:55,2025-10-01 12:04,"https://connectsoft.com.br/
+Login: 12
+Senha: xq734",,,,Dificuldades Operacionais e Ajustes,Resolvido
+12,11915,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-04 10:20,2025-11-04 10:20,2025-11-04 15:20,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+12,11883,Izaias Pereira,Luiz Ricardo,Izaias Pereira - Luiz Ricardo,2025-11-03 09:02,2025-11-03 09:27,2025-11-03 11:21,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+66,11725,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo - Luziara Lavor,2025-10-25 08:44,2025-10-25 08:52,2025-10-25 10:38,,,,,Avlock,Resolvido
+24,11782,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-28 17:24,2025-10-28 17:27,2025-10-28 17:27,,,,,Outros,Resolvido
+24,11779,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-28 17:09,2025-10-28 17:12,2025-10-28 17:21,,,,,Instalação ou Reinstalação de Sistema ou afins,Resolvido
+24,11712,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-24 10:17,2025-10-24 10:17,2025-10-24 11:00,,,,,Avlock,Resolvido
+24,12023,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-11 18:15,2025-11-11 22:07,2025-11-11 22:07,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+24,11778,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-28 17:06,2025-10-28 17:07,2025-10-28 17:11,,,,,Instalação ou Reinstalação de Sistema ou afins,Resolvido
+24,11727,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-25 10:18,2025-10-25 10:21,2025-10-25 10:38,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+24,11934,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-11-05 14:39,2025-11-05 15:07,2025-11-05 20:04,"Anydesk 
+1123038233
+",,,,Outros,Resolvido
+24,11794,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-29 09:31,2025-10-29 09:33,2025-10-29 11:11,"Anydesk 
+1123038233
+",,,,Instalação ou Reinstalação de Sistema ou afins,Resolvido
+24,11783,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-28 17:28,2025-10-29 07:56,2025-10-29 08:40,"Anydesk 
+1123038233
+",,,,Instalação ou Reinstalação de Sistema ou afins,Inatividade do Cliente
+24,11763,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-28 12:33,2025-10-28 13:03,2025-10-28 14:42,"Anydesk 
+1123038233
+",,,, Erros no Sistema e Bugs,Resolvido
+24,11732,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-27 07:33,2025-10-27 08:29,2025-10-27 11:28,"Anydesk 
+1123038233
+",,,,Outros,Inatividade do Cliente
+24,11714,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-24 11:24,2025-10-24 11:25,2025-10-24 11:30,"Anydesk 
+1123038233
+",,,,Dificuldades Operacionais e Ajustes,Resolvido
+24,11606,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-15 17:28,2025-10-15 17:29,2025-10-16 08:47,"Anydesk 
+1123038233
+",,,,Avlock,Resolvido
+24,11590,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-15 08:03,2025-10-15 08:22,2025-10-15 08:59,"Anydesk 
+1123038233
+",,,,Avlock,Resolvido
+24,11990,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-10 13:48,2025-11-10 14:16,2025-11-11 12:13,,,,,Outros,Inatividade do Cliente
+24,11983,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-10 10:23,2025-11-10 10:47,2025-11-10 12:26,,,,,Outros,Inatividade do Cliente
+24,11923,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-11-04 17:33,2025-11-04 17:39,2025-11-04 18:02,,,,,Avlock,Resolvido
+24,11895,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-03 14:12,2025-11-03 14:24,2025-11-03 15:03,,,,o atendimento será realizado com srta. kaelen. fechando chamado. não responder essa mensagem,Dificuldades Operacionais e Ajustes,Resolvido
+24,11851,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-31 08:40,2025-10-31 08:51,2025-10-31 16:48,,,,,Outros,Resolvido
+24,11847,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-30 18:00,2025-10-30 19:34,2025-10-30 19:34,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+24,11803,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-29 11:56,2025-10-29 13:01,2025-10-29 13:01,,,,,Outros,Resolvido
+24,11800,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-29 10:25,2025-10-29 10:25,2025-10-29 11:52,,,,,Instalação ou Reinstalação de Sistema ou afins,Não Resolvido
+24,11781,Orisvando Alves,Orisvando Alves,Orisvando Alves,2025-10-28 17:22,2025-10-29 08:47,2025-10-29 08:50,,,,,Outros,Resolvido
+24,11756,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-27 16:09,2025-10-27 16:28,2025-10-28 17:21,,,,,Instalação ou Reinstalação de Sistema ou afins,Resolvido
+24,11741,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-27 09:53,2025-10-27 10:10,2025-10-27 10:10,,,,,Outros,Resolvido
+24,11737,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-27 09:36,2025-10-27 09:40,2025-10-27 09:53,,,,,Outros,Resolvido
+24,11726,Luziara Lavor,Luiz Ricardo,Luiz Ricardo - Luziara Lavor,2025-10-25 08:45,2025-10-25 09:11,2025-10-25 10:44,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+24,11721,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-24 16:49,2025-10-24 16:51,2025-10-24 17:27,,,,,Outros,Resolvido
+24,11718,Izaias Pereira,Rian Duarte,Izaias Pereira - Rian Duarte,2025-10-24 16:17,2025-10-24 16:18,2025-10-24 16:23,,,,,Outros,Resolvido
+24,11670,Orisvando Alves,Connect Soft,Connect Soft,2025-10-22 08:11,2025-10-22 08:11,2025-10-22 10:50,,,,Instalado estações remotas de Jose de Freitas,Instalação ou Reinstalação de Sistema ou afins,Resolvido
+24,11464,Luiz Ricardo,Rian Duarte,Luiz Ricardo - Rian Duarte,2025-10-07 11:16,2025-10-07 11:16,2025-10-07 12:22,,,,,Outros,Resolvido
+24,11455,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-06 17:49,2025-10-06 18:14,2025-10-06 18:14,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+24,11452,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-06 16:37,2025-10-06 16:38,2025-10-06 17:39,,,,,Outros,Resolvido
+24,12010,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-11 12:00,2025-11-11 14:38,2025-11-11 15:23,,,,,Outros,Resolvido
+24,11989,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-10 13:11,2025-11-10 13:29,2025-11-10 14:15,,,,,Outros,Resolvido
+24,11967,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-07 16:18,2025-11-07 16:19,2025-11-07 16:31,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+24,11844,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-30 15:40,2025-10-30 16:30,2025-10-30 17:50,,,,,Outros,Inatividade do Cliente
+24,11833,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-30 12:34,2025-10-30 13:21,2025-10-30 14:11,,,,,Outros,Inatividade do Cliente
+24,11815,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-29 16:24,2025-10-29 16:26,2025-10-29 17:02,,,,docker reiniciado com sucesso,Dificuldades Operacionais e Ajustes,Resolvido
+24,11786,Orisvando Alves,Orisvando Alves,Orisvando Alves,2025-10-29 06:40,2025-10-29 08:52,2025-10-29 09:48,,,,Rodei novamente o script 7, Erros no Sistema e Bugs,Resolvido
+24,11764,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-28 13:28,2025-10-28 13:30,2025-10-28 17:21,,,,,Instalação ou Reinstalação de Sistema ou afins,Resolvido
+24,11755,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-10-27 16:09,2025-10-27 16:29,2025-10-27 16:52,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+24,11668,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-21 16:14,2025-10-21 16:20,2025-10-21 16:59,,,,"no docker informava que os fornecedores estavam precificando a cotação
+
+New incoming message. Payload: {""eventName"":""ITEM_PRICE_CHANGED"",""eventData"":{""updatedAt"":""2025-10-21T19:20:28.063Z"",""companyId"":""9372dcf9-81ec-4a68-869c-e137774c0065"",""quotationId"":""fe005ae3-1a1e-4daa-8873-50477c873e99"",""quotationNumber"":""284"",""supplierCnpj"":""07965809000520"",""itemNumber"":25,""price"":28.66}}",Dificuldades Operacionais e Ajustes,Resolvido
+24,11665,Orisvando Alves,Connect Soft,Connect Soft,2025-10-21 11:16,2025-10-21 11:17,2025-10-21 14:49,,,,,Outros,Não Resolvido
+24,11656,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-20 16:45,2025-10-20 16:59,2025-10-20 17:58,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+24,11642,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-18 11:03,2025-10-18 11:50,2025-10-18 11:51,,,,,Outros,Inatividade do Cliente
+24,11641,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-18 09:07,2025-10-18 09:08,2025-10-18 09:18,,,,excluido registro com chave null do banco de dados,Relacionado a Banco de Dados,Resolvido
+24,11625,Orisvando Alves,Orisvando Alves,Silas Rodrigues - Rian Duarte,2025-10-17 10:20,2025-10-17 10:22,2025-10-17 12:06,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+24,11605,Connect Soft,Connect Soft,Connect Soft,2025-10-15 17:03,2025-10-15 17:04,2025-10-15 18:29,,,,Executavel de Jose de Freitas estava com problema no campo OBSERVAÇÃO. Cotação finalizada., Erros no Sistema e Bugs,Resolvido
+24,11578,Orisvando Alves,Connect Soft,Connect Soft,2025-10-14 11:48,2025-10-14 11:56,2025-10-14 15:05,,,,,Outros,Não Resolvido
+24,11557,Orisvando Alves,Connect Soft,Connect Soft,2025-10-13 12:54,2025-10-13 13:09,2025-10-13 13:24,,,,,Outros,Resolvido
+24,11552,Orisvando Alves,Rian Duarte,Rian Duarte,2025-10-13 09:23,2025-10-13 09:24,2025-10-13 11:07,,,,, Erros no Sistema e Bugs,Resolvido
+24,11480,Rian Duarte,Connect Soft,Connect Soft,2025-10-08 09:07,2025-10-08 09:49,2025-10-08 17:06,,,,Cotação estava travada,Dificuldades Operacionais e Ajustes,Resolvido
+24,11384,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-10-02 11:45,2025-10-02 14:01,2025-10-03 17:25,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+24,11971,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-08 10:06,2025-11-08 10:14,2025-11-08 11:26,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+24,11626,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-17 10:47,2025-10-17 10:47,2025-10-17 15:22,,,,jfreitas pingando e ativado o mesmo na tabela de filiais dentro do banco para a replicação,Relacionado a Banco de Dados,Resolvido
+24,11569,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-14 08:16,2025-10-14 08:16,2025-10-14 09:10,,,,,Outros,Testes ou Comunicação Interna
+24,11563,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-10-13 16:32,2025-10-13 16:38,2025-10-13 18:00,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+24,11925,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-05 08:26,2025-11-05 08:27,2025-11-05 09:02,,,,,Problemas de Acesso e Autenticação,Resolvido
+24,11905,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-03 17:42,2025-11-04 08:13,2025-11-04 08:38,,,,solicitado ao cliente que use apenas um caixa_nfce por vez para análise.,Lentidão ou Indisponibilidade,Resolvido
+24,11890,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo - Luziara Lavor,2025-11-03 10:15,2025-11-03 10:18,2025-11-03 17:04,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+24,11884,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-03 09:03,2025-11-03 09:20,2025-11-03 10:13,,,,,Outros,Inatividade do Cliente
+24,11868,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-31 16:59,2025-10-31 17:00,2025-10-31 17:24,,,,,Outros,Resolvido
+24,11864,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-31 15:08,2025-10-31 16:00,2025-10-31 16:00,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+24,11843,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-30 15:14,2025-10-30 15:26,2025-10-30 16:09,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+24,11835,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-30 13:29,2025-10-30 14:11,2025-10-30 14:40,,,,,Outros,Resolvido
+24,11818,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-29 17:51,2025-10-29 20:14,2025-10-29 20:14,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+24,11808,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-29 14:28,2025-10-29 15:32,2025-10-29 17:39,,,,,Outros,Resolvido
+24,11797,Orisvando Alves,Rian Duarte,Rian Duarte,2025-10-29 09:55,2025-10-29 11:34,2025-10-29 14:16,,,,,Instalação ou Reinstalação de Sistema ou afins,Inatividade do Cliente
+24,11785,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-28 17:37,2025-10-29 08:00,2025-10-29 09:29,,,,,Instalação ou Reinstalação de Sistema ou afins,Resolvido
+24,11777,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-28 16:35,2025-10-28 17:06,2025-10-28 17:21,,,,,Instalação ou Reinstalação de Sistema ou afins,Inatividade do Cliente
+24,11765,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-28 13:40,2025-10-28 14:39,2025-10-28 15:57,,,,,Outros,Resolvido
+24,11749,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-27 13:10,2025-10-27 14:49,2025-10-27 15:24,,,,,Outros,Resolvido
+24,11658,Luiz Ricardo,Rian Duarte,Luiz Ricardo - Rian Duarte,2025-10-20 17:50,2025-10-20 17:58,2025-10-21 09:12,,,,,Outros,Resolvido
+24,11562,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-10-13 16:22,2025-10-13 16:37,2025-10-13 17:17,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+24,11463,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-07 10:50,2025-10-07 10:51,2025-10-07 14:32,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+24,11444,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-06 13:26,2025-10-06 13:30,2025-10-06 16:05,,,,,Outros,Resolvido
+24,11421,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-04 11:31,2025-10-04 11:34,2025-10-04 12:00,,,,,Outros,Inatividade do Cliente
+24,11366,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-02 07:47,2025-10-02 08:26,2025-10-03 10:45,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+24,11364,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-01 16:55,2025-10-01 17:46,2025-10-01 18:07,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+24,11809,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-29 14:45,2025-10-29 14:47,2025-10-29 15:23,,,,,Outros,Resolvido
+24,12047,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-13 09:16,2025-11-13 09:34,2025-11-13 09:40,,,,,Outros,Resolvido
+24,11823,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-30 08:24,2025-10-30 08:36,2025-10-30 09:15,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+24,11812,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-29 15:19,2025-10-29 16:03,2025-10-29 17:03,,,,,Outros,Resolvido
+24,11791,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-29 08:33,2025-10-29 08:36,2025-10-29 14:18,,,,,Outros,Inatividade do Cliente
+24,11757,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-27 16:11,2025-10-27 16:28,2025-10-28 17:03,,,,,Outros,Resolvido
+24,11701,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-23 17:06,2025-10-23 17:07,2025-10-23 17:30,,,,criado por dentro do banco a categoria FORNECEDOR,Relacionado a Banco de Dados,Resolvido
+24,11699,Samuel Nojoza,Luiz Ricardo,Samuel Nojoza - Luiz Ricardo,2025-10-23 16:20,2025-10-23 16:24,2025-10-23 16:31,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+24,11589,Orisvando Alves,Orisvando Alves,Rian Duarte - Silas Rodrigues,2025-10-14 17:24,2025-10-15 08:05,2025-10-15 08:55,,,,,Relacionado a Banco de Dados,Resolvido
+24,11583,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-14 14:46,2025-10-14 14:47,2025-10-14 15:40,,,,,Outros,Resolvido
+24,11539,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-11 08:36,2025-10-11 08:55,2025-10-11 09:28,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+24,11472,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-07 16:54,2025-10-07 16:54,2025-10-07 17:05,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+24,11438,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-06 11:13,2025-10-06 11:15,2025-10-06 11:18,,,,problema na rede,Treinamento e Dúvidas de Usuários Novos,Resolvido
+24,11398,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-02 17:03,2025-10-02 17:10,2025-10-02 17:36,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+24,12022,Luziara Lavor,Luiz Ricardo,Luziara Lavor - Luiz Ricardo,2025-11-11 17:40,2025-11-11 17:43,2025-11-11 22:07,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+27,11913,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-11-04 09:20,2025-11-04 10:16,2025-11-04 18:36,,,,,Outros,Inatividade do Cliente
+27,11576,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-14 10:48,2025-10-14 10:49,2025-10-14 13:04,,,,,Outros,Resolvido
+27,11419,Luziara Lavor,Rian Duarte,Luziara Lavor - Rian Duarte,2025-10-04 10:18,2025-10-04 10:20,2025-10-04 10:38,,,,4622f4,Avlock,Resolvido
+27,11414,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-03 15:35,2025-10-03 15:44,2025-10-03 15:56,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+27,11409,Izaias Pereira,Luiz Ricardo,Izaias Pereira - Luiz Ricardo,2025-10-03 11:34,2025-10-03 11:37,2025-10-03 15:22,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+27,11379,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-02 11:19,2025-10-02 11:24,2025-10-03 10:12,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+27,11917,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-04 10:57,2025-11-04 11:09,2025-11-04 12:00,,,,alterado status do dav de X para P,Relacionado a Banco de Dados,Resolvido
+27,11863,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-31 11:59,2025-10-31 12:09,2025-10-31 12:10,,,,,Outros,Resolvido
+27,11651,Orisvando Alves,Samuel Nojoza,Samuel Nojoza,2025-10-20 13:27,2025-10-20 13:29,2025-10-20 15:58,,,,alterado o status do pedido para X e ensinado o processo de baixa no caixa_nfe na forma de pagamento cartão,Dificuldades Operacionais e Ajustes,Resolvido
+27,11549,Luziara Lavor,Luiz Ricardo,Luziara Lavor - Luiz Ricardo,2025-10-13 08:46,2025-10-13 08:48,2025-10-13 09:33,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+27,11388,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-02 13:32,2025-10-02 13:41,2025-10-02 14:22,,,,mesmo chamado da evandira,Dificuldades Operacionais e Ajustes,Resolvido
+1,11579,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-14 12:36,2025-10-14 13:03,2025-10-14 13:15,,,,Interesse em parceria com a Connect.,Questões Comerciais,Resolvido
+18,11534,Orisvando Alves,Luiz Ricardo,Connect Soft - Luiz Ricardo,2025-10-10 14:11,2025-10-10 14:12,2025-10-10 15:22,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+18,11477,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-08 08:25,2025-10-08 09:19,2025-10-08 12:07,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+1,11770,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-28 14:35,2025-10-28 14:35,2025-10-28 15:57,,,,,Outros,Resolvido
+1,11581,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-14 14:27,2025-10-14 14:27,2025-10-14 14:28,,,,,Suporte interno,Resolvido
+1,11471,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-07 15:31,2025-10-07 15:57,2025-10-07 15:57,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+35,11877,Luziara Lavor,Luiz Ricardo,Luziara Lavor - Luiz Ricardo,2025-11-03 08:18,2025-11-03 08:19,2025-11-03 10:14,,,,,Avlock,Resolvido
+4,11690,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-23 08:16,2025-10-23 08:16,2025-10-23 08:56,,5,,enviado no privado as informações sobre o dash que o cliente solicitou,Dificuldades Operacionais e Ajustes,Resolvido
+8,11850,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-31 08:25,2025-10-31 08:30,2025-10-31 09:52," https://connectsoft.com.br/
+
+Login: 8
+Senha: uq197",,,ajustada a numeração para a úlitma nfce emitida., Erros no Sistema e Bugs,Resolvido
+8,11845,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-10-30 15:58,2025-10-30 15:59,2025-10-30 19:35," https://connectsoft.com.br/
+
+Login: 8
+Senha: uq197",,,,Dificuldades Operacionais e Ajustes,Resolvido
+8,11593,Luziara Lavor,Connect Soft,Connect Soft,2025-10-15 08:29,2025-10-15 08:30,2025-10-15 09:35," https://connectsoft.com.br/
+
+Login: 8
+Senha: uq197",,,"gerei o relatorio de quebra de sequencia:
+
+AFIO TEXTIL - 1 XML
+DECORFITAS - 2 XML
+
+para recuperar esses xmls será necessario solicitar o pacote do periodo a sefaz.",Problemas de Acesso e Autenticação,Resolvido
+8,11580,Orisvando Alves,Rian Duarte,Silas Rodrigues - Rian Duarte,2025-10-14 12:36,2025-10-14 13:14,2025-10-14 14:49," https://connectsoft.com.br/
+
+Login: 8
+Senha: uq197",,,XML NÃO FOI NA IMPORTAÇÃO,Problemas Financeiros e Fiscais,Resolvido
+36,11973,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-11-10 07:55,2025-11-10 07:55,2025-11-10 08:16,"https://connectsoft.com.br/
+
+Login: 36
+Senha: ai690",,,,Avlock,Resolvido
+36,11615,Orisvando Alves,Rian Duarte,Rian Duarte,2025-10-16 12:57,2025-10-16 13:08,2025-10-16 16:03,"https://connectsoft.com.br/
+
+Login: 36
+Senha: ai690",,,,Outros,Resolvido
+36,11614,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-16 10:52,2025-10-16 11:08,2025-10-16 11:08,"https://connectsoft.com.br/
+
+Login: 36
+Senha: ai690",,,,Outros,Resolvido
+36,11613,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-16 10:25,2025-10-16 10:26,2025-10-16 10:52,"https://connectsoft.com.br/
+
+Login: 36
+Senha: ai690",,,,Instalação ou Reinstalação de Sistema ou afins,Não Resolvido
+36,11610,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-16 09:01,2025-10-16 09:16,2025-10-16 10:09,"https://connectsoft.com.br/
+
+Login: 36
+Senha: ai690",,,,Instalação ou Reinstalação de Sistema ou afins,Inatividade do Cliente
+36,11603,Rian Duarte,Rian Duarte,Rian Duarte - Luziara Lavor,2025-10-15 15:28,2025-10-15 15:35,2025-10-15 17:00,"https://connectsoft.com.br/
+
+Login: 36
+Senha: ai690",,,,Instalação ou Reinstalação de Sistema ou afins,Não Resolvido
+36,11598,Luziara Lavor,Rian Duarte,Luziara Lavor - Rian Duarte,2025-10-15 12:04,2025-10-15 12:08,2025-10-15 15:28,"https://connectsoft.com.br/
+
+Login: 36
+Senha: ai690",,,,Instalação ou Reinstalação de Sistema ou afins,Inatividade do Cliente
+36,11592,Luziara Lavor,Connect Soft,Connect Soft - Luziara Lavor,2025-10-15 08:29,2025-10-15 08:29,2025-10-15 09:22,"https://connectsoft.com.br/
+
+Login: 36
+Senha: ai690",,,Houve tentativa mal sucedida de implantação do NFCe. Retomar atendimento.,Dificuldades Operacionais e Ajustes,Não Resolvido
+36,11584,Luziara Lavor,Rian Duarte,Luziara Lavor - Rian Duarte,2025-10-14 15:17,2025-10-14 15:27,2025-10-14 17:04,"https://connectsoft.com.br/
+
+Login: 36
+Senha: ai690",,,,Outros,Resolvido
+13,11936,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-11-05 15:21,2025-11-05 15:21,2025-11-06 01:26,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11906,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-04 07:37,2025-11-04 08:30,2025-11-04 08:39,,,,já estava sendo atendida a solicitação dela por outro chamado,Dificuldades Operacionais e Ajustes,Resolvido
+13,11898,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-03 14:48,2025-11-03 15:21,2025-11-03 20:25,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11860,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-10-31 10:42,2025-10-31 10:51,2025-10-31 16:27,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11852,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-31 09:13,2025-10-31 09:18,2025-10-31 09:51,,,,"explicado o processo para dar permissões aos usuários sobre a opção em questão. 
+
+cadastro de usuário \ usuário \ selecionar as permissões que ele tem. sair do programa e entrar de novo para validar",Dificuldades Operacionais e Ajustes,Resolvido
+13,11830,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-30 11:40,2025-10-30 11:42,2025-10-30 13:20,,,,,Outros,Resolvido
+13,11827,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-30 10:23,2025-10-30 10:25,2025-10-30 11:16,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11802,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-29 10:35,2025-10-29 10:36,2025-10-29 14:49,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11761,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-28 08:20,2025-10-28 08:20,2025-10-28 16:43,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11743,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-10-27 10:04,2025-10-27 11:52,2025-10-27 17:15,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11514,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-10-09 13:39,2025-10-09 13:50,2025-10-09 17:19,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11479,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-08 08:59,2025-10-08 09:00,2025-10-08 09:00,,,,,Avlock,Resolvido
+13,11476,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-08 08:18,2025-10-08 08:30,2025-10-08 08:58,,,,,Avlock,Resolvido
+13,11447,Rian Duarte,Rian Duarte,Rian Duarte - Luziara Lavor,2025-10-06 14:32,2025-10-06 14:55,2025-10-06 15:32,,,,,Avlock,Resolvido
+22,11750,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-27 14:23,2025-10-27 14:23,2025-10-27 14:25,,,,ajustadas as configurações dos tipos de notas \ entradas via ibexpert para corrigir o lançamento para ativo imobilizado.,Relacionado a Banco de Dados,Resolvido
+1,11612,Orisvando Alves,Luziara Lavor,Silas Rodrigues - Luziara Lavor,2025-10-16 09:40,2025-10-16 09:41,2025-10-16 10:12,,,,,Avlock,Resolvido
+27,12032,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-12 14:20,2025-11-12 15:36,2025-11-12 16:22,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+27,11953,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-06 16:16,2025-11-06 16:45,2025-11-06 17:10,,,,ajustado o cadastro do produto no lançamento da nfe de entrada,Dificuldades Operacionais e Ajustes,Resolvido
+27,11949,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-06 14:45,2025-11-06 14:55,2025-11-06 15:54,,,,"indicado que ela verificasse com o orisvando a solicitação em questão, já que ela já havia repassado a pendência
+",Dificuldades Operacionais e Ajustes,Resolvido
+27,11944,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-06 10:12,2025-11-06 13:40,2025-11-06 14:26,,,,explicado o motivo do pis e cofins ter sido levado com valores difrentes para a nota de saída,Dificuldades Operacionais e Ajustes,Resolvido
+27,11921,Izaias Pereira,Luiz Ricardo,Izaias Pereira - Luiz Ricardo,2025-11-04 15:29,2025-11-04 15:29,2025-11-04 18:37,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+27,11920,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-04 14:51,2025-11-04 14:53,2025-11-04 15:10,,,,"ao acessar o sistema pela conexão e tentar baixar o pedido, o mesmo foi baixado sem problemas",Dificuldades Operacionais e Ajustes,Resolvido
+27,11728,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-25 11:20,2025-10-25 11:45,2025-10-25 11:53,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+27,11716,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo - Izaias Pereira,2025-10-24 15:18,2025-10-24 15:25,2025-10-25 08:06,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+27,11709,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-24 09:01,2025-10-24 09:01,2025-10-24 11:27,,,,,Outros,Testes ou Comunicação Interna
+27,11666,Luziara Lavor,Samuel Nojoza,Samuel Nojoza - Luziara Lavor,2025-10-21 15:20,2025-10-21 15:31,2025-10-21 16:44,,,,ajustada as informações no cadastro do produto no lançamento da nfe de entrada - compra,Dificuldades Operacionais e Ajustes,Resolvido
+27,11542,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-11 11:00,2025-10-11 11:03,2025-10-11 12:44,,,,Chave de acesso null, Erros no Sistema e Bugs,Resolvido
+27,11417,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-03 17:25,2025-10-03 17:25,2025-10-03 17:54,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+27,11405,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-03 09:52,2025-10-03 10:31,2025-10-03 17:00,,,,,Outros,Não Resolvido
+27,11394,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-02 15:22,2025-10-02 15:40,2025-10-02 16:49,,,,reagendado atendimento para 03/10/2025,Outros,Resolvido
+1,12048,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-13 13:06,2025-11-13 13:32,2025-11-13 14:46,,,,,Outros,Resolvido
+12,11899,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-03 14:50,2025-11-03 15:00,2025-11-03 15:21,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+12,11889,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-03 10:10,2025-11-03 10:12,2025-11-03 10:29,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+12,11518,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-09 16:33,2025-10-09 16:49,2025-10-09 16:49,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+12,11451,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-06 15:20,2025-10-06 15:50,2025-10-06 16:05,,,,,Outros,Resolvido
+38,12012,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-11 12:48,2025-11-11 13:22,2025-11-11 13:48,,,,,Outros,Resolvido
+38,12008,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-11-11 10:29,2025-11-11 10:33,2025-11-11 11:06,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+39,11935,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-11-05 14:43,2025-11-05 14:48,2025-11-05 15:40,,,,,Avlock,Resolvido
+39,11720,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-24 16:31,2025-10-24 16:45,2025-10-24 17:56,,,,,Avlock,Resolvido
+39,11719,Luziara Lavor,Luiz Ricardo,Luziara Lavor - Luiz Ricardo,2025-10-24 16:23,2025-10-24 16:24,2025-10-24 16:29,,,,,Avlock,Resolvido
+39,11410,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-03 12:01,2025-10-03 12:03,2025-10-03 12:03,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+39,11381,Rian Duarte,Luiz Ricardo,Rian Duarte - Izaias Pereira - Luiz Ricardo,2025-10-02 11:21,2025-10-02 11:47,2025-10-03 12:00,,4,,,Dificuldades Operacionais e Ajustes,Resolvido
+39,11909,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-11-04 08:03,2025-11-04 08:18,2025-11-04 08:44,,,,,Avlock,Resolvido
+39,11736,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-27 09:08,2025-10-27 09:08,2025-10-27 09:21,,,,,Avlock,Resolvido
+39,11724,Luziara Lavor,Luiz Ricardo,Luiz Ricardo,2025-10-24 17:26,2025-10-24 17:29,2025-10-25 08:06,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+39,11681,Luziara Lavor,Samuel Nojoza,Samuel Nojoza,2025-10-22 13:05,2025-10-22 15:42,2025-10-22 17:01,,,,ensinado o cliente o processo de emissão de nfe de remessa em garantia ,Dificuldades Operacionais e Ajustes,Resolvido
+39,11676,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-22 10:10,2025-10-22 10:11,2025-10-22 12:32,,,,,Outros,Inatividade do Cliente
+39,11667,Luziara Lavor,Samuel Nojoza,Samuel Nojoza,2025-10-21 15:26,2025-10-21 15:34,2025-10-21 16:46,,,,verificado e constatado que o produto em questão estava sem o ncm no cadastro. após corrigir o cadastro com o ncm a nfce foi emitida com sucesso.,Dificuldades Operacionais e Ajustes,Resolvido
+39,11537,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-10 17:06,2025-10-10 17:14,2025-10-10 17:14,,,,,Outros,Resolvido
+39,11526,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-10 09:39,2025-10-10 09:43,2025-10-10 17:03,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+39,11806,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-29 13:16,2025-10-29 16:34,2025-10-29 17:50,,,,corrigida a replicação,Relacionado a Banco de Dados,Resolvido
+58,11999,Orisvando Alves,Orisvando Alves,Orisvando Alves,2025-11-10 17:01,2025-11-10 17:19,2025-11-10 17:18,,,,,Outros,Não Resolvido
+58,11998,Orisvando Alves,Orisvando Alves,Orisvando Alves,2025-11-10 16:37,2025-11-10 16:37,2025-11-10 17:00,,,,,Outros,Não Resolvido
+58,11994,Orisvando Alves,Orisvando Alves,Orisvando Alves,2025-11-10 15:27,2025-11-10 15:53,2025-11-10 16:02,,,,"Problema no sped discal. card criado para programação
+", Erros no Sistema e Bugs,Resolvido
+58,11858,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-31 10:26,2025-10-31 10:52,2025-10-31 16:36,,,,,Outros,Resolvido
+58,11837,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-30 14:05,2025-10-30 14:11,2025-10-30 14:50,,,,,Outros,Resolvido
+58,11832,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-30 12:19,2025-10-30 12:56,2025-10-30 13:20,,,,,Outros,Resolvido
+58,11826,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-30 10:05,2025-10-30 10:16,2025-10-30 12:00,,,,,Outros,Resolvido
+58,11801,Rian Duarte,Rian Duarte,Luiz Ricardo - Rian Duarte,2025-10-29 10:28,2025-10-29 10:28,2025-10-29 17:11,,,,,Outros,Resolvido
+58,11795,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-29 09:33,2025-10-29 09:34,2025-10-29 10:27,,,,foi apagado o .col, Erros no Sistema e Bugs,Resolvido
+58,11771,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-10-28 14:39,2025-10-28 14:44,2025-10-28 16:44,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+58,11368,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-02 08:52,2025-10-02 08:56,2025-10-02 10:17,,,,explicado e ensinado o processo de gerar arquvo de remessa para banco. alterado pasta de destino da remessa.,Dificuldades Operacionais e Ajustes,Resolvido
+42,12021,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-11-11 15:39,2025-11-11 16:50,2025-11-11 16:50,,,,,Outros,Resolvido
+42,12016,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-11 14:26,2025-11-11 14:27,2025-11-11 15:22,,,,,Outros,Inatividade do Cliente
+42,11679,Luziara Lavor,Luiz Ricardo,Luziara Lavor - Luiz Ricardo,2025-10-22 11:03,2025-10-22 11:08,2025-10-22 16:00,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+42,11528,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-10 10:19,2025-10-10 10:21,2025-10-10 15:18,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+65,11467,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-07 12:37,2025-10-07 12:37,2025-10-08 08:18,,,,,Outros,Resolvido
+65,11108,Rian Duarte,Rian Duarte,Rian Duarte,2025-09-17 11:03,2025-10-06 16:11,2025-10-06 17:41,,,,,Outros,Resolvido
+46,11350,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-10-01 07:49,2025-10-01 08:08,2025-10-01 11:56,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+47,11694,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-23 12:11,2025-10-23 13:17,2025-10-23 14:17,,,,,Outros,Resolvido
+47,11663,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-21 09:23,2025-10-21 09:24,2025-10-21 09:24,,,,,Outros,Testes ou Comunicação Interna
+47,11662,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-21 09:17,2025-10-21 09:17,2025-10-21 09:20,,,,,Outros,Testes ou Comunicação Interna
+47,11646,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-20 10:55,2025-10-20 10:56,2025-10-20 11:21,,,,,Avlock,Resolvido
+47,11529,Luziara Lavor,Luiz Ricardo,Luziara Lavor - Luiz Ricardo,2025-10-10 10:21,2025-10-10 10:28,2025-10-10 14:07,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+47,11385,Izaias Pereira,Luiz Ricardo,Izaias Pereira - Luiz Ricardo,2025-10-02 12:15,2025-10-02 12:24,2025-10-02 18:15,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+47,11383,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-02 11:32,2025-10-02 11:48,2025-10-02 12:14,,,,,Outros,Resolvido
+52,12020,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-11 15:22,2025-11-11 15:24,2025-11-11 15:24,,4,,,Outros,Resolvido
+52,12013,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-11 13:39,2025-11-11 13:48,2025-11-11 13:48,,,,,Outros,Resolvido
+52,12009,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-11 11:21,2025-11-11 12:18,2025-11-11 12:30,,,,,Avlock,Resolvido
+52,11824,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-30 09:08,2025-10-30 09:34,2025-10-30 10:25,,,,,Outros,Resolvido
+26,11862,Orisvando Alves,Rian Duarte,Rian Duarte,2025-10-31 11:17,2025-10-31 11:19,2025-10-31 11:49,,,,,Outros,Resolvido
+26,11775,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-28 16:13,2025-10-28 17:06,2025-10-28 17:08,,,,,Instalação ou Reinstalação de Sistema ou afins,Resolvido
+26,11660,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-21 08:25,2025-10-21 08:25,2025-10-21 08:58,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+24,11634,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-17 15:24,2025-10-17 16:00,2025-10-17 16:35,,,,,Outros,Inatividade do Cliente
+24,11629,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-17 11:06,2025-10-17 11:07,2025-10-17 15:21,,,,, Erros no Sistema e Bugs,Resolvido
+24,11620,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-16 16:35,2025-10-16 16:43,2025-10-17 08:27,,,,,Outros,Resolvido
+24,11609,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-16 08:56,2025-10-16 08:59,2025-10-16 09:28,,,,,Outros,Resolvido
+10,11361,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-01 14:31,2025-10-01 14:32,2025-10-01 16:46,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+10,11351,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo - Izaias Pereira,2025-10-01 08:37,2025-10-01 09:05,2025-10-01 12:02,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+10,12006,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-11 09:35,2025-11-11 09:46,2025-11-11 09:49,,5,,pedido não baixa no caixa, Erros no Sistema e Bugs,Resolvido
+10,11987,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-10 10:56,2025-11-10 10:58,2025-11-10 11:01,,5,,,Avlock,Resolvido
+10,11873,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-01 11:23,2025-11-01 11:23,2025-11-01 11:34,,,,ajustado o status do pedidos em questão. ,Dificuldades Operacionais e Ajustes,Resolvido
+10,11738,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-27 09:43,2025-10-27 09:48,2025-10-27 10:57,,,,Pedido não baixou, Erros no Sistema e Bugs,Resolvido
+10,11677,Orisvando Alves,Rian Duarte,Rian Duarte,2025-10-22 10:26,2025-10-22 10:50,2025-10-22 12:31,,4,,,Outros,Resolvido
+1,11982,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-10 10:10,2025-11-10 10:14,2025-11-10 10:45,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+1,11968,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-07 16:30,2025-11-07 16:31,2025-11-07 16:32,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+1,11966,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-07 16:05,2025-11-07 16:06,2025-11-07 16:19,,,,,Outros,Inatividade do Cliente
+1,11904,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-03 17:40,2025-11-03 17:53,2025-11-03 18:00,,,,,Outros,Inatividade do Cliente
+1,11897,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-03 14:42,2025-11-03 14:42,2025-11-03 16:33,,,,não foi constatado no banco o registro com chave_null e ambiente = 1. o erro deve acontecer devido aos dois caixa_nfce usarem o robo.,Relacionado a Banco de Dados,Resolvido
+10,11986,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-10 10:54,2025-11-10 12:25,2025-11-10 12:25,,,,,Cobrança e Suporte Contratual,Resolvido
+10,11943,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-06 08:23,2025-11-06 10:06,2025-11-06 13:04,,,,agendanda atualização para 10/11/25,Outros,Resolvido
+10,11804,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-29 12:47,2025-10-29 13:02,2025-10-29 13:21,,5,Grata pela ajuda... ,,Outros,Resolvido
+10,11722,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-24 17:04,2025-10-24 17:04,2025-10-24 17:10,,,,,Avlock,Resolvido
+10,11594,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-15 08:53,2025-10-15 08:53,2025-10-15 09:37,,,,pré-agendado a atualização para 20/10/2025,Outros,Resolvido
+10,11574,Luziara Lavor,Connect Soft,Connect Soft,2025-10-14 09:21,2025-10-14 09:22,2025-10-14 11:55,,,,sera agendada a atualização do sistema. Passar para Samuel., Erros no Sistema e Bugs,Não Resolvido
+10,11570,Luziara Lavor,Connect Soft,Connect Soft,2025-10-14 08:17,2025-10-14 08:18,2025-10-14 08:45,,,,Cliente vai solicitar dados com a contabilidade para instalação da NFCe,Outros,Não Resolvido
+10,11530,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-10 11:08,2025-10-10 11:11,2025-10-10 11:17,,,,,Avlock,Resolvido
+10,11492,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-10-08 16:13,2025-10-08 16:17,2025-10-08 16:22,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+10,11403,Luziara Lavor,Samuel Nojoza,Samuel Nojoza,2025-10-03 08:59,2025-10-03 09:00,2025-10-03 15:13,,,,verificado que o computador não encotrava o ENDEREÇO do servidor. colocado o NOME do servidor no sc_config.ini e assim o cliente acessou o sistema normalmente,Problemas de Acesso e Autenticação,Resolvido
+10,11360,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-01 14:11,2025-10-01 14:19,2025-10-01 15:56,,,,"analisada mensagem de erro, corrigido ",Dificuldades Operacionais e Ajustes,Resolvido
+15,11910,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-11-04 08:11,2025-11-04 08:12,2025-11-04 08:33,,5,,,Avlock,Resolvido
+15,11866,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-31 16:23,2025-10-31 16:49,2025-10-31 17:28,,,,,Outros,Resolvido
+15,11661,Luziara Lavor,Rian Duarte,Rian Duarte - Luziara Lavor,2025-10-21 08:30,2025-10-21 08:32,2025-10-21 09:22,,,,,Avlock,Resolvido
+15,11573,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-14 09:05,2025-10-14 09:05,2025-10-14 09:11,,,,Chave de registro gerada e usada pelo cliente para renovar a assinatura.,Avlock,Resolvido
+15,11488,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-10-08 15:24,2025-10-08 16:12,2025-10-08 21:38,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+6,11946,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-06 10:46,2025-11-06 13:42,2025-11-06 16:29," https://connectsoft.com.br/
+
+Login: 6
+Senha: pt584",,,,Outros,Inatividade do Cliente
+6,11939,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-11-06 07:55,2025-11-06 07:55,2025-11-06 10:45," https://connectsoft.com.br/
+
+Login: 6
+Senha: pt584",,,,Avlock,Não Resolvido
+6,11767,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-10-28 14:06,2025-10-28 14:37,2025-10-28 16:43," https://connectsoft.com.br/
+
+Login: 6
+Senha: pt584",,,,Dificuldades Operacionais e Ajustes,Resolvido
+6,11639,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-18 07:48,2025-10-18 07:48,2025-10-18 12:12," https://connectsoft.com.br/
+
+Login: 6
+Senha: pt584",,,,Avlock,Resolvido
+6,11505,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-09 08:44,2025-10-09 09:18,2025-10-09 12:54," https://connectsoft.com.br/
+
+Login: 6
+Senha: pt584",,,,Outros,Resolvido
+6,11426,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-06 07:52,2025-10-06 08:06,2025-10-06 17:41," https://connectsoft.com.br/
+
+Login: 6
+Senha: pt584",,,,Outros,Resolvido
+1,11896,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-03 14:23,2025-11-03 14:31,2025-11-03 14:59,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+1,11717,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-24 16:08,2025-10-24 16:08,2025-10-24 16:22,,,,,Suporte interno,Testes ou Comunicação Interna
+1,11627,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-17 10:58,2025-10-17 10:59,2025-10-17 10:59,,,,,Suporte interno,Testes ou Comunicação Interna
+1,11596,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-15 10:34,2025-10-15 10:34,2025-10-15 10:34,,,,,Suporte interno,Testes ou Comunicação Interna
+1,11511,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-09 10:27,2025-10-09 10:28,2025-10-09 10:30,,,,,Suporte interno,Resolvido
+1,11490,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-08 15:43,2025-10-08 15:45,2025-10-08 15:45,,,,,Suporte interno,Resolvido
+1,11380,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-02 11:20,2025-10-02 11:20,2025-10-02 11:24,,,,,Suporte interno,Testes ou Comunicação Interna
+58,11811,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-29 15:09,2025-10-29 15:30,2025-10-29 15:30,,,,,Outros,Resolvido
+58,11450,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-06 15:13,2025-10-28 11:29,2025-10-28 16:16,,5,Atendimento 100 %,,Dificuldades Operacionais e Ajustes,Resolvido
+53,11740,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-27 09:50,2025-10-27 09:53,2025-10-27 14:44,,,,,Avlock,Resolvido
+53,11759,Rian Duarte,Rian Duarte,Rian Duarte - Luziara Lavor,2025-10-28 08:05,2025-10-28 08:12,2025-10-28 08:35,,,,,Avlock,Resolvido
+53,11698,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-23 15:52,2025-10-23 16:04,2025-10-23 16:40,,,,"solicitado ao cliente que entrasse em contato com a administradora e solicitasse as informações dos cartões para preencher os campos autorização, nsu ou cv.",Dificuldades Operacionais e Ajustes,Resolvido
+63,11976,Luziara Lavor,Luiz Ricardo,Luziara Lavor - Luiz Ricardo,2025-11-10 08:17,2025-11-10 08:29,2025-11-10 11:50,"https://connectsoft.com.br/
+
+login: 63
+senha: if127
+",5,,,Dificuldades Operacionais e Ajustes,Resolvido
+63,11972,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-08 10:47,2025-11-08 11:17,2025-11-08 11:26,"https://connectsoft.com.br/
+
+login: 63
+senha: if127
+",,,,Dificuldades Operacionais e Ajustes,Resolvido
+63,11970,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-08 08:29,2025-11-08 08:30,2025-11-08 10:47,"https://connectsoft.com.br/
+
+login: 63
+senha: if127
+",5,Obrigado. Deus abençoe ,,Dificuldades Operacionais e Ajustes,Resolvido
+63,11959,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-07 09:19,2025-11-07 09:22,2025-11-07 10:07,"https://connectsoft.com.br/
+
+login: 63
+senha: if127
+",5,,,Dificuldades Operacionais e Ajustes,Resolvido
+63,11958,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-07 09:16,2025-11-07 09:16,2025-11-07 09:16,"https://connectsoft.com.br/
+
+login: 63
+senha: if127
+",5,,,Dificuldades Operacionais e Ajustes,Resolvido
+63,11955,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-07 08:07,2025-11-07 08:07,2025-11-07 09:16,"https://connectsoft.com.br/
+
+login: 63
+senha: if127
+",5,"Muito bom atendimento.
+",,Dificuldades Operacionais e Ajustes,Resolvido
+63,11940,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-06 07:56,2025-11-06 08:10,2025-11-07 08:07,"https://connectsoft.com.br/
+
+login: 63
+senha: if127
+",,,,Dificuldades Operacionais e Ajustes,Resolvido
+63,11933,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-05 14:02,2025-11-05 14:16,2025-11-05 18:10,"https://connectsoft.com.br/
+
+login: 63
+senha: if127
+",5,,,Dificuldades Operacionais e Ajustes,Resolvido
+63,11926,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-05 08:33,2025-11-05 08:43,2025-11-05 09:06,"https://connectsoft.com.br/
+
+login: 63
+senha: if127
+",5,,,Dificuldades Operacionais e Ajustes,Resolvido
+63,11885,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-03 09:08,2025-11-03 09:10,2025-11-03 09:14,"https://connectsoft.com.br/
+
+login: 63
+senha: if127
+",5,,,Dificuldades Operacionais e Ajustes,Resolvido
+63,11879,Izaias Pereira,Luiz Ricardo,Izaias Pereira - Luiz Ricardo,2025-11-03 08:26,2025-11-03 08:28,2025-11-03 09:08,"https://connectsoft.com.br/
+
+login: 63
+senha: if127
+",,,,Dificuldades Operacionais e Ajustes,Resolvido
+63,11869,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-31 18:18,2025-11-01 08:00,2025-11-01 09:17,"https://connectsoft.com.br/
+
+login: 63
+senha: if127
+",,,,Outros,Inatividade do Cliente
+63,11861,Luziara Lavor,Samuel Nojoza,Samuel Nojoza,2025-10-31 11:07,2025-10-31 11:07,2025-10-31 16:31,"https://connectsoft.com.br/
+
+login: 63
+senha: if127
+",5,,trocado o sistema de servidor. fechando chamado,Dificuldades Operacionais e Ajustes,Resolvido
+63,11689,Orisvando Alves,Luiz Ricardo,Luiz Ricardo - Samuel Nojoza,2025-10-23 07:50,2025-10-23 08:07,2025-10-23 14:55,"https://connectsoft.com.br/
+
+login: 63
+senha: if127
+",5,,,Dificuldades Operacionais e Ajustes,Resolvido
+63,11628,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-17 10:59,2025-10-17 10:59,2025-10-17 14:33,"https://connectsoft.com.br/
+
+login: 63
+senha: if127
+",,,,Instalação ou Reinstalação de Sistema ou afins,Não Resolvido
+80,11733,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-27 07:44,2025-10-27 08:00,2025-10-27 08:16,,,,,Avlock,Resolvido
+80,11648,Orisvando Alves,Orisvando Alves,Silas Rodrigues - Samuel Nojoza,2025-10-20 11:05,2025-10-20 11:06,2025-10-20 11:30,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+80,11636,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-17 16:32,2025-10-17 16:36,2025-10-17 17:11,,,,,Outros,Resolvido
+1,11533,Luziara Lavor,Orisvando Alves,Luziara Lavor - Silas Rodrigues,2025-10-10 13:31,2025-10-10 13:31,2025-10-10 14:00,,,,,Suporte interno,Testes ou Comunicação Interna
+1,11509,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-09 10:14,2025-10-09 10:14,2025-10-09 10:18,,,,Mais um teste,Suporte interno,Testes ou Comunicação Interna
+1,11508,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-09 09:46,2025-10-09 09:48,2025-10-09 10:07,,5,,Treinamento do Novo Tecnico de Supore,Suporte interno,Testes ou Comunicação Interna
+11,11745,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-27 10:47,2025-10-27 10:47,2025-10-27 16:37,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+33,12042,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-13 08:02,2025-11-13 08:02,2025-11-13 09:52,,,,criado acesso para loja de itaitinga. ,Dificuldades Operacionais e Ajustes,Resolvido
+33,11929,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-05 10:39,2025-11-05 11:58,2025-11-05 16:54,,,,"após contato com a cliente, a mesma informou que a nfce foi emitida com sucesso",Dificuldades Operacionais e Ajustes,Resolvido
+33,11914,Rian Duarte,Samuel Nojoza,Samuel Nojoza,2025-11-04 09:50,2025-11-04 10:10,2025-11-04 17:02,,,,cadastrada as administradoras de cartão e taxas. emitido a nfce com forma de pagamento cartão,Dificuldades Operacionais e Ajustes,Resolvido
+33,11911,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-04 08:44,2025-11-04 08:44,2025-11-04 08:46,,,,cliente vai voltar a abrir chamado para aprender a cadstrar adm de cartão e pos,Dificuldades Operacionais e Ajustes,Resolvido
+33,11901,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-03 15:41,2025-11-03 15:41,2025-11-03 16:38,,,,cliente vai retornar contato amanhã 04/11/25 para cadastrar o POS,Outros,Resolvido
+33,11892,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-03 10:27,2025-11-03 10:33,2025-11-03 14:28,,,,"flag PERMITE_TEF ESTAVA = 'T', deve ser 'F'. ajustado as configurações para a forma de pagamento cartão, ensinado srta. karla a baixar em PIX e CARTÃO no caixa.",Relacionado a Banco de Dados,Resolvido
+65,11985,Rian Duarte,Luiz Ricardo,Luiz Ricardo,2025-11-10 10:44,2025-11-10 11:56,2025-11-10 17:40,"https://connectsoft.com.br/
+
+login: 65
+senha: hp554",4,,,Dificuldades Operacionais e Ajustes,Resolvido
+65,11956,Luziara Lavor,Luiz Ricardo,Luziara Lavor - Luiz Ricardo,2025-11-07 08:16,2025-11-07 08:17,2025-11-07 11:33,"https://connectsoft.com.br/
+
+login: 65
+senha: hp554",5,,,Dificuldades Operacionais e Ajustes,Resolvido
+65,11678,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-22 10:54,2025-10-22 10:56,2025-10-22 13:59,"https://connectsoft.com.br/
+
+login: 65
+senha: hp554",,,,Outros,Resolvido
+65,11673,Orisvando Alves,Connect Soft,Connect Soft,2025-10-22 09:35,2025-10-22 09:36,2025-10-22 10:04,"https://connectsoft.com.br/
+
+login: 65
+senha: hp554",5,,Orientado a como estornar um pagamento de NFe,Dificuldades Operacionais e Ajustes,Resolvido
+65,11653,Luiz Ricardo,Connect Soft,Connect Soft,2025-10-20 15:52,2025-10-20 15:55,2025-10-20 16:34,"https://connectsoft.com.br/
+
+login: 65
+senha: hp554",5,,Passado orientação a respeito de como fazer a alteração do NCM INVALIDO e como identificar qual item estava com NCM invalido. A troca foi realizada e a nota emitida com sucesso.,Dificuldades Operacionais e Ajustes,Resolvido
+65,11494,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-08 16:51,2025-10-08 16:52,2025-10-08 16:59,"https://connectsoft.com.br/
+
+login: 65
+senha: hp554",,,,Outros,Resolvido
+65,11466,Rian Duarte,Connect Soft,Connect Soft,2025-10-07 12:37,2025-10-07 12:37,2025-10-07 15:48,"https://connectsoft.com.br/
+
+login: 65
+senha: hp554",5,,Foi passada orientações referente a consulta da chave de acesso e orientações a respeito do procedimento de faturamento,Dificuldades Operacionais e Ajustes,Resolvido
+65,11456,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-06 18:14,2025-10-06 18:14,2025-10-06 18:14,"https://connectsoft.com.br/
+
+login: 65
+senha: hp554",,,,Dificuldades Operacionais e Ajustes,Resolvido
+65,11439,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-10-06 11:38,2025-10-06 12:27,2025-10-06 18:14,"https://connectsoft.com.br/
+
+login: 65
+senha: hp554",,,,Dificuldades Operacionais e Ajustes,Resolvido
+65,11407,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-03 10:27,2025-10-03 10:27,2025-10-03 10:37,"https://connectsoft.com.br/
+
+login: 65
+senha: hp554",,,,Dificuldades Operacionais e Ajustes,Resolvido
+65,11404,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-03 09:43,2025-10-03 10:12,2025-10-03 10:25,"https://connectsoft.com.br/
+
+login: 65
+senha: hp554",,,,Outros,Resolvido
+1,11510,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-09 10:25,2025-10-09 10:26,2025-10-09 10:31,,5,,,Suporte interno,Resolvido
+66,12035,Luziara Lavor,Luiz Ricardo,Luziara Lavor - Luiz Ricardo,2025-11-12 15:25,2025-11-12 16:03,2025-11-12 18:09,,1,,,Dificuldades Operacionais e Ajustes,Resolvido
+24,11865,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-31 15:50,2025-10-31 16:01,2025-10-31 17:14,,,,ensinado cliente como criar uma conta no shopcash,Dificuldades Operacionais e Ajustes,Resolvido
+24,11805,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-29 12:55,2025-10-29 13:01,2025-10-29 14:04,,,,,Instalação ou Reinstalação de Sistema ou afins,Resolvido
+24,11784,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-28 17:32,2025-10-29 07:58,2025-10-29 08:06,,,,,Instalação ou Reinstalação de Sistema ou afins,Resolvido
+15,11460,Rian Duarte,Rian Duarte,Rian Duarte - Luiz Ricardo,2025-10-07 10:15,2025-10-07 10:30,2025-10-07 11:19,,,,,Outros,Inatividade do Cliente
+15,11432,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-06 09:05,2025-10-06 09:31,2025-10-06 15:15,,5,Totalmente satisfeito ,cotação,Outros,Resolvido
+75,11979,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-10 08:33,2025-11-10 08:33,2025-11-10 16:31,,,,criada as rotinas de backup para os bancos 6.0 e 11.0,Relacionado a Banco de Dados,Resolvido
+18,11894,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-03 14:06,2025-11-03 14:30,2025-11-03 14:59,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+69,11871,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-01 10:00,2025-11-01 10:03,2025-11-01 10:18,,,,JENDZG3-XC7Y3JL-KVMX6C7-KG1R956,Avlock,Resolvido
+69,11543,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-11 12:24,2025-10-13 08:16,2025-10-13 08:31,,,,,Avlock,Resolvido
+69,11984,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-10 10:28,2025-11-10 11:52,2025-11-10 11:55,Ok,,,,Dificuldades Operacionais e Ajustes,Resolvido
+43,11919,Rian Duarte,Luziara Lavor,Rian Duarte - Luziara Lavor,2025-11-04 14:04,2025-11-04 14:17,2025-11-04 15:38,,,,,Avlock,Resolvido
+43,11887,Luziara Lavor,Luiz Ricardo,Luziara Lavor - Luiz Ricardo,2025-11-03 09:47,2025-11-03 09:47,2025-11-03 10:27,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+15,12034,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-12 14:40,2025-11-12 18:10,2025-11-12 18:10,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+15,12019,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-11 15:07,2025-11-11 15:11,2025-11-11 15:11,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+15,11960,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-11-07 09:30,2025-11-07 09:33,2025-11-07 09:45,,,,,Avlock,Resolvido
+15,11708,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-24 08:45,2025-10-24 08:51,2025-10-24 10:58,,,,, Erros no Sistema e Bugs,Resolvido
+15,11671,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-22 08:25,2025-10-22 08:29,2025-10-22 09:43,,,,,Outros,Não Resolvido
+15,11506,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-09 09:03,2025-10-09 09:11,2025-10-09 09:42,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+15,11458,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-07 09:32,2025-10-07 09:52,2025-10-07 15:40,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+15,12037,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-12 16:23,2025-11-12 16:26,2025-11-12 17:53,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+15,12033,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-12 14:38,2025-11-12 15:30,2025-11-12 16:12,,,,,Outros,Inatividade do Cliente
+15,11922,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-11-04 16:24,2025-11-04 17:00,2025-11-04 18:36,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+15,11881,Luziara Lavor,Samuel Nojoza,Samuel Nojoza,2025-11-03 08:40,2025-11-03 08:55,2025-11-03 10:17,,,,,Avlock,Resolvido
+15,11706,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-24 08:16,2025-10-24 08:16,2025-10-27 08:35,,,,, Erros no Sistema e Bugs,Resolvido
+15,11669,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-22 08:02,2025-10-22 08:02,2025-10-22 17:03,,,,análise de informações contas a receber,Dificuldades Operacionais e Ajustes,Resolvido
+15,11645,Orisvando Alves,Rian Duarte,Rian Duarte - Izaias Pereira,2025-10-20 09:18,2025-10-20 09:21,2025-10-20 16:14,,,,,Outros,Testes ou Comunicação Interna
+15,11396,Izaias Pereira,Luiz Ricardo,Izaias Pereira - Rian Duarte - Luiz Ricardo,2025-10-02 16:03,2025-10-03 08:23,2025-10-03 17:20,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+49,11980,Rian Duarte,Rian Duarte,Rian Duarte,2025-11-10 08:58,2025-11-10 10:02,2025-11-10 14:54,,4,,,Outros,Resolvido
+49,11705,Samuel Nojoza,Luziara Lavor,Samuel Nojoza - Luziara Lavor,2025-10-24 08:08,2025-10-24 08:08,2025-10-24 09:04,,4,,Marcos resolveu dia anterior.,Dificuldades Operacionais e Ajustes,Resolvido
+49,11688,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-22 17:57,2025-10-22 17:57,2025-10-22 18:00,,4,,,Avlock,Resolvido
+49,11608,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-16 07:59,2025-10-16 07:59,2025-10-16 21:13,,,,,Relacionado a Banco de Dados,Resolvido
+49,11567,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza - Luziara Lavor,2025-10-14 07:59,2025-10-14 07:59,2025-10-14 15:31,,,,"o processo de analise foi feito e a maior parte foi corrigido. no entanto, deverá ser feito um script para corrigir os produtos restantes.",Relacionado a Banco de Dados,Resolvido
+49,11548,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza - Luziara Lavor,2025-10-13 08:43,2025-10-13 08:43,2025-10-13 18:01,,,,fechando chamado. será reaberto no dia 14/10/26 para continudade do processo de ajuste do estoque,Outros,Resolvido
+49,11541,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-11 10:26,2025-10-11 10:28,2025-10-11 10:42,,4,,,Dificuldades Operacionais e Ajustes,Resolvido
+49,11516,Izaias Pereira,Luiz Ricardo,Izaias Pereira - Luiz Ricardo,2025-10-09 15:26,2025-10-09 16:05,2025-10-09 16:23,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+49,11501,Rian Duarte,Luziara Lavor,Rian Duarte - Luziara Lavor,2025-10-09 08:07,2025-10-09 08:20,2025-10-09 10:09,,4,,,Avlock,Resolvido
+49,11449,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-06 14:45,2025-10-06 16:11,2025-10-06 17:41,,,,,Outros,Resolvido
+49,11429,Rian Duarte,Rian Duarte,Rian Duarte - Luziara Lavor,2025-10-06 08:17,2025-10-06 08:18,2025-10-06 09:01,,,,,Avlock,Resolvido
+49,11415,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-03 16:18,2025-10-03 16:18,2025-10-03 16:27,,,,,Outros,Resolvido
+49,11399,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-02 18:10,2025-10-02 18:11,2025-10-02 18:11,,,,cliente reabriu chamado,Outros,Resolvido
+49,11389,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-02 14:32,2025-10-02 14:46,2025-10-02 18:09,,,,reagendando atendimento para dia 03/10/2025,Dificuldades Operacionais e Ajustes,Resolvido
+49,11353,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-01 10:01,2025-10-01 10:45,2025-10-01 18:00,,,,configurado com sucesso a nfce na roberto motos,Dificuldades Operacionais e Ajustes,Resolvido
+1,11525,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-10 09:13,2025-10-10 09:14,2025-10-10 09:32,,,,,Outros,Resolvido
+71,11686,Luziara Lavor,Samuel Nojoza,Samuel Nojoza,2025-10-22 15:32,2025-10-22 15:32,2025-10-22 17:00,,5,,corrigida as informações no cadastro da empresa,Dificuldades Operacionais e Ajustes,Resolvido
+73,11856,Rian Duarte,Samuel Nojoza,Samuel Nojoza,2025-10-31 10:01,2025-10-31 10:32,2025-10-31 13:19,,,,verificado que o computador estava com uma hora a menos. após o ajuste da hora as nfces foram emitidas com sucesso,Dificuldades Operacionais e Ajustes,Resolvido
+41,12038,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-11-12 16:32,2025-11-12 16:36,2025-11-12 17:02,,,,,Avlock,Resolvido
+41,11691,Orisvando Alves,Orisvando Alves,Silas Rodrigues,2025-10-23 09:55,2025-10-23 09:59,2025-10-23 10:08,,,,,Avlock,Resolvido
+41,11638,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-17 17:34,2025-10-17 17:42,2025-10-17 17:47,,,,ensinado cliente a corrigir o código de barras do produto,Dificuldades Operacionais e Ajustes,Resolvido
+75,11962,Izaias Pereira,Izaias Pereira,Izaias Pereira,2025-11-07 10:02,2025-11-07 10:12,2025-11-07 10:14,,,,, Erros no Sistema e Bugs,Não Resolvido
+75,11880,Izaias Pereira,Samuel Nojoza,Samuel Nojoza,2025-11-03 08:39,2025-11-03 09:04,2025-11-03 17:53,,,,"rafa, vamos ter que analisar esse caso melhor depois. vou fechar o chamado e você pode reabrir ele novamente ",Outros,Não Resolvido
+75,11810,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-29 15:06,2025-10-29 16:01,2025-10-29 17:44,,,,,Outros,Resolvido
+75,11760,Rian Duarte,Rian Duarte,Rian Duarte - Luziara Lavor,2025-10-28 08:14,2025-10-28 08:14,2025-10-28 17:04,,,,,Outros,Resolvido
+75,11652,Orisvando Alves,Orisvando Alves,Luiz Ricardo - Rian Duarte - Silas Rodrigues - Samuel Nojoza,2025-10-20 14:41,2025-10-20 14:42,2025-10-21 15:25,,,,,Instalação ou Reinstalação de Sistema ou afins,Resolvido
+75,11618,Orisvando Alves,Connect Soft,Connect Soft,2025-10-16 14:41,2025-10-16 14:41,2025-10-16 18:29,,,,"Duvidas sobre backup,",Dificuldades Operacionais e Ajustes,Resolvido
+75,11601,Connect Soft,Connect Soft,Connect Soft,2025-10-15 14:00,2025-10-15 14:02,2025-10-15 14:18,,,,Duvidas a respeito da unidade de transformação,Dificuldades Operacionais e Ajustes,Resolvido
+75,11597,Orisvando Alves,Connect Soft,Connect Soft,2025-10-15 11:43,2025-10-15 11:44,2025-10-15 13:12,,,,,Outros,Inatividade do Cliente
+75,11588,Luziara Lavor,Connect Soft,Connect Soft,2025-10-14 16:48,2025-10-15 08:07,2025-10-15 09:01,,,,duvidas sobre colocar nome e cpf no cupom. Orientada a respeito de como fazer a consulta de produtos e gerar relatorio so shopcash 10,Dificuldades Operacionais e Ajustes,Resolvido
+75,11571,Orisvando Alves,Connect Soft,Connect Soft,2025-10-14 08:21,2025-10-14 08:21,2025-10-14 14:52,,,,"Feito acompanhamento pos atualização.
+
+1. Problema na impressão de cupom. Foi orientado provisoriamente fazer a impressão por meio do UNidanfe.
+2. Orientação a respeito da marcação de preços.
+3. Mostrado como usar o fator de conversão na unidade de medida para facilitar o lançamento de notas de entrada.
+4. Configurado o Certificado digital modelo A3 Token
+
+Pendentes
+Problema na impressão de cupom
+
+Lentidão no shopcash 6.0",Dificuldades Operacionais e Ajustes,Resolvido
+75,11551,Orisvando Alves,Luiz Ricardo,Luiz Ricardo,2025-10-13 08:54,2025-10-13 09:05,2025-10-13 18:00,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+75,11482,Luziara Lavor,Izaias Pereira,Luziara Lavor - Izaias Pereira,2025-10-08 10:37,2025-10-08 10:39,2025-10-08 12:26,,,,,Dificuldades Operacionais e Ajustes,Não Resolvido
+1,11503,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-09 08:24,2025-10-09 08:25,2025-10-09 08:25,,,,,Outros,Resolvido
+1,11500,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-08 22:35,2025-10-09 08:24,2025-10-09 08:24,,,,,Outros,Resolvido
+1,11499,Izaias Pereira,Izaias Pereira,Izaias Pereira,2025-10-08 21:37,2025-10-08 22:34,2025-10-08 22:35,,,,,Problemas de Acesso e Autenticação,Resolvido
+1,11498,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-08 21:37,2025-10-08 21:37,2025-10-08 21:37,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+1,11497,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-08 21:36,2025-10-08 21:37,2025-10-08 21:37,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11853,Rian Duarte,Luiz Ricardo,Rian Duarte - Luiz Ricardo,2025-10-31 09:14,2025-10-31 09:32,2025-10-31 10:12,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+13,11695,Orisvando Alves,Luiz Ricardo,Luiz Ricardo,2025-10-23 14:13,2025-10-23 14:23,2025-10-23 16:06,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+50,11937,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-05 15:55,2025-11-05 16:48,2025-11-05 17:35,,,,ajustada as configurações no caixa para que o mesmo aceitasse as formas de pagamento solicitadas pelo cliente,Dificuldades Operacionais e Ajustes,Resolvido
+77,11739,Luziara Lavor,Rian Duarte,Rian Duarte,2025-10-27 09:46,2025-10-27 09:49,2025-10-27 17:52,,,,,Outros,Resolvido
+77,11577,Orisvando Alves,Rian Duarte,Silas Rodrigues - Rian Duarte,2025-10-14 10:58,2025-10-14 10:58,2025-10-14 17:04,,,,,Outros,Resolvido
+77,11572,Orisvando Alves,Connect Soft,Connect Soft,2025-10-14 08:34,2025-10-14 08:36,2025-10-14 08:59,,,,Cliente orientada a como fazer o envio dos arquivos para contabilidade,Outros,Resolvido
+1,11554,Luziara Lavor,Orisvando Alves,Silas Rodrigues - Rian Duarte,2025-10-13 09:55,2025-10-13 09:55,2025-10-15 08:58,,,,,Outros,Testes ou Comunicação Interna
+79,11963,Rian Duarte,Rian Duarte,Rian Duarte - Luziara Lavor,2025-11-07 11:21,2025-11-07 11:22,2025-11-07 12:38,"Login: 79
+senha: ah918",,,,Avlock,Resolvido
+79,11931,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-11-05 10:58,2025-11-05 11:34,2025-11-05 13:30,,,,,Avlock,Resolvido
+79,11932,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-11-05 11:03,2025-11-05 11:32,2025-11-05 13:30,"Login: 79
+senha: ah918",,,,Avlock,Resolvido
+79,11430,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-06 08:50,2025-10-06 08:54,2025-10-06 09:50,"Login: 79
+senha: ah918",5,,,Avlock,Resolvido
+79,11902,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-11-03 16:31,2025-11-03 16:35,2025-11-03 17:51,,5,,"após análise o pedido ""apareceu"" nos pedidos e no caixa_nfce. após isso a nfce foi emitida com sucesso",Dificuldades Operacionais e Ajustes,Resolvido
+79,11735,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-27 08:56,2025-10-27 08:56,2025-10-27 10:14,,5,,,Avlock,Resolvido
+79,11401,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-10-03 08:43,2025-10-03 08:45,2025-10-03 09:27,,5,,,Avlock,Resolvido
+79,11397,Samuel Nojoza,Samuel Nojoza,Samuel Nojoza,2025-10-02 16:51,2025-10-02 16:54,2025-10-02 17:57,,5,,no cadastro de produto o cst estava 41 e não 041. ajustado e lançada a nfe de entrada com sucesso,Dificuldades Operacionais e Ajustes,Resolvido
+1,11461,Rian Duarte,Rian Duarte,Rian Duarte,2025-10-07 10:30,2025-10-07 10:30,2025-10-08 08:19,,,,,Outros,Resolvido
+1,11928,Luziara Lavor,Luziara Lavor,Luziara Lavor,2025-11-05 10:19,2025-11-05 10:23,2025-11-05 11:34,,,,,Avlock,Resolvido
+1,11507,Rian Duarte,Luziara Lavor,Rian Duarte - Luziara Lavor,2025-10-09 09:15,2025-10-09 09:19,2025-10-09 09:45,,,,,Questões Comerciais,Resolvido
+55,11354,Luiz Ricardo,Samuel Nojoza,Samuel Nojoza,2025-10-01 10:10,2025-10-01 11:55,2025-10-01 13:49,,,,aberto dois chamados para o mesmo problema,Outros,Resolvido
+23,11649,Orisvando Alves,Rian Duarte,Rian Duarte,2025-10-20 11:29,2025-10-20 11:33,2025-10-20 12:27,,,,,Outros,Inatividade do Cliente
+23,11633,Orisvando Alves,Connect Soft,Connect Soft,2025-10-17 14:45,2025-10-17 14:46,2025-10-17 15:56,,4,Problema resolvido em instantes ,Feito um novo usuario na cotação com outro CNPJ pois duas empresas do mesmo grupo estavam usando o mesmo CNPJ,Dificuldades Operacionais e Ajustes,Resolvido
+23,11655,Luiz Ricardo,Luiz Ricardo,Luiz Ricardo,2025-10-20 16:09,2025-10-20 16:13,2025-10-20 16:13,,,,,Dificuldades Operacionais e Ajustes,Resolvido
+23,11650,Orisvando Alves,Connect Soft,Connect Soft,2025-10-20 12:30,2025-10-20 13:28,2025-10-20 16:07,,5,,,Outros,Resolvido
