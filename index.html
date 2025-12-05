@@ -554,6 +554,9 @@
         }
 
         /* Modals */
+        body.modal-open {
+            overflow: hidden;
+        }
         .modal {
             position: fixed;
             top: 0;
@@ -568,6 +571,7 @@
             opacity: 0;
             visibility: hidden;
             transition: all 0.3s ease;
+            pointer-events: auto;
         }
 
         .modal.active {
@@ -1800,11 +1804,11 @@
         </div>
     </div>
 
-    <!-- Cliente Modal -->
-    <div class="modal" id="clienteModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Cliente</h3>
+            <!-- Cliente Modal -->
+            <div class="modal" id="clienteModal" role="dialog" aria-modal="true" aria-labelledby="clienteModalTitle" tabindex="-1" aria-hidden="true">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="clienteModalTitle">Cliente</h3>
                 <button class="modal-close" onclick="hideModal('clienteModal')">
                     <i class="fas fa-times"></i>
                 </button>
@@ -1903,11 +1907,11 @@
         </div>
     </div>
 
-    <!-- Contrato Modal -->
-    <div class="modal" id="contratoModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Contrato</h3>
+            <!-- Contrato Modal -->
+            <div class="modal" id="contratoModal" role="dialog" aria-modal="true" aria-labelledby="contratoModalTitle" tabindex="-1" aria-hidden="true">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="contratoModalTitle">Contrato</h3>
                 <button class="modal-close" onclick="hideModal('contratoModal')">
                     <i class="fas fa-times"></i>
                 </button>
@@ -2002,11 +2006,11 @@
         </div>
     </div>
 
-    <!-- Chave Modal -->
-    <div class="modal" id="chaveModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">Chave de Liberação</h3>
+            <!-- Chave Modal -->
+            <div class="modal" id="chaveModal" role="dialog" aria-modal="true" aria-labelledby="chaveModalTitle" tabindex="-1" aria-hidden="true">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="chaveModalTitle">Chave de Liberação</h3>
                 <button class="modal-close" onclick="hideModal('chaveModal')">
                     <i class="fas fa-times"></i>
                 </button>
@@ -2067,11 +2071,11 @@
         </div>
     </div>
 
-    <!-- Modal de Seleção de Ano para Geração de Chaves -->
-    <div class="modal" id="anoGeracaoModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title">
+            <!-- Modal de Seleção de Ano para Geração de Chaves -->
+            <div class="modal" id="anoGeracaoModal" role="dialog" aria-modal="true" aria-labelledby="anoGeracaoModalTitle" tabindex="-1" aria-hidden="true">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title" id="anoGeracaoModalTitle">
                     <i class="fas fa-calendar-alt"></i>
                     Selecionar Ano para Geração de Chaves
                 </h3>
@@ -2497,9 +2501,55 @@
         }
 
         // Modal functions
+        let activeModal = null;
+        let previousFocus = null;
+
+        function getFocusableElements(container) {
+            return Array.from(container.querySelectorAll(
+                'a[href], area[href], input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, [tabindex]:not([tabindex="-1"]), [contenteditable="true"]'
+            )).filter(el => el.offsetParent !== null);
+        }
+
+        function trapFocus(modal) {
+            const focusables = getFocusableElements(modal);
+            const first = focusables[0];
+            const last = focusables[focusables.length - 1];
+
+            function onKeyDown(e) {
+                if (e.key === 'Tab' && focusables.length > 0) {
+                    if (e.shiftKey && document.activeElement === first) {
+                        e.preventDefault();
+                        last.focus();
+                    } else if (!e.shiftKey && document.activeElement === last) {
+                        e.preventDefault();
+                        first.focus();
+                    }
+                }
+            }
+
+            modal.addEventListener('keydown', onKeyDown);
+            modal.__onKeyDown = onKeyDown;
+            if (first) first.focus(); else modal.focus();
+        }
+
+        function releaseFocus(modal) {
+            if (modal && modal.__onKeyDown) {
+                modal.removeEventListener('keydown', modal.__onKeyDown);
+                delete modal.__onKeyDown;
+            }
+        }
+
         function showModal(modalId) {
             const modal = document.getElementById(modalId);
+            if (!modal) return;
             modal.classList.add('active');
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.classList.add('modal-open');
+            previousFocus = document.activeElement;
+            activeModal = modal;
+            trapFocus(modal);
+            const main = document.getElementById('mainContent');
+            if (main) main.setAttribute('aria-hidden', 'true');
             
             // Reset form if it's a new record
             if (!editingId) {
@@ -2526,7 +2576,17 @@
 
         function hideModal(modalId) {
             const modal = document.getElementById(modalId);
+            if (!modal) return;
+            releaseFocus(modal);
             modal.classList.remove('active');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('modal-open');
+            const main = document.getElementById('mainContent');
+            if (main) main.setAttribute('aria-hidden', 'false');
+            if (previousFocus && typeof previousFocus.focus === 'function') {
+                previousFocus.focus();
+            }
+            activeModal = null;
             editingId = null;
         }
 
@@ -3416,13 +3476,8 @@
             }
         });
 
-        // Close modal when clicking outside
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('modal')) {
-                e.target.classList.remove('active');
-                editingId = null;
-            }
-        });
+        // Evitar fechamento ao clicar fora: não fechar modais pelo overlay
+        // Removido listener que fechava ao clicar no fundo
 
         // Register service worker for PWA
         
