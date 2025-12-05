@@ -4391,58 +4391,66 @@
                     .select(`
                         *,
                         clientes (nome)
-                    `);
+                    `, { count: 'exact' });
 
-                // Aplicar filtros de data baseados no campo solicitado_em
+                // Helper para formatar data para SQL (YYYY-MM-DD HH:MM:SS)
+                const pad = (n) => String(n).padStart(2, '0');
+                const formatSQLDateTime = (d) => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+
+                // Aplicar filtros de data baseados no campo solicitado_em (intervalos [start, end))
                 if (mesFilter && anoFilter) {
                     // Filtro específico por mês e ano
-                    const ano = parseInt(anoFilter);
-                    const mes = parseInt(mesFilter);
-                    
-                    // Calcular o último dia do mês
-                    const ultimoDiaDoMes = new Date(ano, mes, 0).getDate();
-                    
-                    const startDate = `${ano}-${mes.toString().padStart(2, '0')}-01`;
-                    const endDate = `${ano}-${mes.toString().padStart(2, '0')}-${ultimoDiaDoMes}`;
-                    
-                    query = query.gte('solicitado_em', startDate).lte('solicitado_em', endDate);
+                    const ano = parseInt(anoFilter, 10);
+                    const mes = parseInt(mesFilter, 10);
+
+                    const start = new Date(ano, mes - 1, 1, 0, 0, 0);
+                    const endExclusive = new Date(ano, mes, 1, 0, 0, 0); // primeiro dia do próximo mês
+
+                    query = query
+                        .gte('solicitado_em', formatSQLDateTime(start))
+                        .lt('solicitado_em', formatSQLDateTime(endExclusive));
                 } else if (mesFilter && !anoFilter) {
                     // Filtro apenas por mês (todos os anos) - usar múltiplos filtros de intervalo
-                    const mes = parseInt(mesFilter);
-                    
-                    // Criar filtros para todos os anos possíveis (2020-2030 como exemplo)
+                    const mes = parseInt(mesFilter, 10);
+
+                    // Criar filtros para um intervalo amplo de anos
                     const anosParaFiltrar = [];
                     for (let ano = 2020; ano <= 2030; ano++) {
-                        const ultimoDiaDoMes = new Date(ano, mes, 0).getDate();
-                        const startDate = `${ano}-${mes.toString().padStart(2, '0')}-01`;
-                        const endDate = `${ano}-${mes.toString().padStart(2, '0')}-${ultimoDiaDoMes}`;
-                        anosParaFiltrar.push({ start: startDate, end: endDate });
+                        const start = new Date(ano, mes - 1, 1, 0, 0, 0);
+                        const endExclusive = new Date(ano, mes, 1, 0, 0, 0);
+                        anosParaFiltrar.push({ start: formatSQLDateTime(start), endExclusive: formatSQLDateTime(endExclusive) });
                     }
-                    
-                    // Aplicar filtro OR para todos os intervalos de anos
+
+                    // Aplicar filtro OR para todos os intervalos de anos usando limite exclusivo
                     if (anosParaFiltrar.length > 0) {
-                        let orConditions = anosParaFiltrar.map(periodo => 
-                            `and(solicitado_em.gte.${periodo.start},solicitado_em.lte.${periodo.end})`
+                        const orConditions = anosParaFiltrar.map(periodo =>
+                            `and(solicitado_em.gte.${periodo.start},solicitado_em.lt.${periodo.endExclusive})`
                         ).join(',');
                         query = query.or(orConditions);
                     }
                 } else if (anoFilter && !mesFilter) {
                     // Filtro apenas por ano
-                    const startDate = `${anoFilter}-01-01`;
-                    const endDate = `${anoFilter}-12-31`;
-                    query = query.gte('solicitado_em', startDate).lte('solicitado_em', endDate);
+                    const ano = parseInt(anoFilter, 10);
+                    const start = new Date(ano, 0, 1, 0, 0, 0);
+                    const endExclusive = new Date(ano + 1, 0, 1, 0, 0, 0);
+                    query = query
+                        .gte('solicitado_em', formatSQLDateTime(start))
+                        .lt('solicitado_em', formatSQLDateTime(endExclusive));
                 }
 
                 if (clienteFilter) {
-                    query = query.eq('id_cliente', clienteFilter);
+                    const clienteId = parseInt(clienteFilter, 10);
+                    if (!Number.isNaN(clienteId)) {
+                        query = query.eq('id_cliente', clienteId);
+                    }
                 }
 
-                const { data: atendimentos, error } = await query;
+                const { data: atendimentos, count: totalCount, error } = await query.range(0, 50000);
 
                 if (error) throw error;
 
                 // Calcular estatísticas
-                await calcularEstatisticas(atendimentos, anoFilter, mesFilter);
+                await calcularEstatisticas(atendimentos, anoFilter, mesFilter, totalCount);
 
             } catch (error) {
                 console.error('Erro ao atualizar estatísticas:', error);
@@ -4450,9 +4458,10 @@
             }
         }
 
-        async function calcularEstatisticas(atendimentos, anoFilter, mesFilter) {
-            // Total de atendimentos
-            document.getElementById('totalAtendimentos').textContent = atendimentos.length;
+        async function calcularEstatisticas(atendimentos, anoFilter, mesFilter, totalCount) {
+            // Total de atendimentos (usar count exato retornado pelo Supabase para evitar limite padrão 1000)
+            const total = (typeof totalCount === 'number' && !Number.isNaN(totalCount)) ? totalCount : atendimentos.length;
+            document.getElementById('totalAtendimentos').textContent = total;
 
             // Média de atendimentos por dia (considerando apenas dias úteis - segunda a sábado)
             if (atendimentos.length > 0) {
