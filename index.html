@@ -1568,7 +1568,18 @@
                                         <p>Tempo Médio de Atendimento</p>
                                     </div>
                                 </div>
-                                
+
+                                <!-- Novo KPI: Tempo Médio de 1ª Resposta -->
+                                <div class="kpi-card">
+                                    <div class="kpi-icon info">
+                                        <i class="fas fa-hourglass-start"></i>
+                                    </div>
+                                    <div class="kpi-content">
+                                        <h3 id="tempoMedioPrimeiraResposta">0h 0m</h3>
+                                        <p>Tempo Médio de 1ª Resposta</p>
+                                    </div>
+                                </div>
+
                                 <div class="kpi-card">
                                     <div class="kpi-icon info">
                                         <i class="fas fa-star"></i>
@@ -4439,77 +4450,84 @@
             }
         }
 
+        // Helper para construir a query de estatísticas com os filtros aplicados
+        function createEstatisticasQuery(anoFilter, mesFilter, clienteFilter) {
+            let query = supabase
+                .from('clientes_atendimentos')
+                .select(`
+                    *,
+                    clientes (nome)
+                `, { count: 'exact' });
+
+            const pad = (n) => String(n).padStart(2, '0');
+            const formatSQLDateTime = (d) => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
+
+            if (mesFilter && anoFilter) {
+                const ano = parseInt(anoFilter, 10);
+                const mes = parseInt(mesFilter, 10);
+                const start = new Date(ano, mes - 1, 1, 0, 0, 0);
+                const endExclusive = new Date(ano, mes, 1, 0, 0, 0);
+                query = query
+                    .gte('solicitado_em', formatSQLDateTime(start))
+                    .lt('solicitado_em', formatSQLDateTime(endExclusive));
+            } else if (mesFilter && !anoFilter) {
+                const mes = parseInt(mesFilter, 10);
+                const anosParaFiltrar = [];
+                for (let ano = 2020; ano <= 2030; ano++) {
+                    const start = new Date(ano, mes - 1, 1, 0, 0, 0);
+                    const endExclusive = new Date(ano, mes, 1, 0, 0, 0);
+                    anosParaFiltrar.push({ start: formatSQLDateTime(start), endExclusive: formatSQLDateTime(endExclusive) });
+                }
+                if (anosParaFiltrar.length > 0) {
+                    const orConditions = anosParaFiltrar.map(periodo =>
+                        `and(solicitado_em.gte.${periodo.start},solicitado_em.lt.${periodo.endExclusive})`
+                    ).join(',');
+                    query = query.or(orConditions);
+                }
+            } else if (anoFilter && !mesFilter) {
+                const ano = parseInt(anoFilter, 10);
+                const start = new Date(ano, 0, 1, 0, 0, 0);
+                const endExclusive = new Date(ano + 1, 0, 1, 0, 0, 0);
+                query = query
+                    .gte('solicitado_em', formatSQLDateTime(start))
+                    .lt('solicitado_em', formatSQLDateTime(endExclusive));
+            }
+
+            if (clienteFilter) {
+                const clienteId = parseInt(clienteFilter, 10);
+                if (!Number.isNaN(clienteId)) {
+                    query = query.eq('id_cliente', clienteId);
+                }
+            }
+
+            return query;
+        }
+
         async function updateEstatisticas() {
             try {
                 const anoFilter = document.getElementById('estatisticasAnoFilter').value;
                 const mesFilter = document.getElementById('estatisticasMesFilter').value;
                 const clienteFilter = document.getElementById('estatisticasClienteFilter').value;
+                // Paginação para evitar limite padrão de 1000 linhas do PostgREST
+                const pageSize = 1000;
+                const baseQuery = createEstatisticasQuery(anoFilter, mesFilter, clienteFilter);
+                const { data: firstPage, count: totalCount, error: firstError } = await baseQuery.range(0, pageSize - 1);
+                if (firstError) throw firstError;
 
-                // Construir query com filtros
-                let query = supabase
-                    .from('clientes_atendimentos')
-                    .select(`
-                        *,
-                        clientes (nome)
-                    `, { count: 'exact' });
+                let atendimentos = firstPage || [];
 
-                // Helper para formatar data para SQL (YYYY-MM-DD HH:MM:SS)
-                const pad = (n) => String(n).padStart(2, '0');
-                const formatSQLDateTime = (d) => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}`;
-
-                // Aplicar filtros de data baseados no campo solicitado_em (intervalos [start, end))
-                if (mesFilter && anoFilter) {
-                    // Filtro específico por mês e ano
-                    const ano = parseInt(anoFilter, 10);
-                    const mes = parseInt(mesFilter, 10);
-
-                    const start = new Date(ano, mes - 1, 1, 0, 0, 0);
-                    const endExclusive = new Date(ano, mes, 1, 0, 0, 0); // primeiro dia do próximo mês
-
-                    query = query
-                        .gte('solicitado_em', formatSQLDateTime(start))
-                        .lt('solicitado_em', formatSQLDateTime(endExclusive));
-                } else if (mesFilter && !anoFilter) {
-                    // Filtro apenas por mês (todos os anos) - usar múltiplos filtros de intervalo
-                    const mes = parseInt(mesFilter, 10);
-
-                    // Criar filtros para um intervalo amplo de anos
-                    const anosParaFiltrar = [];
-                    for (let ano = 2020; ano <= 2030; ano++) {
-                        const start = new Date(ano, mes - 1, 1, 0, 0, 0);
-                        const endExclusive = new Date(ano, mes, 1, 0, 0, 0);
-                        anosParaFiltrar.push({ start: formatSQLDateTime(start), endExclusive: formatSQLDateTime(endExclusive) });
-                    }
-
-                    // Aplicar filtro OR para todos os intervalos de anos usando limite exclusivo
-                    if (anosParaFiltrar.length > 0) {
-                        const orConditions = anosParaFiltrar.map(periodo =>
-                            `and(solicitado_em.gte.${periodo.start},solicitado_em.lt.${periodo.endExclusive})`
-                        ).join(',');
-                        query = query.or(orConditions);
-                    }
-                } else if (anoFilter && !mesFilter) {
-                    // Filtro apenas por ano
-                    const ano = parseInt(anoFilter, 10);
-                    const start = new Date(ano, 0, 1, 0, 0, 0);
-                    const endExclusive = new Date(ano + 1, 0, 1, 0, 0, 0);
-                    query = query
-                        .gte('solicitado_em', formatSQLDateTime(start))
-                        .lt('solicitado_em', formatSQLDateTime(endExclusive));
-                }
-
-                if (clienteFilter) {
-                    const clienteId = parseInt(clienteFilter, 10);
-                    if (!Number.isNaN(clienteId)) {
-                        query = query.eq('id_cliente', clienteId);
+                // Buscar páginas seguintes se houver mais que 1000
+                for (let offset = atendimentos.length; offset < totalCount && offset < 50000; offset += pageSize) {
+                    const { data: pageData, error: pageError } = await createEstatisticasQuery(anoFilter, mesFilter, clienteFilter)
+                        .range(offset, Math.min(offset + pageSize - 1, 50000 - 1));
+                    if (pageError) throw pageError;
+                    if (pageData && pageData.length) {
+                        atendimentos = atendimentos.concat(pageData);
+                    } else {
+                        break;
                     }
                 }
 
-                const { data: atendimentos, count: totalCount, error } = await query.range(0, 50000);
-
-                if (error) throw error;
-
-                // Calcular estatísticas
                 await calcularEstatisticas(atendimentos, anoFilter, mesFilter, totalCount);
 
             } catch (error) {
@@ -4589,6 +4607,25 @@
                 document.getElementById('tempoMedioAtendimento').textContent = `${horas}h ${minutos}m`;
             } else {
                 document.getElementById('tempoMedioAtendimento').textContent = '0h 0m';
+            }
+
+            // Tempo médio de 1ª resposta (diferença entre solicitado_em e iniciado_em)
+            const atendimentosComPrimeiraResposta = atendimentos.filter(a => a.solicitado_em && a.iniciado_em);
+
+            if (atendimentosComPrimeiraResposta.length > 0) {
+                const tempoTotalPrimeiraResposta = atendimentosComPrimeiraResposta.reduce((total, atendimento) => {
+                    const solicitado = new Date(atendimento.solicitado_em);
+                    const iniciado = new Date(atendimento.iniciado_em);
+                    const diff = iniciado - solicitado;
+                    return total + (diff > 0 ? diff : 0);
+                }, 0);
+
+                const tempoMedioPrimeiraResposta = tempoTotalPrimeiraResposta / atendimentosComPrimeiraResposta.length;
+                const horasPR = Math.floor(tempoMedioPrimeiraResposta / (1000 * 60 * 60));
+                const minutosPR = Math.floor((tempoMedioPrimeiraResposta % (1000 * 60 * 60)) / (1000 * 60));
+                document.getElementById('tempoMedioPrimeiraResposta').textContent = `${horasPR}h ${minutosPR}m`;
+            } else {
+                document.getElementById('tempoMedioPrimeiraResposta').textContent = '0h 0m';
             }
 
             // Nota média dos clientes (baseado em atendimentos com solicitado_em válido)
