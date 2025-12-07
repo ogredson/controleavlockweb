@@ -1,0 +1,15 @@
+Resumo das funcionalidades do sistema
+
+O sistema ajuda a acompanhar o dia a dia de clientes, contratos e atendimentos. Ele oferece um painel simples com os números mais importantes para entender o movimento e a qualidade do serviço.
+
+Principais pontos:
+- Mostra o total de atendimentos, a média por dia, o tempo médio e a nota média.
+- Permite filtrar por ano, mês e cliente para ver só o que interessa.
+- Destaca os itens pendentes de autorização para facilitar o acompanhamento.
+- Possibilita cadastrar e editar clientes, contratos e chaves de liberação.
+- As janelas de cadastro são modais e fecham apenas por Cancelar, Salvar ou pelo ícone de fechar.
+- Permite gerar chaves de liberação por ano.
+- Exibe os dados em tabelas claras, com foco em leitura rápida.
+- A atualização dos dados pode ser feita pelo botão de atualizar.
+
+Em resumo, é uma ferramenta prática para organizar informações e tomar decisões rápidas, sem complicação.

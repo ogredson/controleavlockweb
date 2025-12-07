@@ -2170,7 +2170,8 @@
                 const { data: clientesData, error: clientesError } = await supabase
                     .from('clientes')
                     .select('*')
-                    .order('nome');
+                    .order('nome')
+                    .range(0, 50000);
 
                 if (clientesError) throw clientesError;
                 clientes = clientesData || [];
@@ -2186,7 +2187,8 @@
                             tipo_pessoa
                         )
                     `)
-                    .order('codigo_avlock');
+                    .order('codigo_avlock')
+                    .range(0, 50000);
 
                 if (contratosError) throw contratosError;
                 contratos = contratosData || [];
@@ -3023,7 +3025,8 @@
                         id_contrato, id_cliente, codigo_avlock, sistema, status_liberacao,
                         clientes ( nome )
                     `)
-                    .eq('status_liberacao', 'Pendente');
+                    .eq('status_liberacao', 'Pendente')
+                    .range(0, 50000);
 
                 if (error) {
                     console.error('Erro ao consultar pendentes:', error);
@@ -4401,7 +4404,8 @@
                 const { data: anos, error: anosError } = await supabase
                     .from('clientes_atendimentos')
                     .select('solicitado_em')
-                    .not('solicitado_em', 'is', null);
+                    .not('solicitado_em', 'is', null)
+                    .range(0, 50000);
 
                 if (anosError) throw anosError;
 
@@ -4419,7 +4423,8 @@
                 const { data: clientes, error: clientesError } = await supabase
                     .from('clientes')
                     .select('id_cliente, nome')
-                    .order('nome');
+                    .order('nome')
+                    .range(0, 50000);
 
                 if (clientesError) throw clientesError;
 
