@@ -6,6 +6,9 @@
     <title>ConnectSoft - Controle de Clientes e Contratos</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- jsPDF e AutoTable para geração de PDF -->
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.5.28/dist/jspdf.plugin.autotable.min.js"></script>
     <style>
         :root {
             /* Connect Soft theme colors - baseado na logomarca */
@@ -1386,16 +1389,20 @@
                 <!-- Chaves de Liberação Page -->
                 <div id="chavesPage" class="page hidden">
                     <div class="card">
-                        <div class="card-header">
-                            <h2 class="card-title">
-                                <i class="fas fa-key"></i>
-                                Chaves de Liberação
-                            </h2>
-                            <div style="display: flex; gap: 10px;">
-                                <button class="btn btn-warning" onclick="mostrarModalGeracaoChaves()">
-                                    <i class="fas fa-cogs"></i>
-                                    Gerar Chaves
-                                </button>
+                            <div class="card-header">
+                                <h2 class="card-title">
+                                    <i class="fas fa-key"></i>
+                                    Chaves de Liberação
+                                </h2>
+                                <div style="display: flex; gap: 10px;">
+                                    <button class="btn btn-secondary" onclick="gerarRelatorioChavesPDF()">
+                                        <i class="fas fa-file-pdf"></i>
+                                        Relatório de Chaves
+                                    </button>
+                                    <button class="btn btn-warning" onclick="mostrarModalGeracaoChaves()">
+                                        <i class="fas fa-cogs"></i>
+                                        Gerar Chaves
+                                    </button>
                                 <button class="btn btn-success" onclick="exportarChavesCSV()">
                                     <i class="fas fa-download"></i>
                                     Exportar chaves
@@ -3507,7 +3514,9 @@
                     .select(`
                         *,
                         contratos_itens(
+                            id_cliente,
                             codigo_avlock,
+                            sistema,
                             clientes(
                                 nome
                             )
@@ -4392,6 +4401,127 @@
             } catch (error) {
                 console.error('Erro ao importar chaves:', error);
                 showToast('Erro ao importar chaves: ' + error.message, 'error');
+            }
+        }
+
+        // Relatório de Chaves em PDF
+        async function gerarRelatorioChavesPDF() {
+            try {
+                const searchTerm = document.getElementById('chaveSearch')?.value.toLowerCase() || '';
+                const clienteSearchTerm = document.getElementById('clienteChaveSearch')?.value.toLowerCase() || '';
+                const anoFilter = document.getElementById('anoFilter')?.value || '';
+                const mesFilter = document.getElementById('mesFilter')?.value || '';
+
+                // Forçar seleção de Ano e Mês
+                if (!anoFilter || !mesFilter) {
+                    showToast('Selecione um Ano e um Mês antes de gerar o relatório.', 'warning');
+                    return;
+                }
+
+                let filteredChaves = chaves.filter(chave => {
+                    const matchesSearch = 
+                        chave.id_contrato.toString().includes(searchTerm) ||
+                        (chave.contratos_itens?.codigo_avlock && 
+                         chave.contratos_itens.codigo_avlock.toLowerCase().includes(searchTerm));
+                    const matchesCliente = !clienteSearchTerm || 
+                        (chave.contratos_itens?.clientes?.nome && 
+                         chave.contratos_itens.clientes.nome.toLowerCase().includes(clienteSearchTerm));
+                    const matchesAno = chave.ano_base?.toString() === anoFilter;
+                    const matchesMes = chave.mes_base?.toString() === mesFilter;
+                    return matchesSearch && matchesCliente && matchesAno && matchesMes;
+                });
+
+                if (!filteredChaves.length) {
+                    showToast('Nenhuma chave encontrada para os filtros selecionados.', 'warning');
+                    return;
+                }
+
+                // Impedir múltiplos clientes: deve haver exatamente um id_cliente
+                const clienteIds = [...new Set(filteredChaves
+                    .map(c => c.contratos_itens?.id_cliente)
+                    .filter(id => id !== undefined && id !== null))];
+                if (clienteIds.length !== 1) {
+                    showToast('Selecione um único cliente (filtro por nome) antes de gerar o relatório.', 'warning');
+                    return;
+                }
+
+                // Formatação de data apenas dia/mês/ano
+                const formatDateOnly = (dateString) => {
+                    if (!dateString) return '-';
+                    const d = new Date(dateString);
+                    const dd = String(d.getDate()).padStart(2, '0');
+                    const mm = String(d.getMonth() + 1).padStart(2, '0');
+                    const yyyy = d.getFullYear();
+                    return `${dd}/${mm}/${yyyy}`;
+                };
+
+                // Cabeçalhos (inclui Sistema)
+                const headers = ['Nome Cliente', 'Código AvLock', 'Chave AvLock', 'Sistema', 'Ano Base', 'Mês Base', 'Data Inicial', 'Data Final'];
+                const rows = filteredChaves.map(ch => [
+                    ch.contratos_itens?.clientes?.nome || '-',
+                    ch.contratos_itens?.codigo_avlock || '-',
+                    ch.chave_avlock || '-',
+                    ch.contratos_itens?.sistema ?? '-',
+                    ch.ano_base ?? '-',
+                    getMonthName(ch.mes_base) ?? '-',
+                    formatDateOnly(ch.data_inicial),
+                    formatDateOnly(ch.data_final),
+                ]);
+
+                const idParte = clienteIds[0];
+                const nomeArquivo = `${idParte}_${anoFilter}_${mesFilter}.pdf`;
+
+                const { jsPDF } = window.jspdf || {};
+                if (!jsPDF || !window.jspdf || !('autoTable' in jsPDF.API)) {
+                    showToast('Biblioteca de PDF não carregada. Verifique sua conexão.', 'error');
+                    return;
+                }
+
+                const doc = new jsPDF('l', 'pt', 'a4');
+                doc.setFontSize(14);
+                doc.text('ConnectSoft - Relatório de Chaves - Shopcash', 40, 40);
+                const sub = `Cliente: ${idParte}  Ano: ${anoFilter}  Mês: ${getMonthName(parseInt(mesFilter))}`;
+                doc.setFontSize(10);
+                doc.text(sub, 40, 58);
+
+                doc.autoTable({
+                    head: [headers],
+                    body: rows,
+                    startY: 80,
+                    margin: { left: 30, right: 30 },
+                    styles: {
+                        fontSize: 8.5,
+                        cellPadding: 4,
+                        overflow: 'linebreak',
+                        lineColor: [50, 50, 50],
+                        lineWidth: 0.5,
+                    },
+                    headStyles: {
+                        fillColor: [230, 230, 230],
+                        textColor: [20, 20, 20],
+                        lineColor: [50, 50, 50],
+                        lineWidth: 0.75,
+                    },
+                    tableLineColor: [50, 50, 50],
+                    tableLineWidth: 0.75,
+                    theme: 'grid',
+                    columnStyles: {
+                        0: { cellWidth: 150 }, // Nome Cliente
+                        1: { cellWidth: 90 },  // Código AvLock
+                        2: { cellWidth: 190 }, // Chave AvLock
+                        3: { cellWidth: 80 },  // Sistema
+                        4: { cellWidth: 60 },  // Ano Base
+                        5: { cellWidth: 80 },  // Mês Base
+                        6: { cellWidth: 80 },  // Data Inicial
+                        7: { cellWidth: 80 },  // Data Final
+                    },
+                });
+
+                doc.save(nomeArquivo);
+                showToast(`Relatório gerado: ${nomeArquivo}`, 'success');
+            } catch (error) {
+                console.error('Erro ao gerar relatório de chaves:', error);
+                showToast('Erro ao gerar relatório de chaves: ' + error.message, 'error');
             }
         }
 
