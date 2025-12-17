@@ -2167,7 +2167,7 @@
         // Supabase configuration
         const supabaseUrl = 'https://ohexwiamhgsnahrjynko.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9oZXh3aWFtaGdzbmFocmp5bmtvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTg1NDM4MTcsImV4cCI6MjA3NDExOTgxN30.MYpemlbM2iYbnKWAGDWs8cbLJTKi0wK-o8P9jUDP59E';
-        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 
         // Global variables
         let clientes = [];
@@ -2185,7 +2185,7 @@
             
             try {
                 // Load clientes
-                const { data: clientesData, error: clientesError } = await supabase
+                const { data: clientesData, error: clientesError } = await supabaseClient
                     .from('clientes')
                     .select('*')
                     .order('nome')
@@ -2195,7 +2195,7 @@
                 clientes = clientesData || [];
 
                 // Load contratos with cliente data
-                const { data: contratosData, error: contratosError } = await supabase
+                const { data: contratosData, error: contratosError } = await supabaseClient
                     .from('contratos_itens')
                     .select(`
                         *,
@@ -2638,7 +2638,7 @@
             try {
                 if (editingId) {
                     // Atualizar cliente existente
-                    const { error } = await supabase
+                    const { error } = await supabaseClient
                         .from('clientes')
                         .update(clienteData)
                         .eq('id_cliente', editingId);
@@ -2647,7 +2647,7 @@
                     showToast('Cliente atualizado com sucesso!', 'success');
                 } else {
                     // Criar novo cliente
-                    const { error } = await supabase
+                    const { error } = await supabaseClient
                         .from('clientes')
                         .insert([clienteData]);
                     
@@ -2691,7 +2691,7 @@
             if (!confirm('Tem certeza que deseja excluir este cliente?')) return;
             
             try {
-                const { error } = await supabase
+                const { error } = await supabaseClient
                     .from('clientes')
                     .delete()
                     .eq('id_cliente', id);
@@ -2762,7 +2762,7 @@
                 if (editingId) {
                     // Atualizar contrato existente
                     const [id_cliente, codigo_avlock, sistema] = editingId.split('|');
-                    const { error } = await supabase
+                    const { error } = await supabaseClient
                         .from('contratos_itens')
                         .update(contratoData)
                         .eq('id_cliente', parseInt(id_cliente))
@@ -2773,7 +2773,7 @@
                     showToast('Contrato atualizado com sucesso!', 'success');
                 } else {
                     // Criar novo contrato
-                    const { error } = await supabase
+                    const { error } = await supabaseClient
                         .from('contratos_itens')
                         .insert([contratoData]);
                     
@@ -2818,7 +2818,7 @@
             if (!confirm('Tem certeza que deseja excluir este contrato?')) return;
             
             try {
-                const { error } = await supabase
+                const { error } = await supabaseClient
                     .from('contratos_itens')
                     .delete()
                     .eq('id_cliente', parseInt(id_cliente))
@@ -3037,7 +3037,7 @@
         async function checkForNewPendentes() {
             if (!requireAuth()) return;
             try {
-                const { data, error } = await supabase
+                const { data, error } = await supabaseClient
                     .from('contratos_itens')
                     .select(`
                         id_contrato, id_cliente, codigo_avlock, sistema, status_liberacao,
@@ -3215,7 +3215,7 @@
         async function login(username, password) {
             try {
                 // Query the clientes table to find user with id_cliente = 1
-                const { data, error } = await supabase
+                const { data, error } = await supabaseClient
                     .from('clientes')
                     .select('id_cliente, nome, senha')
                     .eq('id_cliente', 1)
@@ -3509,7 +3509,7 @@
 
         async function loadChaves() {
             try {
-                const { data: chavesData, error: chavesError } = await supabase
+                const { data: chavesData, error: chavesError } = await supabaseClient
                     .from('contratos_chaves')
                     .select(`
                         *,
@@ -3776,7 +3776,7 @@
             
             if (idContrato) {
                 try {
-                    const { data, error } = await supabase
+                    const { data, error } = await supabaseClient
                         .from('contratos_itens')
                         .select('dias_liberacao')
                         .eq('id_contrato', parseInt(idContrato))
@@ -3815,12 +3815,12 @@
             try {
                 let result;
                 if (editingId) {
-                    result = await supabase
+                    result = await supabaseClient
                         .from('contratos_chaves')
                         .update(chaveData)
                         .eq('id_chave', editingId);
                 } else {
-                    result = await supabase
+                    result = await supabaseClient
                         .from('contratos_chaves')
                         .insert([chaveData]);
                 }
@@ -3864,7 +3864,7 @@
             if (!confirm('Tem certeza que deseja excluir esta chave?')) return;
 
             try {
-                const { error } = await supabase
+                const { error } = await supabaseClient
                     .from('contratos_chaves')
                     .delete()
                     .eq('id_chave', id);
@@ -4040,7 +4040,7 @@
                 showToast('Gerando chaves...', 'info');
 
                 // Buscar todos os contratos_itens ativos
-                const { data: contratosItens, error: contratosError } = await supabase
+                const { data: contratosItens, error: contratosError } = await supabaseClient
                     .from('contratos_itens')
                     .select('*')
                     .eq('status_liberacao', 'Ativo');
@@ -4062,7 +4062,7 @@
                     for (let mes = mesCorrente; mes <= mesFinalCorrente; mes++) {
                         try {
                             // Verificar se já existe uma chave para este contrato, ano e mês
-                            const { data: chaveExistente, error: checkError } = await supabase
+                            const { data: chaveExistente, error: checkError } = await supabaseClient
                                 .from('contratos_chaves')
                                 .select('id_chave')
                                 .eq('id_contrato', contrato.id_contrato)
@@ -4088,7 +4088,7 @@
                             dataFinal.setDate(dataInicial.getDate() + contrato.dias_liberacao);
 
                             // Inserir nova chave
-                            const { error: insertError } = await supabase
+                            const { error: insertError } = await supabaseClient
                                 .from('contratos_chaves')
                                 .insert({
                                     id_contrato: contrato.id_contrato,
@@ -4175,7 +4175,7 @@
                 for (const chave of dadosParaExportar) {
                     try {
                         // Buscar dados completos do contrato_item
-                        const { data: contratoData, error: contratoError } = await supabase
+                        const { data: contratoData, error: contratoError } = await supabaseClient
                             .from('contratos_itens')
                             .select('codigo_avlock, dias_liberacao, tipo_liberacao, status_liberacao, appid, modalidade')
                             .eq('id_contrato', chave.id_contrato)
@@ -4360,7 +4360,7 @@
 
                         for (const update of updates) {
                             try {
-                                const { error } = await supabase
+                                const { error } = await supabaseClient
                                     .from('contratos_chaves')
                                     .update({ chave_avlock: update.chave_avlock })
                                     .eq('id_chave', update.id_chave);
@@ -4542,7 +4542,7 @@
         async function loadEstatisticasFilters() {
             try {
                 // Carregar anos disponíveis
-                const { data: anos, error: anosError } = await supabase
+                const { data: anos, error: anosError } = await supabaseClient
                     .from('clientes_atendimentos')
                     .select('solicitado_em')
                     .not('solicitado_em', 'is', null)
@@ -4561,7 +4561,7 @@
                 });
 
                 // Carregar clientes
-                const { data: clientes, error: clientesError } = await supabase
+                const { data: clientes, error: clientesError } = await supabaseClient
                     .from('clientes')
                     .select('id_cliente, nome')
                     .order('nome')
@@ -4582,7 +4582,7 @@
 
         // Helper para construir a query de estatísticas com os filtros aplicados
         function createEstatisticasQuery(anoFilter, mesFilter, clienteFilter) {
-            let query = supabase
+            let query = supabaseClient
                 .from('clientes_atendimentos')
                 .select(`
                     *,
