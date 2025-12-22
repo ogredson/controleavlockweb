@@ -1,0 +1,35 @@
+As tecnologias utilizadas neste projeto são focadas em uma arquitetura web moderna e leve, utilizando o conceito de **Serverless / BaaS (Backend as a Service)**.
+
+Aqui está o detalhamento:
+
+### **1. Frontend (Interface do Usuário)**
+*   **HTML5 & CSS3:** A estrutura e o estilo são feitos com HTML e CSS nativos.
+    *   Uso extensivo de **Variáveis CSS** (`:root`) para temas (cores, espaçamentos).
+    *   Design responsivo utilizando **Flexbox** e Media Queries.
+*   **JavaScript (Vanilla JS):** A lógica da aplicação é escrita em JavaScript puro (ES6+), sem o uso de frameworks complexos como React, Vue ou Angular. A manipulação do DOM e o gerenciamento de estado são feitos manualmente.
+*   **Bibliotecas Externas (via CDN):**
+    *   **FontAwesome:** Para ícones (v6.4.0).
+    *   **jsPDF & jsPDF-AutoTable:** Para geração de relatórios PDF diretamente no navegador.
+
+### **2. Backend & Banco de Dados**
+*   **Supabase:** É a tecnologia central de backend. O projeto utiliza o cliente JavaScript do Supabase (`@supabase/supabase-js`) para conectar diretamente o frontend ao banco de dados.
+    *   Responsável pela **Autenticação**, **Banco de Dados** e **API**.
+*   **PostgreSQL:** O banco de dados relacional utilizado "por baixo dos panos" pelo Supabase. O arquivo `BancoAvLock.sql` na raiz sugere a estrutura das tabelas.
+
+### **3. Ferramentas de Apoio**
+*   **Python:** Há um script utilitário (`fix_supabase_var.py`) usado para tarefas de manutenção de código, especificamente para refatoração segura de nomes de variáveis no projeto.
+
+**Resumo da Arquitetura:**
+É uma **SPA (Single Page Application)** leve, contida em um único arquivo principal (`index.html`), que se conecta diretamente a serviços em nuvem (Supabase) para gerenciar dados de Clientes e Contratos,ratos, eliminando a necessidade de um servidor backend tradicional dedicado.
+
+toolName: view_folder
+c:\_working\Projetos\ControleAvLockWeb
+toolName: view_files
+filePath: c:\_working\Projetos\ControleAvLockWeb\index.html
+toolName: view_files
+filePath: c:\_working\Projetos\ControleAvLockWeb\fix_supabase_var.py
+toolName: view_files
+filePath: c:\_working\Projetos\ControleAvLockWeb\index.html
+toolName: search_by_regex
+toolName: view_files
+filePath: c:\_working\Projetos\ControleAvLockWeb\index.html
